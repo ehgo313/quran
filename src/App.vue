@@ -1,30 +1,22 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue';
+import BaseTitle from './components/base/base-title.vue';
+import BaseInput from './components/base/base-input.vue';
+import BaseButton from './components/base/base-button.vue';
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div class="min-h-screen flex items-center justify-center">
+    <div
+      class="bg-white p-5 w-full sm:w-auto sm:min-w-20 sm:max-w-sm space-y-4 px-4 sm:px-0"
+    >
+      <base-title>Login to Account</base-title>
+      <base-input type="email" id="email" placeholder="Account Email" />
+      <base-input
+        type="password"
+        id="password"
+        placeholder="Account Password"
+      />
+      <base-button>Login</base-button>
+    </div>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
-
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
