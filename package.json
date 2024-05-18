@@ -10,9 +10,11 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "vue": "^3.4.21"
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.2"
   },
   "devDependencies": {
+    "@vicons/tabler": "^0.12.0",
     "@vitejs/plugin-vue": "^5.0.4",
     "autoprefixer": "^10.4.19",
     "eslint": "^8.57.0",
