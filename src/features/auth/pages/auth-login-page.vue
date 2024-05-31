@@ -4,11 +4,12 @@ import BaseInput from 'src/components/base/base-input.vue';
 import BaseButton from 'src/components/base/base-button.vue';
 import { useRouter } from 'vue-router';
 import { z } from 'zod';
-import { reactive, ref } from 'vue';
+import { reactive } from 'vue';
+import { useValidation } from 'src/core/validation/validation';
 
 const router = useRouter();
+const { hasError, getError, validate } = useValidation();
 
-const errors = ref([]);
 const form = reactive({
   email: null,
   password: null,
@@ -27,27 +28,10 @@ const schema = z.object({
   }),
 });
 
-function hasError(key) {
-  return !!errors.value.find((issue) => issue.path === key);
-}
-
-function getError(key) {
-  return hasError(key)
-    ? errors.value.find((issue) => issue.path === key).message
-    : null;
-}
-
 async function handleSubmit() {
-  const res = await schema.safeParseAsync(form);
+  const [res, error] = await validate(schema, form);
 
-  if (!res.success) {
-    errors.value = res.error.issues.map((item) => {
-      return {
-        path: item.path[0],
-        message: item.message,
-      };
-    });
-  } else {
+  if (!error) {
     router.push({ name: 'dashboard' });
   }
 }
