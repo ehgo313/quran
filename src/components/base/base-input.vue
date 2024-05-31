@@ -12,23 +12,38 @@ const props = defineProps({
     type: String,
     default: 'default',
   },
+  message: String,
 });
+const value = defineModel();
 
 const state = computed(() => {
   return {
-    default:
-      'border-gray-200 placeholder:text-gray-400 focus:border-sky-600 text-red-900',
-    danger:
-      'border-red-400 placeholder:text-red-400 focus:border-red-600 text-red-600',
+    default: {
+      input:
+        'border-gray-200 placeholder:text-gray-400 focus:border-sky-600 text-red-900',
+      message: 'text-gray-600',
+    },
+    danger: {
+      input:
+        'border-red-400 placeholder:text-red-400 focus:border-red-600 text-red-600',
+      message: 'text-red-600',
+    },
   }[props.state];
 });
 </script>
 
 <template>
-  <input
-    :type="type"
-    :id="id"
-    :placeholder="placeholder"
-    :class="['border rounded-lg w-full py-2 px-2.5 focus:outline-none', state]"
-  />
+  <div class="space-y-1">
+    <input
+      :type="type"
+      :id="id"
+      :placeholder="placeholder"
+      :class="[
+        'border rounded-lg w-full py-2 px-2.5 focus:outline-none',
+        state.input,
+      ]"
+      v-model="value"
+    />
+    <p v-if="message" :class="['text-sm', state.message]">{{ message }}</p>
+  </div>
 </template>
