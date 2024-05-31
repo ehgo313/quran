@@ -4,11 +4,14 @@ import BaseInput from 'src/components/base/base-input.vue';
 import BaseButton from 'src/components/base/base-button.vue';
 import { useRouter } from 'vue-router';
 import { z } from 'zod';
-import { reactive } from 'vue';
+import { reactive, inject } from 'vue';
 import { useValidation } from 'src/core/validation/validation';
+import { useRequest } from 'src/core/request/request';
 
+const emitter = inject('emitter');
 const router = useRouter();
 const { hasError, getError, validate } = useValidation();
+const { request } = useRequest('/api/login');
 
 const form = reactive({
   email: null,
@@ -29,10 +32,20 @@ const schema = z.object({
 });
 
 async function handleSubmit() {
-  const [res, error] = await validate(schema, form);
+  const [data, errorValidate] = await validate(schema, form);
 
-  if (!error) {
-    router.push({ name: 'dashboard' });
+  if (!errorValidate) {
+    const [res, errorRequest] = await request({
+      data,
+    });
+
+    if (!errorRequest) {
+      router.push({ name: 'dashboard' });
+    } else {
+      emitter.emit('create-toast', {
+        message: errorRequest,
+      });
+    }
   }
 }
 </script>
