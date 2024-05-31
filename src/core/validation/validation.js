@@ -13,7 +13,13 @@ export function useValidation() {
       : null;
   }
 
+  function resetError() {
+    errors.value = [];
+  }
+
   async function validate(schema, data) {
+    resetError();
+
     const res = await schema.safeParseAsync(data);
 
     if (!res.success) {
@@ -30,5 +36,5 @@ export function useValidation() {
     }
   }
 
-  return { errors, hasError, getError, validate };
+  return { errors, hasError, getError, validate, resetError };
 }
