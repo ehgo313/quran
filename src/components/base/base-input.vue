@@ -20,7 +20,7 @@ const state = computed(() => {
   return {
     default: {
       input:
-        'border-gray-200 placeholder:text-gray-400 focus:border-sky-600 text-red-900',
+        'border-gray-200 placeholder:text-gray-400 focus:border-sky-600 text-gray-900',
       message: 'text-gray-600',
     },
     danger: {
