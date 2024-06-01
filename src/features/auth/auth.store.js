@@ -1,12 +1,16 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 
-export const useAuthStore = defineStore('auth', () => {
-  const isLoggedIn = ref(false);
+export const useAuthStore = defineStore(
+  'auth',
+  () => {
+    const isLoggedIn = ref(false);
 
-  async function login() {
-    isLoggedIn.value = true;
-  }
+    async function login() {
+      isLoggedIn.value = true;
+    }
 
-  return { isLoggedIn, login };
-});
+    return { isLoggedIn, login };
+  },
+  { persist: true },
+);
