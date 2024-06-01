@@ -6,5 +6,9 @@ export function useRouter(app, options) {
     history: createWebHistory(),
   });
 
+  options.guards.forEach((guard) => {
+    router.beforeEach(guard);
+  });
+
   app.use(router);
 }
