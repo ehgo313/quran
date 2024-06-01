@@ -11,7 +11,7 @@ import { useRequest } from 'src/core/request/request';
 const emitter = inject('emitter');
 const router = useRouter();
 const { hasError, getError, validate } = useValidation();
-const { request } = useRequest('/api/login');
+const { request, getErrorMessage } = useRequest('/login');
 
 const form = reactive({
   email: null,
@@ -36,6 +36,7 @@ async function handleSubmit() {
 
   if (!errorValidate) {
     const [res, errorRequest] = await request({
+      method: 'post',
       data,
     });
 
@@ -43,7 +44,7 @@ async function handleSubmit() {
       router.push({ name: 'dashboard' });
     } else {
       emitter.emit('create-toast', {
-        message: errorRequest,
+        message: getErrorMessage(),
       });
     }
   }
