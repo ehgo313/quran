@@ -7,11 +7,13 @@ import { z } from 'zod';
 import { reactive, inject } from 'vue';
 import { useValidation } from 'src/core/validation/validation';
 import { useRequest } from 'src/core/request/request';
+import { useAuthStore } from 'src/features/auth/auth.store';
 
 const emitter = inject('emitter');
 const router = useRouter();
 const { hasError, getError, validate } = useValidation();
 const { request, getErrorMessage } = useRequest('/login');
+const authStore = useAuthStore();
 
 const form = reactive({
   email: null,
@@ -41,6 +43,8 @@ async function handleSubmit() {
     });
 
     if (!errorRequest) {
+      authStore.login();
+
       router.push({ name: 'dashboard' });
     } else {
       emitter.emit('create-toast', {
