@@ -1,5 +1,6 @@
 <script setup>
 import { computed } from 'vue';
+import BaseSpinner from './base-spinner.vue';
 
 const props = defineProps({
   type: {
@@ -16,6 +17,7 @@ const props = defineProps({
     default: 'sky',
   },
   square: Boolean,
+  loading: Boolean,
 });
 
 const size = computed(() => {
@@ -40,9 +42,11 @@ const color = computed(() => {
       fullwidth ? 'w-full' : '',
       size,
       color,
-      'border inline-flex items-center justify-center',
+      'border inline-flex items-center justify-center gap-x-2',
     ]"
+    :disabled="loading"
   >
+    <base-spinner v-if="loading" size="sm" />
     <slot />
   </button>
 </template>
