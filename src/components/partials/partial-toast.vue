@@ -1,6 +1,7 @@
 <script setup>
 import { AlertTriangle as ErrorIcon } from '@vicons/tabler';
 import { ref, inject } from 'vue';
+import baseAlert from 'src/components/base/base-alert.vue';
 
 const emitter = inject('emitter');
 
@@ -24,13 +25,8 @@ emitter.on('create-toast', (data) => {
 
 <template>
   <div class="fixed top-8 left-1/2 -translate-x-1/2 space-y-4">
-    <div
-      v-for="toast in toasts"
-      :key="toast.id"
-      class="w-full max-w-5xl py-2 px-2.5 bg-red-100 border-red-300 text-red-600 border rounded-lg flex items-center gap-x-2"
-    >
-      <error-icon class="w-4 h-4" />
+    <base-alert v-for="toast in toasts" :key="toast.id">
       {{ toast.message }}
-    </div>
+    </base-alert>
   </div>
 </template>
