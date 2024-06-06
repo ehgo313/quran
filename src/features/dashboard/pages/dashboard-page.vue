@@ -7,7 +7,7 @@ import PartialSidebar from 'src/components/partials/partial-sidebar.vue';
 
 <template>
   <div
-    class="max-w-2xl mx-auto grid grid-cols-1 sm:grid-cols-4 p-4 sm:py-8 sm:px-0 gap-4 sm:gap-0"
+    class="max-w-2xl mx-auto grid grid-cols-1 sm:grid-cols-4 p-4 sm:py-8 sm:px-0 gap-4 sm:gap-8"
   >
     <div class="sm:hidden">
       <base-button color="light" square>
