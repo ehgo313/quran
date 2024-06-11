@@ -5,12 +5,15 @@ export const useAuthStore = defineStore(
   'auth',
   () => {
     const isLoggedIn = ref(false);
+    const accessToken = ref(null);
 
-    async function login() {
+    async function login(data) {
+      accessToken.value = data.accessToken;
+
       isLoggedIn.value = true;
     }
 
-    return { isLoggedIn, login };
+    return { accessToken, isLoggedIn, login };
   },
   { persist: true },
 );

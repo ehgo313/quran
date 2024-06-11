@@ -43,7 +43,9 @@ async function handleSubmit() {
     });
 
     if (!errorRequest) {
-      authStore.login();
+      authStore.login({
+        accessToken: res.data.accessToken,
+      });
 
       router.push({ name: 'dashboard' });
     } else {
