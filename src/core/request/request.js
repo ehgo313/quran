@@ -1,10 +1,12 @@
 import axios, { AxiosError } from 'axios';
 import { ref } from 'vue';
+import { useAuthStore } from 'src/features/auth/auth.store';
 
 export function useRequest(
   url,
   { initLoading = false } = { initLoading: false },
 ) {
+  const authStore = useAuthStore();
   const loading = ref(initLoading ?? false);
   const error = ref(null);
 
@@ -24,6 +26,9 @@ export function useRequest(
         baseURL: import.meta.env.VITE_API_URL,
         url,
         ...config,
+        headers: {
+          Authorization: `Bearer ${authStore.accessToken}`,
+        },
       });
 
       error.value = null;
