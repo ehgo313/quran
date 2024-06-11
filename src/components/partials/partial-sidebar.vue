@@ -1,7 +1,9 @@
 <script setup>
 import BaseAlert from 'src/components/base/base-alert.vue';
 import { useRequest } from 'src/core/request/request';
+import { useAuthStore } from 'src/features/auth/auth.store';
 
+const authStore = useAuthStore();
 const { loading, error, getErrorMessage, request } = useRequest(
   '/collections',
   {
@@ -9,7 +11,11 @@ const { loading, error, getErrorMessage, request } = useRequest(
   },
 );
 
-request();
+request({
+  params: {
+    user_id: authStore.me.userId,
+  },
+});
 </script>
 
 <template>
