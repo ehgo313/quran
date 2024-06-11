@@ -12,7 +12,7 @@ import { useAuthStore } from 'src/features/auth/auth.store';
 const emitter = inject('emitter');
 const router = useRouter();
 const { hasError, getError, validate } = useValidation();
-const { request, getErrorMessage } = useRequest('/login');
+const { loading, request, getErrorMessage } = useRequest('/login');
 const authStore = useAuthStore();
 
 const form = reactive({
@@ -43,7 +43,10 @@ async function handleSubmit() {
     });
 
     if (!errorRequest) {
-      authStore.login();
+      authStore.login({
+        accessToken: res.data.accessToken,
+        me: res.data.me,
+      });
 
       router.push({ name: 'dashboard' });
     } else {
@@ -76,7 +79,9 @@ async function handleSubmit() {
           :message="getError('password')"
           v-model="form.password"
         />
-        <base-button type="submit" fullwidth>Login</base-button>
+        <base-button type="submit" fullwidth :loading="loading"
+          >Login</base-button
+        >
       </form>
     </div>
   </div>
