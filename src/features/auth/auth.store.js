@@ -6,14 +6,16 @@ export const useAuthStore = defineStore(
   () => {
     const isLoggedIn = ref(false);
     const accessToken = ref(null);
+    const me = ref(null);
 
     async function login(data) {
       accessToken.value = data.accessToken;
+      me.value = data.me;
 
       isLoggedIn.value = true;
     }
 
-    return { accessToken, isLoggedIn, login };
+    return { accessToken, me, isLoggedIn, login };
   },
   { persist: true },
 );

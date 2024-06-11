@@ -45,6 +45,7 @@ async function handleSubmit() {
     if (!errorRequest) {
       authStore.login({
         accessToken: res.data.accessToken,
+        me: res.data.me,
       });
 
       router.push({ name: 'dashboard' });
