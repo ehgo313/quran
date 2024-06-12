@@ -1,5 +1,4 @@
 <script setup>
-import BaseAlert from 'src/components/base/base-alert.vue';
 import WithLoading from 'src/components/composes/with-loading.vue';
 import { useRequest } from 'src/core/request/request';
 import { useAuthStore } from 'src/features/auth/auth.store';
