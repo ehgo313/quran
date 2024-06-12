@@ -7,6 +7,8 @@ export function useRequest(
   { initLoading = false } = { initLoading: false },
 ) {
   const authStore = useAuthStore();
+
+  const data = ref(null);
   const loading = ref(initLoading ?? false);
   const error = ref(null);
 
@@ -32,6 +34,7 @@ export function useRequest(
       });
 
       error.value = null;
+      data.value = res.data;
 
       return [res.data, null];
     } catch (err) {
@@ -43,5 +46,5 @@ export function useRequest(
     }
   }
 
-  return { loading, error, request, getErrorMessage };
+  return { data, loading, error, request, getErrorMessage };
 }

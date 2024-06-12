@@ -4,12 +4,15 @@ import { useRequest } from 'src/core/request/request';
 import { useAuthStore } from 'src/features/auth/auth.store';
 
 const authStore = useAuthStore();
-const { loading, error, getErrorMessage, request } = useRequest(
-  '/collections',
-  {
-    initLoading: true,
-  },
-);
+const {
+  data: collections,
+  loading,
+  error,
+  getErrorMessage,
+  request,
+} = useRequest('/collections', {
+  initLoading: true,
+});
 
 request({
   params: {
@@ -39,14 +42,8 @@ request({
             getErrorMessage()
           }}</base-alert>
           <ul v-else>
-            <li>
-              <a href="" class="hover:text-sky-600">Article To Writes</a>
-            </li>
-            <li>
-              <a href="" class="hover:text-sky-600">Anime To Watch</a>
-            </li>
-            <li>
-              <a href="" class="hover:text-sky-600">Project Ideas</a>
+            <li v-for="collection in collections.data" :key="collection.id">
+              <a href="" class="hover:text-sky-600">{{ collection.name }}</a>
             </li>
           </ul>
         </template>
