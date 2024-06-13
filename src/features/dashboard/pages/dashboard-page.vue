@@ -27,24 +27,34 @@ const createForm = reactive({
   },
 });
 
+function loadActivities() {
+  fetchActivities({
+    params: {
+      user_id: authStore.me.userId,
+    },
+  });
+}
+
 function onCreate() {
   createForm.visible = !createForm.visible;
 }
-function onStore() {
-  postActivity({
+async function onStore() {
+  const [, error] = await postActivity({
     method: 'post',
     data: {
       name: createForm.form.name,
       user_id: authStore.me.userId,
     },
   });
+
+  if (!error) {
+    createForm.form.name = null;
+
+    loadActivities();
+  }
 }
 
-fetchActivities({
-  params: {
-    user_id: authStore.me.userId,
-  },
-});
+loadActivities();
 </script>
 
 <template>
