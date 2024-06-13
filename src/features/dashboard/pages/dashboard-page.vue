@@ -6,19 +6,41 @@ import PartialSidebar from 'src/components/partials/partial-sidebar.vue';
 import withLoading from 'src/components/composes/with-loading.vue';
 import { useRequest } from 'src/core/request/request';
 import { useAuthStore } from 'src/features/auth/auth.store';
+import { reactive } from 'vue';
 
 const authStore = useAuthStore();
 const {
   loading,
   error,
   getErrorMessage,
-  request,
+  request: fetchActivities,
   data: activities,
 } = useRequest('/activities', {
   initLoading: true,
 });
+const { request: postActivity } = useRequest('activities');
 
-request({
+const createForm = reactive({
+  visible: false,
+  form: {
+    name: null,
+  },
+});
+
+function onCreate() {
+  createForm.visible = !createForm.visible;
+}
+function onStore() {
+  postActivity({
+    method: 'post',
+    data: {
+      name: createForm.form.name,
+      user_id: authStore.me.userId,
+    },
+  });
+}
+
+fetchActivities({
   params: {
     user_id: authStore.me.userId,
   },
@@ -38,7 +60,9 @@ request({
     <div class="col-span-3 space-y-2">
       <div class="flex items-center justify-between">
         <base-title size="small">Today Activities</base-title>
-        <a href="" class="text-sky-600">New Activity</a>
+        <a href="" class="text-sky-600" v-on:click.prevent="onCreate"
+          >New Activity</a
+        >
       </div>
       <with-loading
         :loading="loading"
@@ -51,7 +75,9 @@ request({
             :key="activity.id"
             :class="[
               'group flex items-center justify-between py-2 px-2.5 border-gray-200',
-              index === activities.data.length - 1 && !true ? '' : 'border-b',
+              index === activities.data.length - 1 && !createForm.visible
+                ? ''
+                : 'border-b',
             ]"
           >
             <span>{{ activity.name }}</span>
@@ -62,12 +88,15 @@ request({
               <action-icon class="hidden group-hover:block w-3 h-3" />
             </div>
           </li>
-          <li>
-            <input
-              class="py-2 px-2.5 w-full border-0 focus:border-0 rounded-b-lg focus:outline-0 focus:ring-0"
-              type="text"
-              placeholder="New Task"
-            />
+          <li v-if="createForm.visible">
+            <form action="" v-on:submit.prevent="onStore">
+              <input
+                class="py-2 px-2.5 w-full placeholder-gray-400 border-0 focus:border-0 rounded-b-lg focus:outline-0 focus:ring-0"
+                type="text"
+                placeholder="New Task"
+                v-model="createForm.form.name"
+              />
+            </form>
           </li>
         </ul>
       </with-loading>
