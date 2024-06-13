@@ -15,11 +15,10 @@ const {
   getErrorMessage,
   request: fetchActivities,
   data: activities,
-} = useRequest('/activities', {
-  initLoading: true,
-});
+} = useRequest('/activities');
 const { request: postActivity } = useRequest('activities');
 
+const activitiesLoaded = ref(false);
 const inputNewTask = ref(null);
 const createForm = reactive({
   visible: false,
@@ -28,20 +27,28 @@ const createForm = reactive({
   },
 });
 
-function loadActivities() {
-  fetchActivities({
+async function loadActivities() {
+  await fetchActivities({
     params: {
       user_id: authStore.me.userId,
     },
   });
 }
+async function loadPage() {
+  await loadActivities();
+
+  activitiesLoaded.value = true;
+}
+async function focusInputNewTask() {
+  await nextTick();
+
+  inputNewTask.value.focus();
+}
 
 async function onCreate() {
   createForm.visible = !createForm.visible;
 
-  await nextTick();
-
-  inputNewTask.value.focus();
+  focusInputNewTask();
 }
 async function onStore() {
   const [, error] = await postActivity({
@@ -55,11 +62,12 @@ async function onStore() {
   if (!error) {
     createForm.form.name = null;
 
+    focusInputNewTask();
     loadActivities();
   }
 }
 
-loadActivities();
+loadPage();
 </script>
 
 <template>
@@ -81,6 +89,7 @@ loadActivities();
       </div>
       <with-loading
         :loading="loading"
+        :loading-block="!activitiesLoaded"
         :error="!!error"
         :error-message="getErrorMessage()"
       >
