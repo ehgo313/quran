@@ -1,15 +1,18 @@
 <script setup>
-import BaseAlert from 'src/components/base/base-alert.vue';
+import WithLoading from 'src/components/composes/with-loading.vue';
 import { useRequest } from 'src/core/request/request';
 import { useAuthStore } from 'src/features/auth/auth.store';
 
 const authStore = useAuthStore();
-const { loading, error, getErrorMessage, request } = useRequest(
-  '/collections',
-  {
-    initLoading: true,
-  },
-);
+const {
+  data: collections,
+  loading,
+  error,
+  getErrorMessage,
+  request,
+} = useRequest('/collections', {
+  initLoading: true,
+});
 
 request({
   params: {
@@ -31,25 +34,17 @@ request({
     <ul>
       <li class="space-y-1">
         <span class="text-xs font-bold text-gray-400">Collections</span>
-        <base-alert v-if="loading" size="sm" color="sky" icon="info"
-          >Loading</base-alert
+        <with-loading
+          :loading="loading"
+          :error="!!error"
+          :error-message="getErrorMessage()"
         >
-        <template v-else>
-          <base-alert v-if="error" size="sm" color="red" icon="error">{{
-            getErrorMessage()
-          }}</base-alert>
-          <ul v-else>
-            <li>
-              <a href="" class="hover:text-sky-600">Article To Writes</a>
-            </li>
-            <li>
-              <a href="" class="hover:text-sky-600">Anime To Watch</a>
-            </li>
-            <li>
-              <a href="" class="hover:text-sky-600">Project Ideas</a>
+          <ul>
+            <li v-for="collection in collections.data" :key="collection.id">
+              <a href="" class="hover:text-sky-600">{{ collection.name }}</a>
             </li>
           </ul>
-        </template>
+        </with-loading>
       </li>
     </ul>
   </div>
