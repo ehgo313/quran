@@ -51,7 +51,7 @@ request({
             :key="activity.id"
             :class="[
               'group flex items-center justify-between py-2 px-2.5 border-gray-200',
-              index === activities.data.length - 1 ? '' : 'border-b',
+              index === activities.data.length - 1 && !true ? '' : 'border-b',
             ]"
           >
             <span>{{ activity.name }}</span>
@@ -61,6 +61,13 @@ request({
               >
               <action-icon class="hidden group-hover:block w-3 h-3" />
             </div>
+          </li>
+          <li>
+            <input
+              class="py-2 px-2.5 w-full border-0 focus:border-0 rounded-b-lg focus:outline-0 focus:ring-0"
+              type="text"
+              placeholder="New Task"
+            />
           </li>
         </ul>
       </with-loading>
