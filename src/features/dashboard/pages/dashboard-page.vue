@@ -6,7 +6,7 @@ import PartialSidebar from 'src/components/partials/partial-sidebar.vue';
 import withLoading from 'src/components/composes/with-loading.vue';
 import { useRequest } from 'src/core/request/request';
 import { useAuthStore } from 'src/features/auth/auth.store';
-import { reactive } from 'vue';
+import { nextTick, reactive, ref } from 'vue';
 
 const authStore = useAuthStore();
 const {
@@ -20,6 +20,7 @@ const {
 });
 const { request: postActivity } = useRequest('activities');
 
+const inputNewTask = ref(null);
 const createForm = reactive({
   visible: false,
   form: {
@@ -35,8 +36,12 @@ function loadActivities() {
   });
 }
 
-function onCreate() {
+async function onCreate() {
   createForm.visible = !createForm.visible;
+
+  await nextTick();
+
+  inputNewTask.value.focus();
 }
 async function onStore() {
   const [, error] = await postActivity({
@@ -101,6 +106,7 @@ loadActivities();
           <li v-if="createForm.visible">
             <form action="" v-on:submit.prevent="onStore">
               <input
+                ref="inputNewTask"
                 class="py-2 px-2.5 w-full placeholder-gray-400 border-0 focus:border-0 rounded-b-lg focus:outline-0 focus:ring-0"
                 type="text"
                 placeholder="New Task"
