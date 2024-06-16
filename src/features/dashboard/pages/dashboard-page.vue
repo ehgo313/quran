@@ -38,6 +38,10 @@ async function loadPage() {
   await loadActivities();
 
   activitiesLoaded.value = true;
+
+  if (!activities.value.data.length) {
+    createForm.visible = true;
+  }
 }
 async function focusInputNewTask() {
   await nextTick();
@@ -116,7 +120,10 @@ loadPage();
             <form action="" @submit.prevent="onStore">
               <input
                 ref="inputNewTask"
-                class="py-2 px-2.5 w-full placeholder-gray-400 border-0 focus:border-0 rounded-b-lg focus:outline-0 focus:ring-0"
+                :class="[
+                  'py-2 px-2.5 w-full placeholder-gray-400 border-0 focus:border-0 rounded-b-lg focus:outline-0 focus:ring-0',
+                  activities.data.length ? '' : 'rounded-t-lg',
+                ]"
                 type="text"
                 placeholder="New Task"
                 v-model="createForm.form.name"
