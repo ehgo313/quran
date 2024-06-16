@@ -17,16 +17,29 @@ const {
 });
 
 const visibleCreateCollectionModal = ref(false);
+const collectionsLoaded = ref(false);
+
+async function loadCollections() {
+  await request({
+    params: {
+      user_id: authStore.me.userId,
+    },
+  });
+}
+async function loadPage() {
+  await loadCollections();
+
+  collectionsLoaded.value = true;
+}
 
 function onCreateCollection() {
   visibleCreateCollectionModal.value = true;
 }
+function onCreatedCollection() {
+  loadCollections();
+}
 
-request({
-  params: {
-    user_id: authStore.me.userId,
-  },
-});
+loadPage();
 </script>
 
 <template>
@@ -44,6 +57,7 @@ request({
         <span class="text-xs font-bold text-gray-400">Collections</span>
         <with-loading
           :loading="loading"
+          :loading-block="!collectionsLoaded"
           :error="!!error"
           :error-message="getErrorMessage()"
         >
@@ -64,5 +78,8 @@ request({
       </li>
     </ul>
   </div>
-  <collection-create-modal v-model="visibleCreateCollectionModal" />
+  <collection-create-modal
+    v-model="visibleCreateCollectionModal"
+    @created="onCreatedCollection"
+  />
 </template>
