@@ -20,12 +20,12 @@ const state = computed(() => {
   return {
     default: {
       input:
-        'border-gray-200 placeholder:text-gray-400 focus:border-sky-600 text-gray-900',
+        'border-gray-200 placeholder:text-gray-400 focus:border-sky-600 focus:ring-sky-600 text-gray-900',
       message: 'text-gray-600',
     },
     danger: {
       input:
-        'border-red-400 placeholder:text-red-400 focus:border-red-600 text-red-600',
+        'border-red-400 placeholder:text-red-400 focus:border-red-600 focus:ring-red-600 text-red-600',
       message: 'text-red-600',
     },
   }[props.state];
