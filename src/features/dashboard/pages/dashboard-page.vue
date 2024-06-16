@@ -7,6 +7,7 @@ import withLoading from 'src/components/composes/with-loading.vue';
 import { useRequest } from 'src/core/request/request';
 import { useAuthStore } from 'src/features/auth/auth.store';
 import { nextTick, reactive, ref } from 'vue';
+import ActivityRowAction from 'src/features/activity/components/activity-row-action.vue';
 
 const authStore = useAuthStore();
 const {
@@ -113,7 +114,7 @@ loadPage();
               <base-button size="extra-small" color="light"
                 >Mark as Done</base-button
               >
-              <action-icon class="hidden group-hover:block w-3 h-3" />
+              <activity-row-action />
             </div>
           </li>
           <li v-if="createForm.visible">
