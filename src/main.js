@@ -6,6 +6,7 @@ import { routes } from './route/routes';
 import { useEmitter } from './core/emitter/emitter';
 import { useStore } from './core/store/store';
 import { guards } from './route/guards';
+import { useClickOutside } from './plugins/click-outside';
 
 const app = createApp(App);
 
@@ -15,5 +16,6 @@ useRouter(app, {
   guards,
 });
 useEmitter(app);
+useClickOutside(app);
 
 app.mount('#app');
