@@ -33,7 +33,7 @@ const schema = z.object({
   }),
 });
 
-async function handleSubmit() {
+async function onSubmit() {
   const [data, errorValidate] = await validate(schema, form);
 
   if (!errorValidate) {
@@ -62,7 +62,7 @@ async function handleSubmit() {
   <div class="min-h-screen flex items-center justify-center">
     <div class="w-full max-w-sm space-y-4 px-4 sm:px-0">
       <base-title>Login to Account</base-title>
-      <form class="space-y-4" v-on:submit.prevent="handleSubmit">
+      <form class="space-y-4" @submit.prevent="onSubmit">
         <base-input
           type="email"
           id="email"

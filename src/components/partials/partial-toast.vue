@@ -24,7 +24,7 @@ emitter.on('create-toast', (data) => {
 </script>
 
 <template>
-  <div class="fixed top-8 left-1/2 -translate-x-1/2 space-y-4">
+  <div class="fixed top-8 left-1/2 -translate-x-1/2 space-y-4 z-10">
     <base-alert v-for="toast in toasts" :key="toast.id">
       {{ toast.message }}
     </base-alert>

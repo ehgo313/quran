@@ -83,7 +83,7 @@ loadPage();
     <div class="col-span-3 space-y-2">
       <div class="flex items-center justify-between">
         <base-title size="small">Today Activities</base-title>
-        <a href="" class="text-sky-600" v-on:click.prevent="onCreate"
+        <a href="" class="text-sky-600" @click.prevent="onCreate"
           >New Activity</a
         >
       </div>
@@ -113,7 +113,7 @@ loadPage();
             </div>
           </li>
           <li v-if="createForm.visible">
-            <form action="" v-on:submit.prevent="onStore">
+            <form action="" @submit.prevent="onStore">
               <input
                 ref="inputNewTask"
                 class="py-2 px-2.5 w-full placeholder-gray-400 border-0 focus:border-0 rounded-b-lg focus:outline-0 focus:ring-0"

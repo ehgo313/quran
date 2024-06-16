@@ -1,7 +1,9 @@
 <script setup>
 import WithLoading from 'src/components/composes/with-loading.vue';
+import CollectionCreateModal from 'src/features/collection/components/collection-create-modal.vue';
 import { useRequest } from 'src/core/request/request';
 import { useAuthStore } from 'src/features/auth/auth.store';
+import { ref } from 'vue';
 
 const authStore = useAuthStore();
 const {
@@ -14,11 +16,30 @@ const {
   initLoading: true,
 });
 
-request({
-  params: {
-    user_id: authStore.me.userId,
-  },
-});
+const visibleCreateCollectionModal = ref(false);
+const collectionsLoaded = ref(false);
+
+async function loadCollections() {
+  await request({
+    params: {
+      user_id: authStore.me.userId,
+    },
+  });
+}
+async function loadPage() {
+  await loadCollections();
+
+  collectionsLoaded.value = true;
+}
+
+function onCreateCollection() {
+  visibleCreateCollectionModal.value = true;
+}
+function onCreatedCollection() {
+  loadCollections();
+}
+
+loadPage();
 </script>
 
 <template>
@@ -36,6 +57,7 @@ request({
         <span class="text-xs font-bold text-gray-400">Collections</span>
         <with-loading
           :loading="loading"
+          :loading-block="!collectionsLoaded"
           :error="!!error"
           :error-message="getErrorMessage()"
         >
@@ -43,9 +65,21 @@ request({
             <li v-for="collection in collections.data" :key="collection.id">
               <a href="" class="hover:text-sky-600">{{ collection.name }}</a>
             </li>
+            <li>
+              <a
+                href=""
+                class="text-sky-600"
+                @click.prevent="onCreateCollection"
+                >New Collection</a
+              >
+            </li>
           </ul>
         </with-loading>
       </li>
     </ul>
   </div>
+  <collection-create-modal
+    v-model="visibleCreateCollectionModal"
+    @created="onCreatedCollection"
+  />
 </template>
