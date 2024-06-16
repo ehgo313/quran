@@ -24,7 +24,7 @@ const size = computed(() => {
   return {
     'extra-small': 'text-xs px-1 py-0.5 rounded-md',
     small: 'text-sm px-2 py-1 rounded-md',
-    medium: ['rounded-lg', props.square ? 'w-8 h-8' : 'py-2 px-4'],
+    medium: ['rounded-lg', props.square ? 'w-8 h-8' : 'py-2 px-3'],
   }[props.size];
 });
 const color = computed(() => {
