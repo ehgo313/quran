@@ -6,7 +6,7 @@ const visible = defineModel();
 </script>
 
 <template>
-  <base-modal v-model="visible">
+  <base-modal v-model="visible" v-slot="{ close }">
     <base-card title="New Task">
       <div class="space-y-1">
         <label class="text-gray-900">Name</label>
@@ -24,6 +24,7 @@ const visible = defineModel();
         </button>
         <button
           class="p-2 px-3 rounded-lg border border-gray-200 hover:bg-gray-100"
+          @click="close"
         >
           Cancel
         </button>

@@ -55,7 +55,7 @@ request({
               <a
                 href=""
                 class="text-sky-600"
-                v-on:click.prevent="onCreateCollection"
+                @click.prevent="onCreateCollection"
                 >New Collection</a
               >
             </li>
