@@ -82,6 +82,9 @@ function onEdit(activity) {
   editModal.activity = activity;
   editModal.visible = true;
 }
+function onUpdated() {
+  loadActivities();
+}
 
 loadPage();
 </script>
@@ -148,6 +151,7 @@ loadPage();
     <activity-edit-modal
       :activity="editModal.activity"
       v-model="editModal.visible"
+      @updated="onUpdated"
     />
   </div>
 </template>
