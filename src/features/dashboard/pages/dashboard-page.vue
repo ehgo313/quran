@@ -7,6 +7,8 @@ import withLoading from 'src/components/composes/with-loading.vue';
 import { useRequest } from 'src/core/request/request';
 import { useAuthStore } from 'src/features/auth/auth.store';
 import { nextTick, reactive, ref } from 'vue';
+import ActivityRowAction from 'src/features/activity/components/activity-row-action.vue';
+import ActivityEditModal from 'src/features/activity/components/activity-edit-modal.vue';
 
 const authStore = useAuthStore();
 const {
@@ -26,18 +28,28 @@ const createForm = reactive({
     name: null,
   },
 });
+const editModal = reactive({
+  visible: false,
+  activity: null,
+});
 
 async function loadActivities() {
-  await fetchActivities({
+  return await fetchActivities({
     params: {
       user_id: authStore.me.userId,
     },
   });
 }
 async function loadPage() {
-  await loadActivities();
+  const [, error] = await loadActivities();
 
-  activitiesLoaded.value = true;
+  if (!error) {
+    activitiesLoaded.value = true;
+
+    if (!activities.value.data.length) {
+      createForm.visible = true;
+    }
+  }
 }
 async function focusInputNewTask() {
   await nextTick();
@@ -65,6 +77,13 @@ async function onStore() {
     focusInputNewTask();
     loadActivities();
   }
+}
+function onEdit(activity) {
+  editModal.activity = activity;
+  editModal.visible = true;
+}
+function onUpdated() {
+  loadActivities();
 }
 
 loadPage();
@@ -109,14 +128,17 @@ loadPage();
               <base-button size="extra-small" color="light"
                 >Mark as Done</base-button
               >
-              <action-icon class="hidden group-hover:block w-3 h-3" />
+              <activity-row-action @edit="onEdit(activity)" />
             </div>
           </li>
           <li v-if="createForm.visible">
             <form action="" @submit.prevent="onStore">
               <input
                 ref="inputNewTask"
-                class="py-2 px-2.5 w-full placeholder-gray-400 border-0 focus:border-0 rounded-b-lg focus:outline-0 focus:ring-0"
+                :class="[
+                  'py-2 px-2.5 w-full placeholder-gray-400 border-0 focus:border-0 rounded-b-lg focus:outline-0 focus:ring-0',
+                  activities.data.length ? '' : 'rounded-t-lg',
+                ]"
                 type="text"
                 placeholder="New Task"
                 v-model="createForm.form.name"
@@ -126,5 +148,10 @@ loadPage();
         </ul>
       </with-loading>
     </div>
+    <activity-edit-modal
+      :activity="editModal.activity"
+      v-model="editModal.visible"
+      @updated="onUpdated"
+    />
   </div>
 </template>

@@ -9,9 +9,12 @@ import { useValidation } from 'src/core/validation/validation';
 import { reactive, inject } from 'vue';
 import { z } from 'zod';
 
-const emit = defineEmits(['created']);
+const props = defineProps({
+  activity: Object,
+});
+const emit = defineEmits(['updated']);
 
-const { loading, request, getErrorMessage } = useRequest('/collections');
+const { loading, request, getErrorMessage } = useRequest();
 const { hasError, getError, validate, resetError } = useValidation();
 const emitter = inject('emitter');
 
@@ -34,14 +37,15 @@ async function onSubmit() {
 
   if (!errorValidate) {
     const [, errorRequest] = await request({
-      method: 'post',
+      url: `/activities/${props.activity.id}`,
+      method: 'patch',
       data,
     });
 
     if (!errorRequest) {
       visible.value = false;
 
-      emit('created');
+      emit('updated');
     } else {
       emitter.emit('create-toast', {
         message: getErrorMessage(),
@@ -52,13 +56,13 @@ async function onSubmit() {
 function onOpened() {
   resetError();
 
-  form.name = null;
+  form.name = props.activity.name;
 }
 </script>
 
 <template>
   <base-modal v-model="visible" v-slot="{ close }" @opened="onOpened">
-    <base-card title="New Collection">
+    <base-card title="Edit Activity">
       <form class="space-y-4" @submit.prevent="onSubmit">
         <base-form-item label="Name">
           <base-input
