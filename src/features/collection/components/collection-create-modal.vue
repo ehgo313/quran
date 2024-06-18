@@ -21,10 +21,12 @@ const form = reactive({
 });
 
 const schema = z.object({
-  name: z.string({
-    required_error: 'name is reqired',
-    invalid_type_error: 'name must be a string',
-  }),
+  name: z
+    .string({
+      required_error: 'name is reqired',
+      invalid_type_error: 'name must be a string',
+    })
+    .min(1, { message: 'name min 1 character' }),
 });
 
 async function onSubmit() {
