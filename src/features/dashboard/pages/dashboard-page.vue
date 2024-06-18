@@ -8,6 +8,7 @@ import { useRequest } from 'src/core/request/request';
 import { useAuthStore } from 'src/features/auth/auth.store';
 import { nextTick, reactive, ref } from 'vue';
 import ActivityRowAction from 'src/features/activity/components/activity-row-action.vue';
+import ActivityEditModal from 'src/features/activity/components/activity-edit-modal.vue';
 
 const authStore = useAuthStore();
 const {
@@ -26,6 +27,10 @@ const createForm = reactive({
   form: {
     name: null,
   },
+});
+const editModal = reactive({
+  visible: false,
+  activity: null,
 });
 
 async function loadActivities() {
@@ -71,6 +76,10 @@ async function onStore() {
     loadActivities();
   }
 }
+function onEdit(activity) {
+  editModal.activity = activity;
+  editModal.visible = true;
+}
 
 loadPage();
 </script>
@@ -114,7 +123,7 @@ loadPage();
               <base-button size="extra-small" color="light"
                 >Mark as Done</base-button
               >
-              <activity-row-action />
+              <activity-row-action @edit="onEdit(activity)" />
             </div>
           </li>
           <li v-if="createForm.visible">
@@ -134,5 +143,9 @@ loadPage();
         </ul>
       </with-loading>
     </div>
+    <activity-edit-modal
+      :activity="editModal.activity"
+      v-model="editModal.visible"
+    />
   </div>
 </template>
