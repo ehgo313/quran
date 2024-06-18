@@ -1,5 +1,4 @@
 <script setup>
-import { AlertTriangle as ErrorIcon } from '@vicons/tabler';
 import { ref, inject } from 'vue';
 import baseAlert from 'src/components/base/base-alert.vue';
 
