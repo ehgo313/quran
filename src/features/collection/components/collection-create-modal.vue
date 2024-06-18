@@ -12,7 +12,7 @@ import { z } from 'zod';
 const emit = defineEmits(['created']);
 
 const { loading, request, getErrorMessage } = useRequest('/collections');
-const { hasError, getError, validate } = useValidation();
+const { hasError, getError, validate, resetError } = useValidation();
 const emitter = inject('emitter');
 
 const visible = defineModel();
@@ -49,10 +49,15 @@ async function onSubmit() {
     }
   }
 }
+function onOpened() {
+  resetError();
+
+  form.name = null;
+}
 </script>
 
 <template>
-  <base-modal v-model="visible" v-slot="{ close }">
+  <base-modal v-model="visible" v-slot="{ close }" @opened="onOpened">
     <base-card title="New Task">
       <form class="space-y-4" @submit.prevent="onSubmit">
         <base-form-item label="Name">
