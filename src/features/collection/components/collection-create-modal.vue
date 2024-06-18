@@ -58,7 +58,7 @@ function onOpened() {
 
 <template>
   <base-modal v-model="visible" v-slot="{ close }" @opened="onOpened">
-    <base-card title="New Task">
+    <base-card title="New Collection">
       <form class="space-y-4" @submit.prevent="onSubmit">
         <base-form-item label="Name">
           <base-input
