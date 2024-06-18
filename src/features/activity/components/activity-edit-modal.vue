@@ -12,10 +12,10 @@ import { z } from 'zod';
 const props = defineProps({
   activity: Object,
 });
-const emit = defineEmits(['created']);
+const emit = defineEmits(['updated']);
 
-const { loading, request, getErrorMessage } = useRequest('/collections');
-const { hasError, getError, validate } = useValidation();
+const { loading, request, getErrorMessage } = useRequest();
+const { hasError, getError, validate, resetError } = useValidation();
 const emitter = inject('emitter');
 
 const visible = defineModel();
@@ -24,10 +24,12 @@ const form = reactive({
 });
 
 const schema = z.object({
-  name: z.string({
-    required_error: 'name is reqired',
-    invalid_type_error: 'name must be a string',
-  }),
+  name: z
+    .string({
+      required_error: 'name is reqired',
+      invalid_type_error: 'name must be a string',
+    })
+    .min(1, { message: 'name min 1 character' }),
 });
 
 async function onSubmit() {
@@ -35,14 +37,15 @@ async function onSubmit() {
 
   if (!errorValidate) {
     const [, errorRequest] = await request({
-      method: 'post',
+      url: `/activities/${props.activity.id}`,
+      method: 'patch',
       data,
     });
 
     if (!errorRequest) {
       visible.value = false;
 
-      emit('created');
+      emit('updated');
     } else {
       emitter.emit('create-toast', {
         message: getErrorMessage(),
@@ -51,6 +54,8 @@ async function onSubmit() {
   }
 }
 function onOpened() {
+  resetError();
+
   form.name = props.activity.name;
 }
 </script>
