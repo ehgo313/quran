@@ -34,19 +34,21 @@ const editModal = reactive({
 });
 
 async function loadActivities() {
-  await fetchActivities({
+  return await fetchActivities({
     params: {
       user_id: authStore.me.userId,
     },
   });
 }
 async function loadPage() {
-  await loadActivities();
+  const [, error] = await loadActivities();
 
-  activitiesLoaded.value = true;
+  if (!error) {
+    activitiesLoaded.value = true;
 
-  if (!activities.value.data.length) {
-    createForm.visible = true;
+    if (!activities.value.data.length) {
+      createForm.visible = true;
+    }
   }
 }
 async function focusInputNewTask() {
