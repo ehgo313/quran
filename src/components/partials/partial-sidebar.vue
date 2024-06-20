@@ -63,7 +63,14 @@ loadPage();
         >
           <ul>
             <li v-for="collection in collections.data" :key="collection.id">
-              <a href="" class="hover:text-sky-600">{{ collection.name }}</a>
+              <router-link
+                :to="{
+                  name: 'collection.detail',
+                  params: { id: collection.id },
+                }"
+                class="hover:text-sky-600"
+                >{{ collection.name }}</router-link
+              >
             </li>
             <li>
               <a
