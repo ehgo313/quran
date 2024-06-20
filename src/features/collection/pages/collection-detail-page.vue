@@ -6,19 +6,32 @@ import PartialSidebar from 'src/components/partials/partial-sidebar.vue';
 import withLoading from 'src/components/composes/with-loading.vue';
 import { useRequest } from 'src/core/request/request';
 import { useAuthStore } from 'src/features/auth/auth.store';
-import { reactive, ref } from 'vue';
+import { reactive, ref, computed } from 'vue';
 import ActivityEditModal from 'src/features/activity/components/activity-edit-modal.vue';
 import ActivityDeleteConfirm from 'src/features/activity/components/activity-delete-confirm.vue';
 import ActivityList from 'src/features/activity/components/activity-list.vue';
+import { useRoute } from 'vue-router';
 
+const route = useRoute();
 const authStore = useAuthStore();
 const {
-  loading,
-  error,
-  getErrorMessage,
+  loading: loadingActivities,
+  error: errorActivities,
+  getErrorMessage: getErrorActivitiesMessage,
   request: fetchActivities,
   data: activities,
-} = useRequest('/activities');
+} = useRequest('/activities', {
+  initLoading: true,
+});
+const {
+  loading: loadingCollection,
+  error: errorCollection,
+  getErrorMessage: getErrorCollectionMessage,
+  data: collection,
+  request: fetchCollection,
+} = useRequest('/collections', {
+  initLoading: true,
+});
 
 const activitiesLoaded = ref(false);
 const creating = ref(false);
@@ -31,6 +44,11 @@ const deleteConfirm = reactive({
   activityId: null,
 });
 
+async function loadCollection() {
+  return await fetchCollection({
+    url: `/collections/${route.params.id}`,
+  });
+}
 async function loadActivities() {
   const [res, error] = await fetchActivities({
     params: {
@@ -45,10 +63,13 @@ async function loadActivities() {
   return [res, error];
 }
 async function loadPage() {
-  const [, error] = await loadActivities();
+  const [, errorCollection] = await loadCollection();
+  if (!errorCollection) {
+    const [, errorActivities] = await loadActivities();
 
-  if (!error) {
-    activitiesLoaded.value = true;
+    if (!errorActivities) {
+      activitiesLoaded.value = true;
+    }
   }
 }
 
@@ -87,25 +108,31 @@ loadPage();
     </div>
     <partial-sidebar />
     <div class="col-span-3 space-y-2">
-      <div class="flex items-center justify-between">
-        <base-title size="small">Today Activities</base-title>
-        <a href="" class="text-sky-600" @click.prevent="onCreate"
-          >New Activity</a
-        >
-      </div>
       <with-loading
-        :loading="loading"
-        :loading-block="!activitiesLoaded"
-        :error="!!error"
-        :error-message="getErrorMessage()"
+        :loading="loadingCollection"
+        :error="!!errorCollection"
+        :error-message="getErrorCollectionMessage()"
       >
-        <activity-list
-          :activities="activities.data"
-          v-model:creating="creating"
-          @edit="onEdit"
-          @delete="onDelete"
-          @created="onCreated"
-        />
+        <div class="flex items-center justify-between">
+          <base-title size="small">{{ collection.data.name }}</base-title>
+          <a href="" class="text-sky-600" @click.prevent="onCreate"
+            >New Activity</a
+          >
+        </div>
+        <with-loading
+          :loading="loadingActivities"
+          :loading-block="!activitiesLoaded"
+          :error="!!errorActivities"
+          :error-message="getErrorActivitiesMessage()"
+        >
+          <activity-list
+            :activities="activities.data"
+            v-model:creating="creating"
+            @edit="onEdit"
+            @delete="onDelete"
+            @created="onCreated"
+          />
+        </with-loading>
       </with-loading>
     </div>
     <activity-edit-modal
