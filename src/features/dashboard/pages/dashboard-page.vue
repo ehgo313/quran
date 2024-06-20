@@ -6,10 +6,10 @@ import PartialSidebar from 'src/components/partials/partial-sidebar.vue';
 import withLoading from 'src/components/composes/with-loading.vue';
 import { useRequest } from 'src/core/request/request';
 import { useAuthStore } from 'src/features/auth/auth.store';
-import { nextTick, reactive, ref } from 'vue';
-import ActivityRowAction from 'src/features/activity/components/activity-row-action.vue';
+import { reactive, ref } from 'vue';
 import ActivityEditModal from 'src/features/activity/components/activity-edit-modal.vue';
 import ActivityDeleteConfirm from 'src/features/activity/components/activity-delete-confirm.vue';
+import ActivityList from 'src/features/activity/components/activity-list.vue';
 
 const authStore = useAuthStore();
 const {
@@ -19,16 +19,9 @@ const {
   request: fetchActivities,
   data: activities,
 } = useRequest('/activities');
-const { request: postActivity } = useRequest('activities');
 
 const activitiesLoaded = ref(false);
-const inputNewTask = ref(null);
-const createForm = reactive({
-  visible: false,
-  form: {
-    name: null,
-  },
-});
+const creating = ref(false);
 const editModal = reactive({
   visible: false,
   activity: null,
@@ -46,7 +39,7 @@ async function loadActivities() {
   });
 
   if (!error && !activities.value.data.length) {
-    createForm.visible = true;
+    creating.value = true;
   }
 
   return [res, error];
@@ -58,32 +51,12 @@ async function loadPage() {
     activitiesLoaded.value = true;
   }
 }
-async function focusInputNewTask() {
-  await nextTick();
-
-  inputNewTask.value.focus();
-}
 
 async function onCreate() {
-  createForm.visible = !createForm.visible;
-
-  focusInputNewTask();
+  creating.value = !creating.value;
 }
-async function onStore() {
-  const [, error] = await postActivity({
-    method: 'post',
-    data: {
-      name: createForm.form.name,
-      user_id: authStore.me.userId,
-    },
-  });
-
-  if (!error) {
-    createForm.form.name = null;
-
-    focusInputNewTask();
-    loadActivities();
-  }
+async function onCreated() {
+  loadActivities();
 }
 function onEdit(activity) {
   editModal.activity = activity;
@@ -126,43 +99,13 @@ loadPage();
         :error="!!error"
         :error-message="getErrorMessage()"
       >
-        <ul class="border border-gray-200 rounded-lg">
-          <li
-            v-for="(activity, index) in activities.data"
-            :key="activity.id"
-            :class="[
-              'group flex items-center justify-between py-2 px-2.5 border-gray-200',
-              index === activities.data.length - 1 && !createForm.visible
-                ? ''
-                : 'border-b',
-            ]"
-          >
-            <span>{{ activity.name }}</span>
-            <div class="flex items-center gap-x-2">
-              <base-button size="extra-small" color="light"
-                >Mark as Done</base-button
-              >
-              <activity-row-action
-                @edit="onEdit(activity)"
-                @delete="onDelete(activity)"
-              />
-            </div>
-          </li>
-          <li v-if="createForm.visible">
-            <form action="" @submit.prevent="onStore">
-              <input
-                ref="inputNewTask"
-                :class="[
-                  'py-2 px-2.5 w-full placeholder-gray-400 border-0 focus:border-0 rounded-b-lg focus:outline-0 focus:ring-0',
-                  activities.data.length ? '' : 'rounded-t-lg',
-                ]"
-                type="text"
-                placeholder="New Task"
-                v-model="createForm.form.name"
-              />
-            </form>
-          </li>
-        </ul>
+        <activity-list
+          :activities="activities.data"
+          v-model:creating="creating"
+          @edit="onEdit"
+          @delete="onDelete"
+          @created="onCreated"
+        />
       </with-loading>
     </div>
     <activity-edit-modal
