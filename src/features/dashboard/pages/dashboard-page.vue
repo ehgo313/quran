@@ -9,6 +9,7 @@ import { useAuthStore } from 'src/features/auth/auth.store';
 import { nextTick, reactive, ref } from 'vue';
 import ActivityRowAction from 'src/features/activity/components/activity-row-action.vue';
 import ActivityEditModal from 'src/features/activity/components/activity-edit-modal.vue';
+import ActivityDeleteConfirm from 'src/features/activity/components/activity-delete-confirm.vue';
 
 const authStore = useAuthStore();
 const {
@@ -32,23 +33,29 @@ const editModal = reactive({
   visible: false,
   activity: null,
 });
+const deleteConfirm = reactive({
+  visible: false,
+  activityId: null,
+});
 
 async function loadActivities() {
-  return await fetchActivities({
+  const [res, error] = await fetchActivities({
     params: {
       user_id: authStore.me.userId,
     },
   });
+
+  if (!error && !activities.value.data.length) {
+    createForm.visible = true;
+  }
+
+  return [res, error];
 }
 async function loadPage() {
   const [, error] = await loadActivities();
 
   if (!error) {
     activitiesLoaded.value = true;
-
-    if (!activities.value.data.length) {
-      createForm.visible = true;
-    }
   }
 }
 async function focusInputNewTask() {
@@ -84,6 +91,13 @@ function onEdit(activity) {
 }
 function onUpdated() {
   loadActivities();
+}
+function onDeleted() {
+  loadActivities();
+}
+function onDelete(activity) {
+  deleteConfirm.activityId = activity.id;
+  deleteConfirm.visible = true;
 }
 
 loadPage();
@@ -128,7 +142,10 @@ loadPage();
               <base-button size="extra-small" color="light"
                 >Mark as Done</base-button
               >
-              <activity-row-action @edit="onEdit(activity)" />
+              <activity-row-action
+                @edit="onEdit(activity)"
+                @delete="onDelete(activity)"
+              />
             </div>
           </li>
           <li v-if="createForm.visible">
@@ -152,6 +169,11 @@ loadPage();
       :activity="editModal.activity"
       v-model="editModal.visible"
       @updated="onUpdated"
+    />
+    <activity-delete-confirm
+      :activity-id="deleteConfirm.activityId"
+      v-model="deleteConfirm.visible"
+      @deleted="onDeleted"
     />
   </div>
 </template>

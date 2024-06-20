@@ -31,6 +31,7 @@ const color = computed(() => {
   return {
     light: 'border-gray-200 text-gray-900',
     sky: 'border-sky-600 bg-sky-600 text-white',
+    red: 'border-red-600 bg-red-600 text-white',
   }[props.color];
 });
 </script>
@@ -46,7 +47,7 @@ const color = computed(() => {
     ]"
     :disabled="loading"
   >
-    <base-spinner v-if="loading" size="sm" />
+    <base-spinner v-if="loading" size="sm" :color="props.color" />
     <slot />
   </button>
 </template>
