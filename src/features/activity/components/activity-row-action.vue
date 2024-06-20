@@ -3,13 +3,15 @@ import { Menu2 as ActionIcon } from '@vicons/tabler';
 import { ref } from 'vue';
 import BaseDropdown from 'src/components/base/base-dropdown.vue';
 
-const emit = defineEmits(['edit']);
+const emit = defineEmits(['edit', 'delete']);
 
 const visibleDropdown = ref(false);
 
 function onClickOption(option) {
   if (option.id === 'edit') {
     emit('edit');
+  } else {
+    emit('delete');
   }
 }
 </script>
