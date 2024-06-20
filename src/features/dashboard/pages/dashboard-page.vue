@@ -18,7 +18,9 @@ const {
   getErrorMessage,
   request: fetchActivities,
   data: activities,
-} = useRequest('/activities');
+} = useRequest('/activities', {
+  initLoading: true,
+});
 
 const activitiesLoaded = ref(false);
 const creating = ref(false);
