@@ -50,6 +50,7 @@ async function loadActivities() {
   const [res, error] = await fetchActivities({
     params: {
       user_id: authStore.me.userId,
+      collection_id: collection.value.data.id,
     },
   });
 
@@ -112,6 +113,7 @@ loadPage();
     >
       <activity-list
         :activities="activities.data"
+        :collection="collection.data"
         v-model:creating="creating"
         @edit="onEdit"
         @delete="onDelete"

@@ -4,7 +4,9 @@ import CollectionCreateModal from 'src/features/collection/components/collection
 import { useRequest } from 'src/core/request/request';
 import { useAuthStore } from 'src/features/auth/auth.store';
 import { ref } from 'vue';
+import { useRoute } from 'vue-router';
 
+const route = useRoute();
 const authStore = useAuthStore();
 const {
   data: collections,
@@ -19,6 +21,9 @@ const {
 const visibleCreateCollectionModal = ref(false);
 const collectionsLoaded = ref(false);
 
+function isRoute(name) {
+  return route.name === name;
+}
 async function loadCollections() {
   await request({
     params: {
@@ -49,7 +54,9 @@ loadPage();
         <span class="text-xs font-bold text-gray-400">Menus</span>
       </li>
       <li>
-        <router-link class="text-sky-600 font-bold" :to="{ name: 'dashboard' }"
+        <router-link
+          :class="isRoute('dashboard') ? 'text-sky-600 font-bold' : ''"
+          :to="{ name: 'dashboard' }"
           >Dashboard</router-link
         >
       </li>
@@ -70,7 +77,13 @@ loadPage();
                   name: 'collection.detail',
                   params: { id: collection.id },
                 }"
-                class="hover:text-sky-600"
+                :class="[
+                  'hover:text-sky-600',
+                  isRoute('collection.detail') &&
+                  route.params.id == collection.id
+                    ? 'text-sky-600 font-bold'
+                    : '',
+                ]"
                 >{{ collection.name }}</router-link
               >
             </li>
