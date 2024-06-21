@@ -7,6 +7,7 @@ import { useEmitter } from './core/emitter/emitter';
 import { useStore } from './core/store/store';
 import { guards } from './route/guards';
 import { useClickOutside } from './plugins/click-outside';
+import { useLayout } from './plugins/layout';
 
 const app = createApp(App);
 
@@ -17,5 +18,6 @@ useRouter(app, {
 });
 useEmitter(app);
 useClickOutside(app);
+useLayout(app);
 
 app.mount('#app');

@@ -4,6 +4,7 @@ export const dashboardRoutes = [
     name: 'dashboard',
     meta: {
       requireAuth: true,
+      layout: 'LayoutApp',
     },
     component: () => import('./pages/dashboard-page.vue'),
   },

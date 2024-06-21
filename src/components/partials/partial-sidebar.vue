@@ -49,7 +49,9 @@ loadPage();
         <span class="text-xs font-bold text-gray-400">Menus</span>
       </li>
       <li>
-        <a class="text-sky-600 font-bold" href="">Dashboard</a>
+        <router-link class="text-sky-600 font-bold" :to="{ name: 'dashboard' }"
+          >Dashboard</router-link
+        >
       </li>
     </ul>
     <ul>
@@ -63,7 +65,14 @@ loadPage();
         >
           <ul>
             <li v-for="collection in collections.data" :key="collection.id">
-              <a href="" class="hover:text-sky-600">{{ collection.name }}</a>
+              <router-link
+                :to="{
+                  name: 'collection.detail',
+                  params: { id: collection.id },
+                }"
+                class="hover:text-sky-600"
+                >{{ collection.name }}</router-link
+              >
             </li>
             <li>
               <a
