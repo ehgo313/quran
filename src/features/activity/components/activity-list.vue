@@ -7,6 +7,7 @@ import ActivityRowAction from 'src/features/activity/components/activity-row-act
 
 const props = defineProps({
   activities: Array,
+  collection: Object,
 });
 const emit = defineEmits(['edit', 'delete', 'created']);
 
@@ -31,6 +32,7 @@ async function onStore() {
     data: {
       name: createForm.name,
       user_id: authStore.me.userId,
+      collection_id: props.collection ? props.collection.id : null,
     },
   });
 
