@@ -49,7 +49,9 @@ loadPage();
         <span class="text-xs font-bold text-gray-400">Menus</span>
       </li>
       <li>
-        <a class="text-sky-600 font-bold" href="">Dashboard</a>
+        <router-link class="text-sky-600 font-bold" :to="{ name: 'dashboard' }"
+          >Dashboard</router-link
+        >
       </li>
     </ul>
     <ul>
