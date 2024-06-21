@@ -79,46 +79,32 @@ loadPage();
 </script>
 
 <template>
-  <div
-    class="max-w-2xl mx-auto grid grid-cols-1 sm:grid-cols-4 p-4 sm:py-8 sm:px-0 gap-4 sm:gap-8"
-  >
-    <div class="sm:hidden">
-      <base-button color="light" square>
-        <action-icon class="w-4 h-4" />
-      </base-button>
-    </div>
-    <partial-sidebar />
-    <div class="col-span-3 space-y-2">
-      <div class="flex items-center justify-between">
-        <base-title size="small">Today Activities</base-title>
-        <a href="" class="text-sky-600" @click.prevent="onCreate"
-          >New Activity</a
-        >
-      </div>
-      <with-loading
-        :loading="loading"
-        :loading-block="!activitiesLoaded"
-        :error="!!error"
-        :error-message="getErrorMessage()"
-      >
-        <activity-list
-          :activities="activities.data"
-          v-model:creating="creating"
-          @edit="onEdit"
-          @delete="onDelete"
-          @created="onCreated"
-        />
-      </with-loading>
-    </div>
-    <activity-edit-modal
-      :activity="editModal.activity"
-      v-model="editModal.visible"
-      @updated="onUpdated"
-    />
-    <activity-delete-confirm
-      :activity-id="deleteConfirm.activityId"
-      v-model="deleteConfirm.visible"
-      @deleted="onDeleted"
-    />
+  <div class="flex items-center justify-between">
+    <base-title size="small">Today Activities</base-title>
+    <a href="" class="text-sky-600" @click.prevent="onCreate">New Activity</a>
   </div>
+  <with-loading
+    :loading="loading"
+    :loading-block="!activitiesLoaded"
+    :error="!!error"
+    :error-message="getErrorMessage()"
+  >
+    <activity-list
+      :activities="activities.data"
+      v-model:creating="creating"
+      @edit="onEdit"
+      @delete="onDelete"
+      @created="onCreated"
+    />
+  </with-loading>
+  <activity-edit-modal
+    :activity="editModal.activity"
+    v-model="editModal.visible"
+    @updated="onUpdated"
+  />
+  <activity-delete-confirm
+    :activity-id="deleteConfirm.activityId"
+    v-model="deleteConfirm.visible"
+    @deleted="onDeleted"
+  />
 </template>
