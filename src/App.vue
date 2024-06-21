@@ -8,6 +8,6 @@ const route = useRoute();
 <template>
   <partial-toast />
   <component :is="route.meta.layout ?? 'div'">
-    <router-view />
+    <router-view :key="route.fullPath" />
   </component>
 </template>
