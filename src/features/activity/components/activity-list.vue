@@ -1,53 +1,25 @@
 <script setup>
 import BaseButton from 'src/components/base/base-button.vue';
-import { useRequest } from 'src/core/request/request';
-import { useAuthStore } from 'src/features/auth/auth.store';
-import { nextTick, reactive, ref, watch } from 'vue';
-import ActivityRowAction from 'src/features/activity/components/activity-row-action.vue';
+import ActivityRowAction from './activity-row-action.vue';
+import ActivityListCreateForm from './activity-list-create-form.vue';
 
 const props = defineProps({
   activities: Array,
   collection: Object,
 });
-const emit = defineEmits(['edit', 'delete', 'created']);
+const emit = defineEmits(['edit', 'delete', 'created', 'full-create']);
 
-const authStore = useAuthStore();
-const { request: postActivity } = useRequest('activities');
-
-const inputNewTask = ref(null);
-const createForm = reactive({
-  name: null,
-});
-
-async function focusInputNewTask() {
-  await nextTick();
-
-  inputNewTask.value.focus();
-}
-
-async function onStore() {
-  const [, error] = await postActivity({
-    method: 'post',
-    data: {
-      name: createForm.name,
-      user_id: authStore.me.userId,
-      collection_id: props.collection ? props.collection.id : null,
-    },
-  });
-
-  if (!error) {
-    createForm.name = null;
-
-    focusInputNewTask();
-
-    emit('created');
-  }
+async function onCreated() {
+  emit('created');
 }
 function onEdit(activity) {
   emit('edit', activity);
 }
 function onDelete(activity) {
   emit('delete', activity);
+}
+function onFullCreate() {
+  emit('full-create');
 }
 </script>
 
@@ -71,18 +43,11 @@ function onDelete(activity) {
       </div>
     </li>
     <li>
-      <form action="" @submit.prevent="onStore">
-        <input
-          ref="inputNewTask"
-          :class="[
-            'py-2 px-2.5 w-full placeholder-gray-400 border-0 focus:border-0 rounded-b-lg focus:outline-0 focus:ring-0',
-            activities.length ? '' : 'rounded-t-lg',
-          ]"
-          type="text"
-          placeholder="New Task"
-          v-model="createForm.name"
-        />
-      </form>
+      <activity-list-create-form
+        :collection="collection"
+        @created="onCreated"
+        @full-create="onFullCreate"
+      />
     </li>
   </ul>
 </template>
