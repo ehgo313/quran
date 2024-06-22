@@ -7,6 +7,7 @@ import { reactive, ref } from 'vue';
 import ActivityEditModal from 'src/features/activity/components/activity-edit-modal.vue';
 import ActivityDeleteConfirm from 'src/features/activity/components/activity-delete-confirm.vue';
 import ActivityList from 'src/features/activity/components/activity-list.vue';
+import CollectionAction from 'src/features/collection/components/collection-action.vue';
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
@@ -102,7 +103,10 @@ loadPage();
     :error-message="getErrorCollectionMessage()"
   >
     <div class="flex items-center justify-between">
-      <base-title size="small">{{ collection.data.name }}</base-title>
+      <div class="flex items-center gap-x-2">
+        <base-title size="small">{{ collection.data.name }}</base-title>
+        <collection-action />
+      </div>
       <a href="" class="text-sky-600" @click.prevent="onCreate">New Activity</a>
     </div>
     <with-loading
