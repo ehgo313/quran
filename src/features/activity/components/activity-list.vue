@@ -15,7 +15,6 @@ const authStore = useAuthStore();
 const { request: postActivity } = useRequest('activities');
 
 const inputNewTask = ref(null);
-const creating = defineModel('creating');
 const createForm = reactive({
   name: null,
 });
@@ -50,22 +49,16 @@ function onEdit(activity) {
 function onDelete(activity) {
   emit('delete', activity);
 }
-
-watch(creating, (value) => {
-  if (value) {
-    focusInputNewTask();
-  }
-});
 </script>
 
 <template>
   <ul class="border border-gray-200 rounded-lg">
     <li
-      v-for="(activity, index) in activities"
+      v-for="activity in activities"
       :key="activity.id"
       :class="[
         'group flex items-center justify-between py-2 px-2.5 border-gray-200',
-        index === activities.length - 1 && !creating ? '' : 'border-b',
+        'border-b',
       ]"
     >
       <span>{{ activity.name }}</span>
@@ -77,7 +70,7 @@ watch(creating, (value) => {
         />
       </div>
     </li>
-    <li v-if="creating">
+    <li>
       <form action="" @submit.prevent="onStore">
         <input
           ref="inputNewTask"

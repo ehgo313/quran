@@ -7,9 +7,13 @@ import { reactive, ref } from 'vue';
 import ActivityEditModal from 'src/features/activity/components/activity-edit-modal.vue';
 import ActivityDeleteConfirm from 'src/features/activity/components/activity-delete-confirm.vue';
 import ActivityList from 'src/features/activity/components/activity-list.vue';
-import { useRoute } from 'vue-router';
+import CollectionAction from 'src/features/collection/components/collection-action.vue';
+import CollectionEditModal from 'src/features/collection/components/collection-edit-modal.vue';
+import CollectionDeleteConfirm from 'src/features/collection/components/collection-delete-confirm.vue';
+import { useRoute, useRouter } from 'vue-router';
 
 const route = useRoute();
+const router = useRouter();
 const authStore = useAuthStore();
 const {
   loading: loadingActivities,
@@ -28,18 +32,22 @@ const {
   request: fetchCollection,
 } = useRequest('/collections', {
   initLoading: true,
+  initData: {
+    data: {},
+  },
 });
 
 const activitiesLoaded = ref(false);
-const creating = ref(false);
-const editModal = reactive({
+const editActivityModal = reactive({
   visible: false,
   activity: null,
 });
-const deleteConfirm = reactive({
+const editCollectionModalVisible = ref(false);
+const deleteActivityConfirm = reactive({
   visible: false,
   activityId: null,
 });
+const deleteCollectionConfirmVisible = ref(false);
 
 async function loadCollection() {
   return await fetchCollection({
@@ -54,10 +62,6 @@ async function loadActivities() {
     },
   });
 
-  if (!error && !activities.value.data.length) {
-    creating.value = true;
-  }
-
   return [res, error];
 }
 async function loadPage() {
@@ -71,25 +75,34 @@ async function loadPage() {
   }
 }
 
-async function onCreate() {
-  creating.value = !creating.value;
-}
 async function onCreated() {
   loadActivities();
 }
-function onEdit(activity) {
-  editModal.activity = activity;
-  editModal.visible = true;
+function onEditActivity(activity) {
+  editActivityModal.activity = activity;
+  editActivityModal.visible = true;
 }
-function onUpdated() {
+function onUpdatedActivity() {
   loadActivities();
 }
-function onDeleted() {
+function onDeletedActivity() {
   loadActivities();
 }
-function onDelete(activity) {
-  deleteConfirm.activityId = activity.id;
-  deleteConfirm.visible = true;
+function onDeleteActivity(activity) {
+  deleteActivityConfirm.activityId = activity.id;
+  deleteActivityConfirm.visible = true;
+}
+function onEditCollection() {
+  editCollectionModalVisible.value = true;
+}
+function onDeleteCollection() {
+  deleteCollectionConfirmVisible.value = true;
+}
+async function onUpdatedCollection() {
+  await loadCollection();
+}
+function onDeletedCollection() {
+  router.push({ name: 'dashboard' });
 }
 
 loadPage();
@@ -103,7 +116,10 @@ loadPage();
   >
     <div class="flex items-center justify-between">
       <base-title size="small">{{ collection.data.name }}</base-title>
-      <a href="" class="text-sky-600" @click.prevent="onCreate">New Activity</a>
+      <collection-action
+        @edit="onEditCollection"
+        @delete="onDeleteCollection"
+      />
     </div>
     <with-loading
       :loading="loadingActivities"
@@ -114,21 +130,32 @@ loadPage();
       <activity-list
         :activities="activities.data"
         :collection="collection.data"
-        v-model:creating="creating"
-        @edit="onEdit"
-        @delete="onDelete"
+        @edit="onEditActivity"
+        @delete="onDeleteActivity"
         @created="onCreated"
       />
     </with-loading>
   </with-loading>
-  <activity-edit-modal
-    :activity="editModal.activity"
-    v-model="editModal.visible"
-    @updated="onUpdated"
-  />
-  <activity-delete-confirm
-    :activity-id="deleteConfirm.activityId"
-    v-model="deleteConfirm.visible"
-    @deleted="onDeleted"
-  />
+  <div>
+    <activity-edit-modal
+      :activity="editActivityModal.activity"
+      v-model="editActivityModal.visible"
+      @updated="onUpdatedActivity"
+    />
+    <activity-delete-confirm
+      :activity-id="deleteActivityConfirm.activityId"
+      v-model="deleteActivityConfirm.visible"
+      @deleted="onDeletedActivity"
+    />
+    <collection-edit-modal
+      :collection="collection.data"
+      v-model="editCollectionModalVisible"
+      @updated="onUpdatedCollection"
+    />
+    <collection-delete-confirm
+      :collection-id="collection.data.id"
+      v-model="deleteCollectionConfirmVisible"
+      @deleted="onDeletedCollection"
+    />
+  </div>
 </template>

@@ -4,11 +4,14 @@ import { useAuthStore } from 'src/features/auth/auth.store';
 
 export function useRequest(
   url,
-  { initLoading = false } = { initLoading: false },
+  { initLoading = false, initData = null } = {
+    initLoading: false,
+    initData: null,
+  },
 ) {
   const authStore = useAuthStore();
 
-  const data = ref(null);
+  const data = ref(initData ?? null);
   const loading = ref(initLoading ?? false);
   const error = ref(null);
 

@@ -23,7 +23,6 @@ const {
 });
 
 const activitiesLoaded = ref(false);
-const creating = ref(false);
 const editModal = reactive({
   visible: false,
   activity: null,
@@ -40,10 +39,6 @@ async function loadActivities() {
     },
   });
 
-  if (!error && !activities.value.data.length) {
-    creating.value = true;
-  }
-
   return [res, error];
 }
 async function loadPage() {
@@ -54,9 +49,6 @@ async function loadPage() {
   }
 }
 
-async function onCreate() {
-  creating.value = !creating.value;
-}
 async function onCreated() {
   loadActivities();
 }
@@ -81,7 +73,6 @@ loadPage();
 <template>
   <div class="flex items-center justify-between">
     <base-title size="small">Today Activities</base-title>
-    <a href="" class="text-sky-600" @click.prevent="onCreate">New Activity</a>
   </div>
   <with-loading
     :loading="loading"
@@ -91,20 +82,21 @@ loadPage();
   >
     <activity-list
       :activities="activities.data"
-      v-model:creating="creating"
       @edit="onEdit"
       @delete="onDelete"
       @created="onCreated"
     />
   </with-loading>
-  <activity-edit-modal
-    :activity="editModal.activity"
-    v-model="editModal.visible"
-    @updated="onUpdated"
-  />
-  <activity-delete-confirm
-    :activity-id="deleteConfirm.activityId"
-    v-model="deleteConfirm.visible"
-    @deleted="onDeleted"
-  />
+  <div>
+    <activity-edit-modal
+      :activity="editModal.activity"
+      v-model="editModal.visible"
+      @updated="onUpdated"
+    />
+    <activity-delete-confirm
+      :activity-id="deleteConfirm.activityId"
+      v-model="deleteConfirm.visible"
+      @deleted="onDeleted"
+    />
+  </div>
 </template>
