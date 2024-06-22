@@ -61,7 +61,7 @@ function onDelete(activity) {
         'border-b',
       ]"
     >
-      <span>{{ activity.name }}</span>
+      <span class="text-gray-900">{{ activity.name }}</span>
       <div class="flex items-center gap-x-2">
         <base-button size="extra-small" color="light">Mark as Done</base-button>
         <activity-row-action
