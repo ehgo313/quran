@@ -87,14 +87,16 @@ loadPage();
       @created="onCreated"
     />
   </with-loading>
-  <activity-edit-modal
-    :activity="editModal.activity"
-    v-model="editModal.visible"
-    @updated="onUpdated"
-  />
-  <activity-delete-confirm
-    :activity-id="deleteConfirm.activityId"
-    v-model="deleteConfirm.visible"
-    @deleted="onDeleted"
-  />
+  <div>
+    <activity-edit-modal
+      :activity="editModal.activity"
+      v-model="editModal.visible"
+      @updated="onUpdated"
+    />
+    <activity-delete-confirm
+      :activity-id="deleteConfirm.activityId"
+      v-model="deleteConfirm.visible"
+      @deleted="onDeleted"
+    />
+  </div>
 </template>

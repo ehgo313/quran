@@ -8,6 +8,7 @@ import ActivityEditModal from 'src/features/activity/components/activity-edit-mo
 import ActivityDeleteConfirm from 'src/features/activity/components/activity-delete-confirm.vue';
 import ActivityList from 'src/features/activity/components/activity-list.vue';
 import CollectionAction from 'src/features/collection/components/collection-action.vue';
+import CollectionEditModal from 'src/features/collection/components/collection-edit-modal.vue';
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
@@ -29,13 +30,17 @@ const {
   request: fetchCollection,
 } = useRequest('/collections', {
   initLoading: true,
+  initData: {
+    data: {},
+  },
 });
 
 const activitiesLoaded = ref(false);
-const editModal = reactive({
+const editActivityModal = reactive({
   visible: false,
   activity: null,
 });
+const editCollectionModalVisible = ref(false);
 const deleteConfirm = reactive({
   visible: false,
   activityId: null,
@@ -70,11 +75,11 @@ async function loadPage() {
 async function onCreated() {
   loadActivities();
 }
-function onEdit(activity) {
-  editModal.activity = activity;
-  editModal.visible = true;
+function onEditActivity(activity) {
+  editActivityModal.activity = activity;
+  editActivityModal.visible = true;
 }
-function onUpdated() {
+function onUpdatedActivity() {
   loadActivities();
 }
 function onDeleted() {
@@ -83,6 +88,12 @@ function onDeleted() {
 function onDelete(activity) {
   deleteConfirm.activityId = activity.id;
   deleteConfirm.visible = true;
+}
+function onEditCollection() {
+  editCollectionModalVisible.value = true;
+}
+async function onUpdatedCollection() {
+  await loadCollection();
 }
 
 loadPage();
@@ -96,7 +107,7 @@ loadPage();
   >
     <div class="flex items-center justify-between">
       <base-title size="small">{{ collection.data.name }}</base-title>
-      <collection-action />
+      <collection-action @edit="onEditCollection" />
     </div>
     <with-loading
       :loading="loadingActivities"
@@ -107,20 +118,27 @@ loadPage();
       <activity-list
         :activities="activities.data"
         :collection="collection.data"
-        @edit="onEdit"
+        @edit="onEditActivity"
         @delete="onDelete"
         @created="onCreated"
       />
     </with-loading>
   </with-loading>
-  <activity-edit-modal
-    :activity="editModal.activity"
-    v-model="editModal.visible"
-    @updated="onUpdated"
-  />
-  <activity-delete-confirm
-    :activity-id="deleteConfirm.activityId"
-    v-model="deleteConfirm.visible"
-    @deleted="onDeleted"
-  />
+  <div>
+    <activity-edit-modal
+      :activity="editActivityModal.activity"
+      v-model="editActivityModal.visible"
+      @updated="onUpdatedActivity"
+    />
+    <activity-delete-confirm
+      :activity-id="deleteConfirm.activityId"
+      v-model="deleteConfirm.visible"
+      @deleted="onDeleted"
+    />
+    <collection-edit-modal
+      :collection="collection.data"
+      v-model="editCollectionModalVisible"
+      @updated="onUpdatedCollection"
+    />
+  </div>
 </template>
