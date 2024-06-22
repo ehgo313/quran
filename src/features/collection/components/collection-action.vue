@@ -19,7 +19,7 @@ function onClickOption(option) {
 <template>
   <base-dropdown
     class="flex items-center relative"
-    content-wrapper-class="bg-white border -bottom-[70px] left-0 rounded-lg"
+    content-wrapper-class="bg-white border -bottom-[70px] right-0 rounded-lg"
     :options="[
       { id: 'edit', name: 'Edit' },
       { id: 'delete', name: 'Delete' },

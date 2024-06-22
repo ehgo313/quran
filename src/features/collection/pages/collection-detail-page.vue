@@ -32,7 +32,6 @@ const {
 });
 
 const activitiesLoaded = ref(false);
-const creating = ref(false);
 const editModal = reactive({
   visible: false,
   activity: null,
@@ -55,10 +54,6 @@ async function loadActivities() {
     },
   });
 
-  if (!error && !activities.value.data.length) {
-    creating.value = true;
-  }
-
   return [res, error];
 }
 async function loadPage() {
@@ -72,9 +67,6 @@ async function loadPage() {
   }
 }
 
-async function onCreate() {
-  creating.value = !creating.value;
-}
 async function onCreated() {
   loadActivities();
 }
@@ -103,11 +95,8 @@ loadPage();
     :error-message="getErrorCollectionMessage()"
   >
     <div class="flex items-center justify-between">
-      <div class="flex items-center gap-x-2">
-        <base-title size="small">{{ collection.data.name }}</base-title>
-        <collection-action />
-      </div>
-      <a href="" class="text-sky-600" @click.prevent="onCreate">New Activity</a>
+      <base-title size="small">{{ collection.data.name }}</base-title>
+      <collection-action />
     </div>
     <with-loading
       :loading="loadingActivities"
@@ -118,7 +107,6 @@ loadPage();
       <activity-list
         :activities="activities.data"
         :collection="collection.data"
-        v-model:creating="creating"
         @edit="onEdit"
         @delete="onDelete"
         @created="onCreated"
