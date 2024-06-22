@@ -5,6 +5,7 @@ import { useRequest } from 'src/core/request/request';
 import { useAuthStore } from 'src/features/auth/auth.store';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
+import baseLink from 'src/components/base/base-link.vue';
 
 const route = useRoute();
 const authStore = useAuthStore();
@@ -21,7 +22,7 @@ const {
 const visibleCreateCollectionModal = ref(false);
 const collectionsLoaded = ref(false);
 
-function isRoute(name) {
+function isRouteActive(name) {
   return route.name === name;
 }
 async function loadCollections() {
@@ -54,10 +55,10 @@ loadPage();
         <span class="text-xs font-bold text-gray-400">Menus</span>
       </li>
       <li>
-        <router-link
-          :class="isRoute('dashboard') ? 'text-sky-600 font-bold' : ''"
+        <base-link
+          :active="isRouteActive('dashboard')"
           :to="{ name: 'dashboard' }"
-          >Dashboard</router-link
+          >Dashboard</base-link
         >
       </li>
     </ul>
@@ -72,27 +73,25 @@ loadPage();
         >
           <ul>
             <li v-for="collection in collections.data" :key="collection.id">
-              <router-link
+              <base-link
                 :to="{
                   name: 'collection.detail',
                   params: { id: collection.id },
                 }"
-                :class="[
-                  'hover:text-sky-600',
-                  isRoute('collection.detail') &&
+                :active="
+                  isRouteActive('collection.detail') &&
                   route.params.id == collection.id
-                    ? 'text-sky-600 font-bold'
-                    : '',
-                ]"
-                >{{ collection.name }}</router-link
+                "
+                >{{ collection.name }}</base-link
               >
             </li>
             <li>
-              <a
-                href=""
-                class="text-sky-600"
+              <base-link
+                href="#"
+                color="sky"
+                native
                 @click.prevent="onCreateCollection"
-                >New Collection</a
+                >New Collection</base-link
               >
             </li>
           </ul>
