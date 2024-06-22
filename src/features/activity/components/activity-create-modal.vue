@@ -9,6 +9,9 @@ import { useValidation } from 'src/core/validation/validation';
 import { reactive, inject } from 'vue';
 import { z } from 'zod';
 
+const props = defineProps({
+  collection: Object,
+});
 const emit = defineEmits(['created']);
 
 const { loading, request, getErrorMessage } = useRequest('activities');
@@ -35,7 +38,10 @@ async function onSubmit() {
   if (!errorValidate) {
     const [, errorRequest] = await request({
       method: 'post',
-      data,
+      data: {
+        name: data.name,
+        collection_id: props.collection.id,
+      },
     });
 
     if (!errorRequest) {

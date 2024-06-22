@@ -4,6 +4,7 @@ import withLoading from 'src/components/composes/with-loading.vue';
 import { useRequest } from 'src/core/request/request';
 import { useAuthStore } from 'src/features/auth/auth.store';
 import { reactive, ref } from 'vue';
+import ActivityCreateModal from 'src/features/activity/components/activity-create-modal.vue';
 import ActivityEditModal from 'src/features/activity/components/activity-edit-modal.vue';
 import ActivityDeleteConfirm from 'src/features/activity/components/activity-delete-confirm.vue';
 import ActivityList from 'src/features/activity/components/activity-list.vue';
@@ -38,6 +39,7 @@ const {
 });
 
 const activitiesLoaded = ref(false);
+const createActivityModalVisible = ref(false);
 const editActivityModal = reactive({
   visible: false,
   activity: null,
@@ -104,6 +106,9 @@ async function onUpdatedCollection() {
 function onDeletedCollection() {
   router.push({ name: 'dashboard' });
 }
+function onFullCreate() {
+  createActivityModalVisible.value = true;
+}
 
 loadPage();
 </script>
@@ -133,10 +138,16 @@ loadPage();
         @edit="onEditActivity"
         @delete="onDeleteActivity"
         @created="onCreated"
+        @full-create="onFullCreate"
       />
     </with-loading>
   </with-loading>
   <div>
+    <activity-create-modal
+      :collection="collection.data"
+      v-model="createActivityModalVisible"
+      @created="onCreated"
+    />
     <activity-edit-modal
       :activity="editActivityModal.activity"
       v-model="editActivityModal.visible"
