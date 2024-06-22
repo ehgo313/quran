@@ -9,9 +9,11 @@ import ActivityDeleteConfirm from 'src/features/activity/components/activity-del
 import ActivityList from 'src/features/activity/components/activity-list.vue';
 import CollectionAction from 'src/features/collection/components/collection-action.vue';
 import CollectionEditModal from 'src/features/collection/components/collection-edit-modal.vue';
-import { useRoute } from 'vue-router';
+import CollectionDeleteConfirm from 'src/features/collection/components/collection-delete-confirm.vue';
+import { useRoute, useRouter } from 'vue-router';
 
 const route = useRoute();
+const router = useRouter();
 const authStore = useAuthStore();
 const {
   loading: loadingActivities,
@@ -41,10 +43,11 @@ const editActivityModal = reactive({
   activity: null,
 });
 const editCollectionModalVisible = ref(false);
-const deleteConfirm = reactive({
+const deleteActivityConfirm = reactive({
   visible: false,
   activityId: null,
 });
+const deleteCollectionConfirmVisible = ref(false);
 
 async function loadCollection() {
   return await fetchCollection({
@@ -82,18 +85,24 @@ function onEditActivity(activity) {
 function onUpdatedActivity() {
   loadActivities();
 }
-function onDeleted() {
+function onDeletedActivity() {
   loadActivities();
 }
-function onDelete(activity) {
-  deleteConfirm.activityId = activity.id;
-  deleteConfirm.visible = true;
+function onDeleteActivity(activity) {
+  deleteActivityConfirm.activityId = activity.id;
+  deleteActivityConfirm.visible = true;
 }
 function onEditCollection() {
   editCollectionModalVisible.value = true;
 }
+function onDeleteCollection() {
+  deleteCollectionConfirmVisible.value = true;
+}
 async function onUpdatedCollection() {
   await loadCollection();
+}
+function onDeletedCollection() {
+  router.push({ name: 'dashboard' });
 }
 
 loadPage();
@@ -107,7 +116,10 @@ loadPage();
   >
     <div class="flex items-center justify-between">
       <base-title size="small">{{ collection.data.name }}</base-title>
-      <collection-action @edit="onEditCollection" />
+      <collection-action
+        @edit="onEditCollection"
+        @delete="onDeleteCollection"
+      />
     </div>
     <with-loading
       :loading="loadingActivities"
@@ -119,7 +131,7 @@ loadPage();
         :activities="activities.data"
         :collection="collection.data"
         @edit="onEditActivity"
-        @delete="onDelete"
+        @delete="onDeleteActivity"
         @created="onCreated"
       />
     </with-loading>
@@ -131,14 +143,19 @@ loadPage();
       @updated="onUpdatedActivity"
     />
     <activity-delete-confirm
-      :activity-id="deleteConfirm.activityId"
-      v-model="deleteConfirm.visible"
-      @deleted="onDeleted"
+      :activity-id="deleteActivityConfirm.activityId"
+      v-model="deleteActivityConfirm.visible"
+      @deleted="onDeletedActivity"
     />
     <collection-edit-modal
       :collection="collection.data"
       v-model="editCollectionModalVisible"
       @updated="onUpdatedCollection"
+    />
+    <collection-delete-confirm
+      :collection-id="collection.data.id"
+      v-model="deleteCollectionConfirmVisible"
+      @deleted="onDeletedCollection"
     />
   </div>
 </template>
