@@ -59,7 +59,7 @@ function onFullCreate() {
     />
     <div class="absolute right-0 top-0 h-full flex items-center pr-2.5">
       <button type="button" @click="onFullCreate">
-        <option-icon class="w-4 h-4 text-gray-600" />
+        <option-icon class="w-4 h-4 text-gray-400" />
       </button>
     </div>
   </form>
