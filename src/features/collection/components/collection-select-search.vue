@@ -12,15 +12,20 @@ const { data: collections, request } = useRequest('/collections', {
   },
 });
 
-function onFocus() {
+function loadCollections(params) {
   request({
     params: {
       user_id: authStore.me.userId,
+      ...params,
     },
   });
 }
-function onSearch() {
-  //
+
+function onFocus() {
+  loadCollections({ search: selected.value ? selected.value.name : '' });
+}
+function onSearch(value) {
+  loadCollections({ search: value });
 }
 </script>
 

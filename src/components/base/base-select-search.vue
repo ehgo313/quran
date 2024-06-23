@@ -23,9 +23,11 @@ function onFocus() {
   emit('focus');
 }
 function onSearch() {
-  emit('search');
+  emit('search', search.value);
 }
 function onClickOutside() {
+  search.value = selected.value ? selected.value.name : '';
+
   visible.value = false;
 }
 function onSelect(option) {
