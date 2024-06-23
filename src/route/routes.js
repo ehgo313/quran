@@ -1,5 +1,5 @@
-import { authRoutes } from '../features/auth/auth.routes';
-import { collectionRoutes } from '../features/collection/collection.routes';
-import { dashboardRoutes } from '../features/dashboard/dashboard.routes';
+import { authRoutes } from 'src/features/auth/auth.routes';
+import { collectionRoutes } from 'src/features/collection/collection.routes';
+import { activityRoutes } from 'src/features/activity/activity.routes';
 
-export const routes = [...dashboardRoutes, ...authRoutes, ...collectionRoutes];
+export const routes = [...activityRoutes, ...authRoutes, ...collectionRoutes];

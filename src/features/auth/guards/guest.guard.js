@@ -8,7 +8,7 @@ export function protectGuest(to) {
     authStore.isLoggedIn
   ) {
     return {
-      name: 'dashboard',
+      name: 'activity.today',
     };
   }
 }

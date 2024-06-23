@@ -48,7 +48,7 @@ async function onSubmit() {
         me: res.data.me,
       });
 
-      router.push({ name: 'dashboard' });
+      router.push({ name: 'activity.today' });
     } else {
       emitter.emit('create-toast', {
         message: getErrorMessage(),

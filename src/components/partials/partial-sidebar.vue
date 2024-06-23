@@ -49,55 +49,57 @@ loadPage();
 </script>
 
 <template>
-  <div class="space-y-2 hidden sm:block">
-    <ul>
-      <li>
-        <span class="text-xs font-bold text-gray-400">Menus</span>
-      </li>
-      <li>
-        <base-link
-          :active="isRouteActive('dashboard')"
-          :to="{ name: 'dashboard' }"
-          >Dashboard</base-link
-        >
-      </li>
-    </ul>
-    <ul>
-      <li class="space-y-1">
-        <span class="text-xs font-bold text-gray-400">Collections</span>
-        <with-loading
-          :loading="loading"
-          :loading-block="!collectionsLoaded"
-          :error="!!error"
-          :error-message="getErrorMessage()"
-        >
-          <ul>
-            <li v-for="collection in collections.data" :key="collection.id">
-              <base-link
-                :to="{
-                  name: 'collection.detail',
-                  params: { id: collection.id },
-                }"
-                :active="
-                  isRouteActive('collection.detail') &&
-                  route.params.id == collection.id
-                "
-                >{{ collection.name }}</base-link
-              >
-            </li>
-            <li>
-              <base-link
-                href="#"
-                color="sky"
-                native
-                @click.prevent="onCreateCollection"
-                >New Collection</base-link
-              >
-            </li>
-          </ul>
-        </with-loading>
-      </li>
-    </ul>
+  <div class="hidden sm:block">
+    <div class="space-y-2 sticky top-4 left-0">
+      <ul>
+        <li>
+          <span class="text-xs font-bold text-gray-400">Menus</span>
+        </li>
+        <li>
+          <base-link
+            :active="isRouteActive('activity.today')"
+            :to="{ name: 'activity.today' }"
+            >Today Activities</base-link
+          >
+        </li>
+      </ul>
+      <ul>
+        <li class="space-y-1">
+          <span class="text-xs font-bold text-gray-400">Collections</span>
+          <with-loading
+            :loading="loading"
+            :loading-block="!collectionsLoaded"
+            :error="!!error"
+            :error-message="getErrorMessage()"
+          >
+            <ul>
+              <li v-for="collection in collections.data" :key="collection.id">
+                <base-link
+                  :to="{
+                    name: 'collection.detail',
+                    params: { id: collection.id },
+                  }"
+                  :active="
+                    isRouteActive('collection.detail') &&
+                    route.params.id == collection.id
+                  "
+                  >{{ collection.name }}</base-link
+                >
+              </li>
+              <li>
+                <base-link
+                  href="#"
+                  color="sky"
+                  native
+                  @click.prevent="onCreateCollection"
+                  >New Collection</base-link
+                >
+              </li>
+            </ul>
+          </with-loading>
+        </li>
+      </ul>
+    </div>
   </div>
   <collection-create-modal
     v-model="visibleCreateCollectionModal"
