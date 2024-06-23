@@ -22,9 +22,9 @@ const props = defineProps({
 
 const size = computed(() => {
   return {
-    'extra-small': 'text-xs px-1 py-0.5 rounded-md',
-    small: 'text-sm px-2 py-1 rounded-md',
-    medium: ['rounded-lg', props.square ? 'w-8 h-8' : 'py-2 px-3'],
+    'extra-small': 'text-xs px-1 py-0.5 rounded-md gap-x-1',
+    small: 'text-sm px-2 py-1 rounded-md gap-x-2',
+    medium: ['rounded-lg gap-x-2', props.square ? 'w-8 h-8' : 'py-2 px-3'],
   }[props.size];
 });
 const color = computed(() => {
@@ -33,6 +33,13 @@ const color = computed(() => {
     sky: 'border-sky-600 bg-sky-600 text-white',
     red: 'border-red-600 bg-red-600 text-white',
   }[props.color];
+});
+const spinnerSize = computed(() => {
+  return {
+    'extra-small': 'xs',
+    small: 'xs',
+    medium: 'sm',
+  }[props.size];
 });
 </script>
 
@@ -43,11 +50,11 @@ const color = computed(() => {
       fullwidth ? 'w-full' : '',
       size,
       color,
-      'border inline-flex items-center justify-center gap-x-2',
+      'border inline-flex items-center justify-center',
     ]"
     :disabled="loading"
   >
-    <base-spinner v-if="loading" size="sm" :color="props.color" />
+    <base-spinner v-if="loading" :size="spinnerSize" :color="props.color" />
     <slot />
   </button>
 </template>
