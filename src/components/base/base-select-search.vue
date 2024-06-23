@@ -12,7 +12,7 @@ defineProps({
     default: 'default',
   },
 });
-const emit = defineEmits(['focus', 'search']);
+const emit = defineEmits(['focus', 'search', 'end-scroll']);
 
 const visible = ref(false);
 const selected = defineModel();
@@ -40,6 +40,11 @@ function onClear() {
   selected.value = null;
 
   emit('search');
+}
+function onScroll(e) {
+  if (e.target.scrollTop >= e.target.scrollHeight - e.target.clientHeight) {
+    emit('end-scroll');
+  }
 }
 
 watch(selected, (value) => {
@@ -72,6 +77,7 @@ search.value = selected.value ? selected.value.name : null;
     <ul
       v-if="visible"
       class="bg-white border rounded-lg absolute w-full left-0 mt-2 py-1 max-h-36 overflow-y-auto"
+      @scroll="onScroll"
     >
       <p v-if="!options.length" class="px-4 py-2 text-gray-500">Empty Data</p>
       <li
