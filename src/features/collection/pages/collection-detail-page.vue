@@ -104,7 +104,7 @@ async function onUpdatedCollection() {
   await loadCollection();
 }
 function onDeletedCollection() {
-  router.push({ name: 'dashboard' });
+  router.push({ name: 'activity.today' });
 }
 function onFullCreate() {
   createActivityModalVisible.value = true;
