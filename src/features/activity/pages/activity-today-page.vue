@@ -88,6 +88,7 @@ loadPage();
       @delete="onDelete"
       @created="onCreated"
       @full-create="onFullCreate"
+      @updated="onUpdated"
     />
   </with-loading>
   <div>

@@ -139,6 +139,7 @@ loadPage();
         @delete="onDeleteActivity"
         @created="onCreated"
         @full-create="onFullCreate"
+        @updated="onUpdated"
       />
     </with-loading>
   </with-loading>
