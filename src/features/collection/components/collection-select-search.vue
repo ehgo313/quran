@@ -2,6 +2,7 @@
 import BaseSelectSearch from 'src/components/base/base-select-search.vue';
 import { useRequest } from 'src/core/request/request';
 import { useAuthStore } from 'src/features/auth/auth.store';
+import { ref } from 'vue';
 
 const selected = defineModel();
 
@@ -12,15 +13,32 @@ const { data: collections, request } = useRequest('/collections', {
   },
 });
 
-function onFocus() {
+const limit = ref(5);
+
+function loadCollections(params) {
   request({
     params: {
       user_id: authStore.me.userId,
+      limit: limit.value,
+      ...params,
     },
   });
 }
-function onSearch() {
-  //
+
+function onFocus() {
+  limit.value = 5;
+
+  loadCollections({ search: selected.value ? selected.value.name : '' });
+}
+function onSearch(value) {
+  limit.value = 5;
+
+  loadCollections({ search: value });
+}
+function onLoadMore() {
+  limit.value += 5;
+
+  loadCollections();
 }
 </script>
 
@@ -31,5 +49,6 @@ function onSearch() {
     v-model="selected"
     @focus="onFocus"
     @search="onSearch"
+    @end-scroll="onLoadMore"
   />
 </template>

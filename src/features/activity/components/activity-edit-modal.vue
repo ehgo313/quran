@@ -4,6 +4,7 @@ import BaseCard from 'src/components/base/base-card.vue';
 import BaseInput from 'src/components/base/base-input.vue';
 import BaseFormItem from 'src/components/base/base-form-item.vue';
 import BaseButton from 'src/components/base/base-button.vue';
+import CollectionSelectSearch from 'src/features/collection/components/collection-select-search.vue';
 import { useRequest } from 'src/core/request/request';
 import { useValidation } from 'src/core/validation/validation';
 import { reactive, inject } from 'vue';
@@ -21,6 +22,7 @@ const emitter = inject('emitter');
 const visible = defineModel();
 const form = reactive({
   name: null,
+  collection: null,
 });
 
 const schema = z.object({
@@ -57,6 +59,7 @@ function onOpened() {
   resetError();
 
   form.name = props.activity.name;
+  form.collection = null;
 }
 </script>
 
@@ -70,6 +73,13 @@ function onOpened() {
             :state="hasError('name') ? 'danger' : 'default'"
             :message="getError('name')"
             v-model="form.name"
+          />
+        </base-form-item>
+        <base-form-item label="Collection">
+          <collection-select-search
+            :state="hasError('collectionId') ? 'danger' : 'default'"
+            :message="getError('collectionId')"
+            v-model="form.collection"
           />
         </base-form-item>
         <div class="space-x-2">
