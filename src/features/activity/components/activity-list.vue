@@ -33,9 +33,13 @@ function onFullCreate() {
         'border-b',
       ]"
     >
-      <span class="text-gray-900">{{ activity.name }}</span>
+      <span :class="['text-gray-900', activity.done ? 'line-through' : '']">{{
+        activity.name
+      }}</span>
       <div class="flex items-center gap-x-2">
-        <base-button size="extra-small" color="light">Mark as Done</base-button>
+        <base-button v-if="!activity.done" size="extra-small" color="light"
+          >Mark as Done</base-button
+        >
         <activity-row-action
           @edit="onEdit(activity)"
           @delete="onDelete(activity)"
