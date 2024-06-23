@@ -31,7 +31,7 @@ function onClickOption(option) {
             v-for="option in options"
             :key="option.id"
             href=""
-            class="px-3 py-1 hover:bg-gray-100 text-sm"
+            class="px-3 py-1 hover:bg-gray-100 text-sm text-gray-900"
             @click.prevent="onClickOption(option)"
             >{{ option.name }}</a
           >

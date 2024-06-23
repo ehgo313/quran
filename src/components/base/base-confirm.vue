@@ -23,8 +23,8 @@ function onConfirmed() {
 <template>
   <base-modal v-model="visible">
     <base-card class="text-center">
-      <warning-icon class="w-12 h-12 mx-auto text-yellow-500" />
-      <p>{{ message }}</p>
+      <warning-icon class="w-16 h-16 mx-auto text-red-500" />
+      <p class="text-gray-900">{{ message }}</p>
       <div class="grid grid-cols-2 gap-4">
         <base-button color="red" :loading="loading" @click="onConfirmed"
           >Yes, Sure</base-button

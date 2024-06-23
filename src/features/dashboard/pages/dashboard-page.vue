@@ -1,8 +1,5 @@
 <script setup>
-import { Menu2 as ActionIcon } from '@vicons/tabler';
 import BaseTitle from 'src/components/base/base-title.vue';
-import BaseButton from 'src/components/base/base-button.vue';
-import PartialSidebar from 'src/components/partials/partial-sidebar.vue';
 import withLoading from 'src/components/composes/with-loading.vue';
 import { useRequest } from 'src/core/request/request';
 import { useAuthStore } from 'src/features/auth/auth.store';
@@ -10,6 +7,7 @@ import { reactive, ref } from 'vue';
 import ActivityEditModal from 'src/features/activity/components/activity-edit-modal.vue';
 import ActivityDeleteConfirm from 'src/features/activity/components/activity-delete-confirm.vue';
 import ActivityList from 'src/features/activity/components/activity-list.vue';
+import ActivityCreateModal from 'src/features/activity/components/activity-create-modal.vue';
 
 const authStore = useAuthStore();
 const {
@@ -31,6 +29,7 @@ const deleteConfirm = reactive({
   visible: false,
   activityId: null,
 });
+const createModalVisible = ref(false);
 
 async function loadActivities() {
   const [res, error] = await fetchActivities({
@@ -66,6 +65,9 @@ function onDelete(activity) {
   deleteConfirm.activityId = activity.id;
   deleteConfirm.visible = true;
 }
+function onFullCreate() {
+  createModalVisible.value = true;
+}
 
 loadPage();
 </script>
@@ -85,9 +87,11 @@ loadPage();
       @edit="onEdit"
       @delete="onDelete"
       @created="onCreated"
+      @full-create="onFullCreate"
     />
   </with-loading>
   <div>
+    <activity-create-modal v-model="createModalVisible" @created="onCreated" />
     <activity-edit-modal
       :activity="editModal.activity"
       v-model="editModal.visible"

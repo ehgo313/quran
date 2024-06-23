@@ -10,7 +10,7 @@ import PartialSidebar from 'src/components/partials/partial-sidebar.vue';
   >
     <div class="sm:hidden">
       <base-button color="light" square>
-        <action-icon class="w-4 h-4" />
+        <action-icon class="w-4 h-4 text-gray-900" />
       </base-button>
     </div>
     <partial-sidebar />

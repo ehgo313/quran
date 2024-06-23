@@ -10,7 +10,7 @@ const props = defineProps({
 });
 
 const base = computed(() => [
-  props.color === 'sky' ? 'text-sky-600' : '',
+  props.color === 'sky' ? 'text-sky-600' : 'text-gray-900',
   'hover:text-sky-600',
   props.active ? 'text-sky-600 font-bold' : '',
 ]);

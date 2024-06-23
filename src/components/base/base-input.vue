@@ -1,5 +1,6 @@
 <script setup>
 import { computed } from 'vue';
+import { debounce } from 'src/utils/debounce';
 
 const props = defineProps({
   type: {
@@ -14,6 +15,7 @@ const props = defineProps({
   },
   message: String,
 });
+const emit = defineEmits(['focus', 'debounce-input']);
 const value = defineModel();
 
 const state = computed(() => {
@@ -30,6 +32,15 @@ const state = computed(() => {
     },
   }[props.state];
 });
+
+const debounceInput = debounce(() => emit('debounce-input'));
+
+function onFocus() {
+  emit('focus');
+}
+function onInput() {
+  debounceInput();
+}
 </script>
 
 <template>
@@ -43,6 +54,8 @@ const state = computed(() => {
         state.input,
       ]"
       v-model="value"
+      @focus="onFocus"
+      @input="onInput"
     />
     <p v-if="message" :class="['text-sm', state.message]">{{ message }}</p>
   </div>
