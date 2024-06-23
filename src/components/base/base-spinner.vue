@@ -14,6 +14,7 @@ const props = defineProps({
 
 const size = computed(() => {
   return {
+    xs: 'w-2.5 h-2.5',
     sm: 'w-4 h-4',
     md: 'w-6 h-6',
     lg: 'w-8 h-8',
@@ -24,6 +25,7 @@ const color = computed(() => {
   return {
     sky: 'text-gray-200 fill-sky-600',
     red: 'text-gray-200 fill-red-600',
+    light: 'text-gray-200 fill-sky-600',
   }[props.color];
 });
 </script>
