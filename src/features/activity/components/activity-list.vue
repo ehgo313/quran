@@ -1,13 +1,18 @@
 <script setup>
-import BaseButton from 'src/components/base/base-button.vue';
-import ActivityRowAction from './activity-row-action.vue';
 import ActivityListCreateForm from './activity-list-create-form.vue';
+import ActivityRow from './activity-row.vue';
 
 const props = defineProps({
   activities: Array,
   collection: Object,
 });
-const emit = defineEmits(['edit', 'delete', 'created', 'full-create']);
+const emit = defineEmits([
+  'edit',
+  'delete',
+  'created',
+  'full-create',
+  'updated',
+]);
 
 async function onCreated() {
   emit('created');
@@ -18,6 +23,9 @@ function onEdit(activity) {
 function onDelete(activity) {
   emit('delete', activity);
 }
+function onUpdated() {
+  emit('updated');
+}
 function onFullCreate() {
   emit('full-create');
 }
@@ -25,27 +33,14 @@ function onFullCreate() {
 
 <template>
   <ul class="border border-gray-200 rounded-lg">
-    <li
+    <activity-row
       v-for="activity in activities"
       :key="activity.id"
-      :class="[
-        'group flex items-center justify-between py-2 px-2.5 border-gray-200',
-        'border-b',
-      ]"
-    >
-      <span :class="['text-gray-900', activity.done ? 'line-through' : '']">{{
-        activity.name
-      }}</span>
-      <div class="flex items-center gap-x-2">
-        <base-button v-if="!activity.done" size="extra-small" color="light"
-          >Mark as Done</base-button
-        >
-        <activity-row-action
-          @edit="onEdit(activity)"
-          @delete="onDelete(activity)"
-        />
-      </div>
-    </li>
+      :activity="activity"
+      @edit="onEdit"
+      @delete="onDelete"
+      @updated="onUpdated"
+    />
     <li>
       <activity-list-create-form
         :collection="collection"
