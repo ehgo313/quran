@@ -11,6 +11,7 @@ import ActivityRow from 'src/features/activity/components/activity-row.vue';
 
 const props = defineProps({
   collection: Object,
+  filter: Object,
 });
 
 const authStore = useAuthStore();
@@ -40,6 +41,7 @@ async function loadActivities() {
     params: {
       user_id: authStore.me.userId,
       collection_id: props.collection ? props.collection.id : null,
+      ...props.filter,
     },
   });
 
