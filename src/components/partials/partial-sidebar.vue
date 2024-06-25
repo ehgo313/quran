@@ -62,6 +62,13 @@ loadPage();
             >Today Activities</base-link
           >
         </li>
+        <li>
+          <base-link
+            :active="isRouteActive('activity.all')"
+            :to="{ name: 'activity.all' }"
+            >All Activities</base-link
+          >
+        </li>
       </ul>
       <ul>
         <li class="space-y-1">
