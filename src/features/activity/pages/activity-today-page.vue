@@ -7,11 +7,14 @@ const filter = {
   start_date: date().startOf('day').toISOString(),
   end_date: date().endOf('day').toISOString(),
 };
+const createPayload = {
+  date: date().toISOString(),
+};
 </script>
 
 <template>
   <div class="flex items-center justify-between">
     <base-title size="small">Today Activities</base-title>
   </div>
-  <activity-list :filter="filter" />
+  <activity-list :filter="filter" :create-payload="createPayload" />
 </template>
