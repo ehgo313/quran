@@ -6,6 +6,7 @@ import { Dots as OptionIcon } from '@vicons/tabler';
 
 const props = defineProps({
   collection: Object,
+  payload: Object,
 });
 const emit = defineEmits(['created', 'full-create']);
 
@@ -30,6 +31,7 @@ async function onStore() {
       name: createForm.name,
       user_id: authStore.me.userId,
       collection_id: props.collection ? props.collection.id : null,
+      ...props.payload,
     },
   });
 

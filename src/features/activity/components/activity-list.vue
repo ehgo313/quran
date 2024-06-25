@@ -12,6 +12,7 @@ import ActivityRow from 'src/features/activity/components/activity-row.vue';
 const props = defineProps({
   collection: Object,
   filter: Object,
+  createPayload: Object,
 });
 
 const authStore = useAuthStore();
@@ -97,6 +98,7 @@ loadPage();
       />
       <li>
         <activity-list-create-form
+          :payload="createPayload"
           :collection="collection"
           @created="onCreated"
           @full-create="onFullCreate"
