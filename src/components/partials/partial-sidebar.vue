@@ -80,7 +80,10 @@ loadPage();
             :error-message="getErrorMessage()"
           >
             <ul>
-              <li v-for="collection in collections.data" :key="collection.id">
+              <li
+                v-for="collection in collections.data.rows"
+                :key="collection.id"
+              >
                 <base-link
                   :to="{
                     name: 'collection.detail',
