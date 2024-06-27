@@ -9,7 +9,9 @@ const selected = defineModel();
 const authStore = useAuthStore();
 const { data: collections, request } = useRequest('/collections', {
   initData: {
-    data: [],
+    data: {
+      rows: [],
+    },
   },
 });
 
@@ -36,16 +38,18 @@ function onSearch(value) {
   loadCollections({ search: value });
 }
 function onLoadMore() {
-  limit.value += 5;
+  if (limit.value < collections.value.data.count) {
+    limit.value += 5;
 
-  loadCollections();
+    loadCollections();
+  }
 }
 </script>
 
 <template>
   <base-select-search
     placeholder="Select Collection"
-    :options="collections.data"
+    :options="collections.data.rows"
     v-model="selected"
     @focus="onFocus"
     @search="onSearch"
