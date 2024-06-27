@@ -23,6 +23,7 @@ const visible = defineModel();
 const form = reactive({
   name: null,
   collection: null,
+  date: null,
 });
 
 const schema = z.object({
@@ -37,6 +38,11 @@ const schema = z.object({
       invalid_type_error: 'collection is invalid',
     })
     .optional(),
+  date: z
+    .string({ invalid_type_error: 'date must be a date' })
+    .datetime({ message: 'date must be a date' })
+    .optional()
+    .nullable(),
 });
 
 async function onSubmit() {
@@ -48,6 +54,7 @@ async function onSubmit() {
 
   const [data, errorValidate] = await validate(schema, {
     name: form.name,
+    date: form.date ? new Date(form.date).toISOString() : null,
     ...(collectionId ? { collectionId: collectionId } : {}),
   });
 
@@ -56,6 +63,7 @@ async function onSubmit() {
       method: 'post',
       data: {
         name: data.name,
+        date: data.date,
         collection_id: data.collectionId,
       },
     });
@@ -89,6 +97,15 @@ function onOpened() {
             :state="hasError('name') ? 'danger' : 'default'"
             :message="getError('name')"
             v-model="form.name"
+          />
+        </base-form-item>
+        <base-form-item label="Date">
+          <base-input
+            placeholder="Date"
+            type="date"
+            :state="hasError('date') ? 'danger' : 'default'"
+            :message="getError('date')"
+            v-model="form.date"
           />
         </base-form-item>
         <base-form-item label="Collection">
