@@ -83,6 +83,7 @@ function onOpened() {
   resetError();
 
   form.name = null;
+  form.date = null;
   form.collection = props.collection ? { ...props.collection } : null;
 }
 </script>
