@@ -9,6 +9,7 @@ import { useRequest } from 'src/core/request/request';
 import { useValidation } from 'src/core/validation/validation';
 import { reactive, inject } from 'vue';
 import { z } from 'zod';
+import { date } from 'src/utils/date';
 
 const props = defineProps({
   activity: Object,
@@ -23,6 +24,7 @@ const visible = defineModel();
 const form = reactive({
   name: null,
   collection: null,
+  date: null,
 });
 
 const schema = z.object({
@@ -32,10 +34,18 @@ const schema = z.object({
       invalid_type_error: 'name must be a string',
     })
     .min(1, { message: 'name min 1 character' }),
+  date: z
+    .string({ invalid_type_error: 'date must be a date' })
+    .datetime({ message: 'date must be a date' })
+    .optional()
+    .nullable(),
 });
 
 async function onSubmit() {
-  const [data, errorValidate] = await validate(schema, form);
+  const [data, errorValidate] = await validate(schema, {
+    ...form,
+    date: form.date ? new Date(form.date).toISOString() : null,
+  });
 
   if (!errorValidate) {
     const [, errorRequest] = await request({
@@ -59,6 +69,9 @@ function onOpened() {
   resetError();
 
   form.name = props.activity.name;
+  form.date = props.activity.date
+    ? date(props.activity.date).format('YYYY-MM-DD')
+    : null;
   form.collection = null;
 }
 </script>
@@ -73,6 +86,15 @@ function onOpened() {
             :state="hasError('name') ? 'danger' : 'default'"
             :message="getError('name')"
             v-model="form.name"
+          />
+        </base-form-item>
+        <base-form-item label="Date">
+          <base-input
+            placeholder="Date"
+            type="date"
+            :state="hasError('date') ? 'danger' : 'default'"
+            :message="getError('date')"
+            v-model="form.date"
           />
         </base-form-item>
         <base-form-item label="Collection">
