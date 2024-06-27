@@ -9,6 +9,7 @@ import { useRequest } from 'src/core/request/request';
 import { useValidation } from 'src/core/validation/validation';
 import { reactive, inject } from 'vue';
 import { z } from 'zod';
+import { date } from 'src/utils/date';
 
 const props = defineProps({
   collection: Object,
@@ -23,6 +24,7 @@ const visible = defineModel();
 const form = reactive({
   name: null,
   collection: null,
+  date: null,
 });
 
 const schema = z.object({
@@ -37,6 +39,11 @@ const schema = z.object({
       invalid_type_error: 'collection is invalid',
     })
     .optional(),
+  date: z
+    .string({ invalid_type_error: 'date must be a date' })
+    .datetime({ message: 'date must be a date' })
+    .optional()
+    .nullable(),
 });
 
 async function onSubmit() {
@@ -48,6 +55,7 @@ async function onSubmit() {
 
   const [data, errorValidate] = await validate(schema, {
     name: form.name,
+    date: form.date ? date(form.date).toISOString() : null,
     ...(collectionId ? { collectionId: collectionId } : {}),
   });
 
@@ -56,6 +64,7 @@ async function onSubmit() {
       method: 'post',
       data: {
         name: data.name,
+        date: data.date,
         collection_id: data.collectionId,
       },
     });
@@ -75,6 +84,7 @@ function onOpened() {
   resetError();
 
   form.name = null;
+  form.date = null;
   form.collection = props.collection ? { ...props.collection } : null;
 }
 </script>
@@ -89,6 +99,16 @@ function onOpened() {
             :state="hasError('name') ? 'danger' : 'default'"
             :message="getError('name')"
             v-model="form.name"
+          />
+        </base-form-item>
+        {{ form.date }}
+        <base-form-item label="Date">
+          <base-input
+            placeholder="Date"
+            type="date"
+            :state="hasError('date') ? 'danger' : 'default'"
+            :message="getError('date')"
+            v-model="form.date"
           />
         </base-form-item>
         <base-form-item label="Collection">
