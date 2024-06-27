@@ -9,6 +9,7 @@ import { useRequest } from 'src/core/request/request';
 import { useValidation } from 'src/core/validation/validation';
 import { reactive, inject } from 'vue';
 import { z } from 'zod';
+import { date } from 'src/utils/date';
 
 const props = defineProps({
   collection: Object,
@@ -54,7 +55,7 @@ async function onSubmit() {
 
   const [data, errorValidate] = await validate(schema, {
     name: form.name,
-    date: form.date ? new Date(form.date).toISOString() : null,
+    date: form.date ? date(form.date).toISOString() : null,
     ...(collectionId ? { collectionId: collectionId } : {}),
   });
 
@@ -100,6 +101,7 @@ function onOpened() {
             v-model="form.name"
           />
         </base-form-item>
+        {{ form.date }}
         <base-form-item label="Date">
           <base-input
             placeholder="Date"
