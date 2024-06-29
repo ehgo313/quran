@@ -69,6 +69,13 @@ loadPage();
             >All Activities</base-link
           >
         </li>
+        <li>
+          <base-link
+            :active="isRouteActive('activity.late')"
+            :to="{ name: 'activity.late' }"
+            >Late Activities</base-link
+          >
+        </li>
       </ul>
       <ul>
         <li class="space-y-1">
