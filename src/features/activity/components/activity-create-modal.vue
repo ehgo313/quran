@@ -56,7 +56,7 @@ async function onSubmit() {
   const [data, errorValidate] = await validate(schema, {
     name: form.name,
     date: form.date ? date(form.date).toISOString() : null,
-    ...(collectionId ? { collectionId: collectionId } : {}),
+    collectionId,
   });
 
   if (!errorValidate) {
@@ -101,7 +101,6 @@ function onOpened() {
             v-model="form.name"
           />
         </base-form-item>
-        {{ form.date }}
         <base-form-item label="Date">
           <base-input
             placeholder="Date"
