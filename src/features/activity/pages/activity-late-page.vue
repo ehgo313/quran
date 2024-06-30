@@ -6,9 +6,7 @@ import { date } from 'src/utils/date';
 const filter = {
   start_date: date().subtract(1, 'day').startOf('day').toISOString(),
   end_date: date().subtract(1, 'day').endOf('day').toISOString(),
-};
-const createPayload = {
-  date: date().toISOString(),
+  done: false,
 };
 </script>
 
@@ -16,5 +14,5 @@ const createPayload = {
   <div class="flex items-center justify-between">
     <base-title size="small">Late Activities</base-title>
   </div>
-  <activity-list :filter="filter" :create-payload="createPayload" />
+  <activity-list :filter="filter" :creating="false" />
 </template>

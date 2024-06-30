@@ -7,6 +7,10 @@ import { date } from 'src/utils/date';
 
 const props = defineProps({
   activity: Object,
+  bordered: {
+    type: Boolean,
+    default: true,
+  },
 });
 const emit = defineEmits(['edit', 'delete', 'updated']);
 
@@ -69,7 +73,7 @@ async function onAddToToday() {
   <li
     :class="[
       'group flex items-center justify-between py-2 px-2.5 border-gray-200',
-      'border-b',
+      bordered ? 'border-b' : '',
     ]"
   >
     <span :class="['text-gray-900', activity.done ? 'line-through' : '']">{{

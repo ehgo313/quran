@@ -13,6 +13,10 @@ const props = defineProps({
   collection: Object,
   filter: Object,
   createPayload: Object,
+  creating: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 const authStore = useAuthStore();
@@ -89,14 +93,15 @@ loadPage();
   >
     <ul class="border border-gray-200 rounded-lg">
       <activity-row
-        v-for="activity in activities.data"
+        v-for="(activity, index) in activities.data"
+        :bordered="creating && index !== activities.length - 1"
         :key="activity.id"
         :activity="activity"
         @edit="onEdit(activity)"
         @delete="onDelete(activity)"
         @updated="onUpdated"
       />
-      <li>
+      <li v-if="creating">
         <activity-list-create-form
           :payload="createPayload"
           :collection="collection"
@@ -108,6 +113,7 @@ loadPage();
   </with-loading>
   <div>
     <activity-create-modal
+      v-if="creating"
       :collection="collection"
       v-model="createModalVisible"
       @created="onCreated"
