@@ -76,6 +76,13 @@ loadPage();
             >Late Activities</base-link
           >
         </li>
+        <li>
+          <base-link
+            :active="isRouteActive('stats.index')"
+            :to="{ name: 'stats.index' }"
+            >Statistic</base-link
+          >
+        </li>
       </ul>
       <ul>
         <li class="space-y-1">
