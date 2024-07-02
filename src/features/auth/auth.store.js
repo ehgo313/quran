@@ -15,7 +15,14 @@ export const useAuthStore = defineStore(
       isLoggedIn.value = true;
     }
 
-    return { accessToken, me, isLoggedIn, login };
+    async function logout() {
+      accessToken.value = null;
+      me.value = null;
+
+      isLoggedIn.value = false;
+    }
+
+    return { accessToken, me, isLoggedIn, login, logout };
   },
   { persist: true },
 );
