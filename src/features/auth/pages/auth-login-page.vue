@@ -8,6 +8,11 @@ import { reactive, inject } from 'vue';
 import { useValidation } from 'src/core/validation/validation';
 import { useRequest } from 'src/core/request/request';
 import { useAuthStore } from 'src/features/auth/auth.store';
+import { googleTokenLogin } from 'vue3-google-login';
+import {
+  BrandGoogle as GoogleIcon,
+  BrandGithub as GithubIcon,
+} from '@vicons/tabler';
 
 const emitter = inject('emitter');
 const router = useRouter();
@@ -57,6 +62,12 @@ async function onSubmit() {
     }
   }
 }
+
+async function handleGoogleLogin() {
+  const res = await googleTokenLogin();
+
+  console.log(res);
+}
 </script>
 
 <template>
@@ -84,6 +95,14 @@ async function onSubmit() {
           >Login</base-button
         >
       </form>
+      <div class="grid grid-cols-2 gap-4">
+        <base-button fullwidth color="light" v-on:click="handleGoogleLogin">
+          <google-icon class="w-4 h-4" />
+        </base-button>
+        <base-button fullwidth color="light" v-on:click="handleGoogleLogin">
+          <github-icon class="w-4 h-4" />
+        </base-button>
+      </div>
     </div>
   </div>
 </template>
