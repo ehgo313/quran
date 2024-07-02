@@ -28,7 +28,15 @@ export const useAuthStore = defineStore(
     }
 
     async function loadMe() {
-      return await getLoadMe();
+      const [data, error] = await getLoadMe();
+
+      if (error) {
+        return [null, error];
+      }
+
+      me.value = { ...data };
+
+      return [data, error];
     }
 
     return { accessToken, refreshToken, me, isLoggedIn, login, logout, loadMe };
