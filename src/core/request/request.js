@@ -4,6 +4,10 @@ import { useAuthStore } from 'src/features/auth/auth.store';
 import { decodeToken } from '../../utils/jwt';
 import { useRouter } from 'vue-router';
 
+export const http = axios.create({
+  baseURL: import.meta.env.VITE_API_URL,
+});
+
 export function useRequest(
   url,
   { initLoading = false, initData = null } = {
@@ -17,10 +21,6 @@ export function useRequest(
   const data = ref(initData ?? null);
   const loading = ref(initLoading ?? false);
   const error = ref(null);
-
-  const http = axios.create({
-    baseURL: import.meta.env.VITE_API_URL,
-  });
 
   function getErrorMessage() {
     if (error.value instanceof AxiosError) {
