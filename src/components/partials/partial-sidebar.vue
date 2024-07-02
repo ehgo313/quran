@@ -17,6 +17,11 @@ const {
   request,
 } = useRequest('/collections', {
   initLoading: true,
+  initData: {
+    data: {
+      rows: [],
+    },
+  },
 });
 
 const visibleCreateCollectionModal = ref(false);
