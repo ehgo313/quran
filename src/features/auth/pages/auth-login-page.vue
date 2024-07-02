@@ -45,6 +45,7 @@ async function onSubmit() {
     if (!errorRequest) {
       authStore.login({
         accessToken: res.data.accessToken,
+        refreshToken: res.data.refreshToken,
         me: res.data.me,
       });
 

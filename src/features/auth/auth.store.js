@@ -9,10 +9,12 @@ export const useAuthStore = defineStore(
 
     const isLoggedIn = ref(false);
     const accessToken = ref(null);
+    const refreshToken = ref(null);
     const me = ref(null);
 
     async function login(data) {
       accessToken.value = data.accessToken;
+      refreshToken.value = data.refreshToken;
       me.value = data.me;
 
       isLoggedIn.value = true;
@@ -29,7 +31,7 @@ export const useAuthStore = defineStore(
       return await getLoadMe();
     }
 
-    return { accessToken, me, isLoggedIn, login, logout, loadMe };
+    return { accessToken, refreshToken, me, isLoggedIn, login, logout, loadMe };
   },
   { persist: true },
 );
