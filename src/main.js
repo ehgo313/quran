@@ -8,6 +8,7 @@ import { useStore } from './core/store/store';
 import { guards } from './route/guards';
 import { useClickOutside } from './plugins/click-outside';
 import { useLayout } from './plugins/layout';
+import { useGoogleLogin } from './plugins/google-login';
 
 const app = createApp(App);
 
@@ -19,5 +20,6 @@ useRouter(app, {
 useEmitter(app);
 useClickOutside(app);
 useLayout(app);
+useGoogleLogin(app);
 
 app.mount('#app');
