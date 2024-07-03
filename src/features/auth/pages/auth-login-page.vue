@@ -8,7 +8,10 @@ import { reactive, inject } from 'vue';
 import { useValidation } from 'src/core/validation/validation';
 import { useRequest } from 'src/core/request/request';
 import { useAuthStore } from 'src/features/auth/auth.store';
-import { googleLoginWithToken } from 'src/features/auth/auth.service';
+import {
+  googleLoginWithToken,
+  githubLoginUrl,
+} from 'src/features/auth/auth.service';
 import {
   BrandGoogle as GoogleIcon,
   BrandGithub as GithubIcon,
@@ -99,6 +102,9 @@ async function onGoogleLogin() {
     }
   }
 }
+function onGithubLogin() {
+  window.location.href = githubLoginUrl();
+}
 </script>
 
 <template>
@@ -131,11 +137,12 @@ async function onGoogleLogin() {
           fullwidth
           color="light"
           :loading="loadingGoogleLogin"
+          loading-block
           v-on:click="onGoogleLogin"
         >
           <google-icon class="w-4 h-4" />
         </base-button>
-        <base-button fullwidth color="light" v-on:click="onGoogleLogin">
+        <base-button fullwidth color="light" v-on:click="onGithubLogin">
           <github-icon class="w-4 h-4" />
         </base-button>
       </div>
