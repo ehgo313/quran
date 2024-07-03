@@ -18,6 +18,7 @@ const props = defineProps({
   },
   square: Boolean,
   loading: Boolean,
+  loadingBlock: Boolean,
 });
 
 const size = computed(() => {
@@ -55,6 +56,6 @@ const spinnerSize = computed(() => {
     :disabled="loading"
   >
     <base-spinner v-if="loading" :size="spinnerSize" :color="props.color" />
-    <slot />
+    <slot v-if="!loading || !loadingBlock" />
   </button>
 </template>
