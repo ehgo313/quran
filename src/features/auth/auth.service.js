@@ -13,5 +13,5 @@ export async function googleLoginWithToken() {
 export function githubLoginUrl() {
   const githubClientId = import.meta.env.VITE_GITHUB_CLIENT_ID;
 
-  return `https://github.com/login/oauth/authorize?client_id=${githubClientId}`;
+  return `https://github.com/login/oauth/authorize?client_id=${githubClientId}&scope=user:email`;
 }
