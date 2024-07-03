@@ -8,7 +8,7 @@ const emitter = inject('emitter');
 
 const route = useRoute();
 const router = useRouter();
-const { request: loginGithub, getErrorMessage } = useRequest('/auth/github');
+const { request: loginGithub, getErrorMessage } = useRequest('/login/github');
 const authStore = useAuthStore();
 
 async function loginWithGithub() {
@@ -20,7 +20,7 @@ async function loginWithGithub() {
     return;
   }
 
-  const [data, error] = await loginGithub({
+  const [res, error] = await loginGithub({
     method: 'post',
     data: {
       code,
@@ -33,9 +33,9 @@ async function loginWithGithub() {
     });
   } else {
     authStore.login({
-      accessToken: data.accessToken,
-      refreshToken: data.refreshToken,
-      me: data.me,
+      accessToken: res.data.accessToken,
+      refreshToken: res.data.refreshToken,
+      me: res.data.me,
     });
 
     router.push({ name: 'activity.today' });
