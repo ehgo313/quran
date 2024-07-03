@@ -8,11 +8,25 @@ import { reactive, inject } from 'vue';
 import { useValidation } from 'src/core/validation/validation';
 import { useRequest } from 'src/core/request/request';
 import { useAuthStore } from 'src/features/auth/auth.store';
+import { googleLoginWithToken } from 'src/features/auth/auth.service';
+import {
+  BrandGoogle as GoogleIcon,
+  BrandGithub as GithubIcon,
+} from '@vicons/tabler';
 
 const emitter = inject('emitter');
 const router = useRouter();
 const { hasError, getError, validate } = useValidation();
-const { loading, request, getErrorMessage } = useRequest('/login');
+const {
+  loading: loadingLogin,
+  request: requestLogin,
+  getErrorMessage: getLoginErrorMessage,
+} = useRequest('/login');
+const {
+  loading: loadingGoogleLogin,
+  request: requestGoogleLogin,
+  getErrorMessage: getGoogleLoginErrorMessage,
+} = useRequest('/login/google');
 const authStore = useAuthStore();
 
 const form = reactive({
@@ -33,27 +47,55 @@ const schema = z.object({
   }),
 });
 
+function login(data) {
+  authStore.login({
+    accessToken: data.accessToken,
+    refreshToken: data.refreshToken,
+    me: data.me,
+  });
+
+  router.push({ name: 'activity.today' });
+}
+
 async function onSubmit() {
   const [data, errorValidate] = await validate(schema, form);
 
   if (!errorValidate) {
-    const [res, errorRequest] = await request({
+    const [res, errorRequest] = await requestLogin({
       method: 'post',
       data,
     });
 
     if (!errorRequest) {
-      authStore.login({
-        accessToken: res.data.accessToken,
-        refreshToken: res.data.refreshToken,
-        me: res.data.me,
-      });
-
-      router.push({ name: 'activity.today' });
+      login(res.data);
     } else {
       emitter.emit('create-toast', {
-        message: getErrorMessage(),
+        message: getLoginErrorMessage(),
       });
+    }
+  }
+}
+async function onGoogleLogin() {
+  const [googleToken, googleTokenError] = await googleLoginWithToken();
+
+  if (googleTokenError) {
+    emitter.emit('create-toast', {
+      message: googleTokenError,
+    });
+  } else {
+    const [authRes, authError] = await requestGoogleLogin({
+      method: 'post',
+      data: {
+        accessToken: googleToken.access_token,
+      },
+    });
+
+    if (authError) {
+      emitter.emit('create-toast', {
+        message: getGoogleLoginErrorMessage(),
+      });
+    } else {
+      login(authRes.data);
     }
   }
 }
@@ -80,10 +122,23 @@ async function onSubmit() {
           :message="getError('password')"
           v-model="form.password"
         />
-        <base-button type="submit" fullwidth :loading="loading"
+        <base-button type="submit" fullwidth :loading="loadingLogin"
           >Login</base-button
         >
       </form>
+      <div class="grid grid-cols-2 gap-4">
+        <base-button
+          fullwidth
+          color="light"
+          :loading="loadingGoogleLogin"
+          v-on:click="onGoogleLogin"
+        >
+          <google-icon class="w-4 h-4" />
+        </base-button>
+        <base-button fullwidth color="light" v-on:click="onGoogleLogin">
+          <github-icon class="w-4 h-4" />
+        </base-button>
+      </div>
     </div>
   </div>
 </template>
