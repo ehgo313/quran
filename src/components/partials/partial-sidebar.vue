@@ -58,7 +58,7 @@ loadPage();
     <div class="space-y-2 sticky top-4 left-0">
       <ul>
         <li>
-          <span class="text-xs font-bold text-gray-400">Menus</span>
+          <span class="text-xs font-bold text-gray-400">Activities</span>
         </li>
         <li>
           <base-link
@@ -79,13 +79,6 @@ loadPage();
             :active="isRouteActive('activity.late')"
             :to="{ name: 'activity.late' }"
             >Late Activities</base-link
-          >
-        </li>
-        <li>
-          <base-link
-            :active="isRouteActive('stats.index')"
-            :to="{ name: 'stats.index' }"
-            >Statistic</base-link
           >
         </li>
       </ul>
@@ -126,6 +119,25 @@ loadPage();
               </li>
             </ul>
           </with-loading>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <span class="text-xs font-bold text-gray-400">Menus</span>
+        </li>
+        <li>
+          <base-link
+            :active="isRouteActive('profile.edit')"
+            :to="{ name: 'profile.edit' }"
+            >Profile</base-link
+          >
+        </li>
+        <li>
+          <base-link
+            :active="isRouteActive('stats.index')"
+            :to="{ name: 'stats.index' }"
+            >Statistic</base-link
+          >
         </li>
       </ul>
     </div>
