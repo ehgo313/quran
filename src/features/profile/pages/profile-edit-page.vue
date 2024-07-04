@@ -4,13 +4,16 @@ import BaseInput from 'src/components/base/base-input.vue';
 import BaseTitle from 'src/components/base/base-title.vue';
 import BaseButton from 'src/components/base/base-button.vue';
 import { useAuthStore } from 'src/features/auth/auth.store';
-import { reactive, ref } from 'vue';
+import { inject, reactive, ref } from 'vue';
 import ProfileEditPasswordModal from 'src/features/profile/components/profile-edit-password-modal.vue';
 import { z } from 'zod';
 import { useValidation } from 'src/core/validation/validation';
+import { useRequest } from 'src/core/request/request';
 
+const emitter = inject('emitter');
 const authStore = useAuthStore();
 const { hasError, getError, validate, resetError } = useValidation();
+const { loading, request, getErrorMessage } = useRequest('/me');
 
 const form = reactive({
   email: authStore.me.email,
@@ -40,6 +43,20 @@ async function onSave() {
   resetError();
 
   const [data, errorValidate] = await validate(schema, form);
+
+  if (!errorValidate) {
+    const [, errorRequest] = await request({
+      method: 'patch',
+      data,
+    });
+
+    if (!errorRequest) {
+    } else {
+      emitter.emit('create-toast', {
+        message: getErrorMessage(),
+      });
+    }
+  }
 }
 </script>
 
@@ -64,7 +81,7 @@ async function onSave() {
       />
     </base-form-item>
     <div class="flex gap-x-2">
-      <base-button type="submit">Simpan</base-button>
+      <base-button type="submit" :loading="loading">Simpan</base-button>
       <base-button color="light" @click="onEditPassword"
         >Edit Password</base-button
       >
