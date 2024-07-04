@@ -21,20 +21,25 @@ const form = reactive({
   password_confirmation: null,
 });
 
-const schema = z.object({
-  password: z
-    .string({
-      required_error: 'password is reqired',
-      invalid_type_error: 'password must be a string',
-    })
-    .min(1, { message: 'password min 1 character' }),
-  password_confirmation: z
-    .string({
-      required_error: 'password confirmation is reqired',
-      invalid_type_error: 'password confirmation must be a string',
-    })
-    .min(1, { message: 'password confirmation min 1 character' }),
-});
+const schema = z
+  .object({
+    password: z
+      .string({
+        required_error: 'password is reqired',
+        invalid_type_error: 'password must be a string',
+      })
+      .min(1, { message: 'password min 1 character' }),
+    password_confirmation: z
+      .string({
+        required_error: 'password confirmation is reqired',
+        invalid_type_error: 'password confirmation must be a string',
+      })
+      .min(1, { message: 'password confirmation min 1 character' }),
+  })
+  .refine((data) => data.password === data.password_confirmation, {
+    message: 'password confirmation doesnt match',
+    path: ['password_confirmation'],
+  });
 
 async function onSubmit() {
   const [data, errorValidate] = await validate(schema, form);
