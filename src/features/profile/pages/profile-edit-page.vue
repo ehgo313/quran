@@ -22,5 +22,8 @@ const form = reactive({
   <base-form-item label="Name">
     <base-input placeholder="Name" v-model="form.name" />
   </base-form-item>
-  <base-button>Simpan</base-button>
+  <div class="flex gap-x-2">
+    <base-button>Simpan</base-button>
+    <base-button color="light">Edit Password</base-button>
+  </div>
 </template>
