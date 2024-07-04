@@ -11,7 +11,7 @@ import { z } from 'zod';
 
 const emit = defineEmits(['created']);
 
-const { loading, request, getErrorMessage } = useRequest('/me');
+const { loading, request, getErrorMessage } = useRequest('/password');
 const { hasError, getError, validate, resetError } = useValidation();
 const emitter = inject('emitter');
 
