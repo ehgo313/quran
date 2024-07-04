@@ -4,7 +4,8 @@ import BaseInput from 'src/components/base/base-input.vue';
 import BaseTitle from 'src/components/base/base-title.vue';
 import BaseButton from 'src/components/base/base-button.vue';
 import { useAuthStore } from 'src/features/auth/auth.store';
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
+import ProfileEditPasswordModal from 'src/features/profile/components/profile-edit-password-modal.vue';
 
 const authStore = useAuthStore();
 
@@ -12,6 +13,11 @@ const form = reactive({
   email: authStore.me.email,
   name: authStore.me.name,
 });
+const editPasswordModalVisible = ref(false);
+
+function onEditPassword() {
+  editPasswordModalVisible.value = true;
+}
 </script>
 
 <template>
@@ -24,6 +30,11 @@ const form = reactive({
   </base-form-item>
   <div class="flex gap-x-2">
     <base-button>Simpan</base-button>
-    <base-button color="light">Edit Password</base-button>
+    <base-button color="light" @click="onEditPassword"
+      >Edit Password</base-button
+    >
+  </div>
+  <div>
+    <profile-edit-password-modal v-model="editPasswordModalVisible" />
   </div>
 </template>
