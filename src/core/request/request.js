@@ -35,13 +35,15 @@ export function useRequest(
       const payload = decodeToken(authStore.accessToken);
 
       if (payload.exp * 1000 < Date.now()) {
-        await http({
+        const res = await http({
           url: '/refresh-token',
           method: 'post',
           data: {
             token: authStore.refreshToken,
           },
         });
+
+        authStore.setAccessToken(res.data.data.accessToken);
       }
 
       return [true, null];
