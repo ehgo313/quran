@@ -2,6 +2,7 @@
 import BaseFormItem from 'src/components/base/base-form-item.vue';
 import BaseInput from 'src/components/base/base-input.vue';
 import BaseTitle from 'src/components/base/base-title.vue';
+import BaseLink from 'src/components/base/base-link.vue';
 import BaseButton from 'src/components/base/base-button.vue';
 import { useAuthStore } from 'src/features/auth/auth.store';
 import { inject, reactive, ref } from 'vue';
@@ -9,11 +10,14 @@ import ProfileEditPasswordModal from 'src/features/profile/components/profile-ed
 import { z } from 'zod';
 import { useValidation } from 'src/core/validation/validation';
 import { useRequest } from 'src/core/request/request';
+import { useRouter } from 'vue-router';
 
 const emitter = inject('emitter');
 const authStore = useAuthStore();
+const router = useRouter();
 const { hasError, getError, validate, resetError } = useValidation();
-const { loading, request, getErrorMessage } = useRequest('/me');
+const { loading, request: patchMe, getErrorMessage } = useRequest('/me');
+const { request: postLogout } = useRequest('/logout');
 
 const form = reactive({
   email: authStore.me.email,
@@ -45,7 +49,7 @@ async function onSave() {
   const [data, errorValidate] = await validate(schema, form);
 
   if (!errorValidate) {
-    const [, errorRequest] = await request({
+    const [, errorRequest] = await patchMe({
       method: 'patch',
       data,
     });
@@ -58,10 +62,20 @@ async function onSave() {
     }
   }
 }
+async function onLogout() {
+  await postLogout();
+
+  authStore.logout();
+
+  router.push({ name: 'auth.login' });
+}
 </script>
 
 <template>
-  <base-title size="small">Profile</base-title>
+  <div class="flex items-center justify-between">
+    <base-title size="small">Profile</base-title>
+    <base-link color="sky" href="#" native @click="onLogout">Logout</base-link>
+  </div>
   <form class="space-y-2" @submit.prevent="onSave">
     <base-form-item label="Email">
       <base-input
