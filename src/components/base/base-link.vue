@@ -7,6 +7,7 @@ const props = defineProps({
   active: Boolean,
   color: String,
   native: Boolean,
+  size: String,
 });
 const emit = defineEmits(['click']);
 
@@ -14,6 +15,7 @@ const base = computed(() => [
   props.color === 'sky' ? 'text-sky-600' : 'text-gray-900',
   'hover:text-sky-600',
   props.active ? 'text-sky-600 font-bold' : '',
+  props.size === 'xs' ? 'text-xs' : '',
 ]);
 
 function onClick() {
