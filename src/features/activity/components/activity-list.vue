@@ -17,6 +17,7 @@ const props = defineProps({
     type: Boolean,
     default: true,
   },
+  showEmpty: Boolean,
 });
 
 const authStore = useAuthStore();
@@ -91,7 +92,10 @@ loadPage();
     :error="!!error"
     :error-message="getErrorMessage()"
   >
-    <ul class="border border-gray-200 rounded-lg">
+    <p v-if="showEmpty && !activities.data.length" class="text-gray-400">
+      Empty Activities
+    </p>
+    <ul v-else class="border border-gray-200 rounded-lg">
       <activity-row
         v-for="(activity, index) in activities.data"
         :bordered="creating && index !== activities.length - 1"
