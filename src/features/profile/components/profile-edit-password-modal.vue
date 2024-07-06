@@ -53,6 +53,11 @@ async function onSubmit() {
     if (!errorRequest) {
       visible.value = false;
 
+      emitter.emit('create-toast', {
+        message: 'Password updated',
+        type: 'success',
+      });
+
       emit('created');
     } else {
       emitter.emit('create-toast', {
