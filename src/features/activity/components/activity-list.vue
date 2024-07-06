@@ -1,5 +1,7 @@
 <script setup>
-import withLoading from 'src/components/composes/with-loading.vue';
+import BaseLink from 'src/components/base/base-link.vue';
+import BaseSpinner from 'src/components/base/base-spinner.vue';
+import WithLoading from 'src/components/composes/with-loading.vue';
 import { useRequest } from 'src/core/request/request';
 import { useAuthStore } from 'src/features/auth/auth.store';
 import { reactive, ref } from 'vue';
@@ -31,6 +33,7 @@ const {
   initLoading: true,
 });
 
+const currentLimit = ref(30);
 const activitiesLoaded = ref(false);
 const editModal = reactive({
   visible: false,
@@ -47,6 +50,7 @@ async function loadActivities() {
     params: {
       user_id: authStore.me.userId,
       collection_id: props.collection ? props.collection.id : null,
+      limit: currentLimit.value,
       ...props.filter,
     },
   });
@@ -81,6 +85,11 @@ function onDelete(activity) {
 function onFullCreate() {
   createModalVisible.value = true;
 }
+function onLoadMore() {
+  currentLimit.value += 10;
+
+  loadActivities();
+}
 
 loadPage();
 </script>
@@ -92,12 +101,12 @@ loadPage();
     :error="!!error"
     :error-message="getErrorMessage()"
   >
-    <p v-if="showEmpty && !activities.data.length" class="text-gray-400">
+    <p v-if="showEmpty && !activities.data.count" class="text-gray-400">
       Empty Activities
     </p>
     <ul v-else class="border border-gray-200 rounded-lg">
       <activity-row
-        v-for="(activity, index) in activities.data"
+        v-for="(activity, index) in activities.data.rows"
         :bordered="creating && index !== activities.length - 1"
         :key="activity.id"
         :activity="activity"
@@ -114,6 +123,12 @@ loadPage();
         />
       </li>
     </ul>
+    <div v-if="currentLimit < activities.data.count" class="text-center">
+      <base-spinner size="sm" v-if="loading" />
+      <base-link v-else color="sky" native href="#" @click="onLoadMore"
+        >Load More</base-link
+      >
+    </div>
   </with-loading>
   <div>
     <activity-create-modal

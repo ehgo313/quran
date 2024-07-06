@@ -35,6 +35,7 @@ async function loadCollections() {
   await request({
     params: {
       user_id: authStore.me.userId,
+      limit: 5,
     },
   });
 }
@@ -70,7 +71,7 @@ loadPage();
     <div class="space-y-2 sticky top-4 left-0">
       <ul>
         <li>
-          <span class="text-xs font-bold text-gray-400">Activities</span>
+          <p class="text-xs font-bold text-gray-400 leading-6">Activities</p>
         </li>
         <li>
           <base-link
@@ -95,47 +96,46 @@ loadPage();
         </li>
       </ul>
       <ul>
-        <li class="space-y-1">
-          <span class="text-xs font-bold text-gray-400">Collections</span>
-          <with-loading
-            :loading="loading"
-            :loading-block="!collectionsLoaded"
-            :error="!!error"
-            :error-message="getErrorMessage()"
+        <li class="flex items-center justify-between">
+          <p class="text-xs font-bold text-gray-400 leading-6">Collections</p>
+          <base-link
+            href="#"
+            color="sky"
+            size="xs"
+            native
+            @click="onCreateCollection"
+            >New</base-link
           >
-            <ul>
-              <li
-                v-for="collection in collections.data.rows"
-                :key="collection.id"
-              >
-                <base-link
-                  :to="{
-                    name: 'collection.detail',
-                    params: { id: collection.id },
-                  }"
-                  :active="
-                    isRouteActive('collection.detail') &&
-                    route.params.id == collection.id
-                  "
-                  >{{ collection.name }}</base-link
-                >
-              </li>
-              <li>
-                <base-link
-                  href="#"
-                  color="sky"
-                  native
-                  @click.prevent="onCreateCollection"
-                  >New Collection</base-link
-                >
-              </li>
-            </ul>
-          </with-loading>
         </li>
+        <with-loading
+          :loading="loading"
+          :loading-block="!collectionsLoaded"
+          :error="!!error"
+          :error-message="getErrorMessage()"
+        >
+          <li v-for="collection in collections.data.rows" :key="collection.id">
+            <base-link
+              :to="{
+                name: 'collection.detail',
+                params: { id: collection.id },
+              }"
+              :active="
+                isRouteActive('collection.detail') &&
+                route.params.id == collection.id
+              "
+              >{{ collection.name }}</base-link
+            >
+          </li>
+          <li v-if="collections.data.count > 5">
+            <base-link href="#" color="sky" native @click="onCreateCollection"
+              >See All Collection</base-link
+            >
+          </li>
+        </with-loading>
       </ul>
       <ul>
         <li>
-          <span class="text-xs font-bold text-gray-400">Menus</span>
+          <p class="text-xs font-bold text-gray-400 leading-6">Menus</p>
         </li>
         <li>
           <base-link
