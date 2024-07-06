@@ -1,9 +1,10 @@
 <script setup>
-import BaseButton from 'src/components/base/base-button.vue';
 import ActivityRowAction from './activity-row-action.vue';
 import {
   Calendar as AddToTodayIcon,
   CalendarOff as RemoveToTodayIcon,
+  X as UndoneIcon,
+  Check as DoneIcon,
 } from '@vicons/tabler';
 import { useRequest } from 'src/core/request/request';
 import { computed, ref } from 'vue';
@@ -79,13 +80,12 @@ async function onToggleToday() {
       activity.name
     }}</span>
     <div class="flex items-center gap-x-2">
-      <base-button
-        size="extra-small"
-        color="light"
-        :loading="loadingToggleDone"
-        @click="onToggleDone(activity)"
-        >{{ activity.done ? 'Mark as Todo' : 'Mark as Done' }}</base-button
-      >
+      <button @click="onToggleDone(activity)">
+        <component
+          :is="activity.done ? UndoneIcon : DoneIcon"
+          class="w-4 h-4 text-gray-900"
+        />
+      </button>
       <button @click="onToggleToday(activity)">
         <component
           :is="isToday ? RemoveToTodayIcon : AddToTodayIcon"
