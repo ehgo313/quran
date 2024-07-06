@@ -1,7 +1,7 @@
 import axios, { AxiosError } from 'axios';
 import { ref } from 'vue';
 import { useAuthStore } from 'src/features/auth/auth.store';
-import { decodeToken } from '../../utils/jwt';
+import { decodeToken } from 'src/utils/jwt';
 import { useRouter } from 'vue-router';
 
 export const http = axios.create({
