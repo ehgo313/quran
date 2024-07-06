@@ -12,6 +12,7 @@ emitter.on('create-toast', (data) => {
   toasts.value.push({
     id,
     message: data.message,
+    type: data.type ?? 'error',
   });
 
   setTimeout(() => {
@@ -24,7 +25,12 @@ emitter.on('create-toast', (data) => {
 
 <template>
   <div class="fixed top-8 left-1/2 -translate-x-1/2 space-y-4 z-20">
-    <base-alert v-for="toast in toasts" :key="toast.id">
+    <base-alert
+      v-for="toast in toasts"
+      :key="toast.id"
+      :color="toast.type === 'success' ? 'green' : 'red'"
+      :icon="toast.type"
+    >
       {{ toast.message }}
     </base-alert>
   </div>
