@@ -14,5 +14,5 @@ const filter = {
   <div class="flex items-center justify-between">
     <base-title size="small">Late Activities</base-title>
   </div>
-  <activity-list :filter="filter" :creating="false" />
+  <activity-list :filter="filter" :creating="false" show-empty />
 </template>
