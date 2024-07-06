@@ -39,7 +39,20 @@ export const useAuthStore = defineStore(
       return [data, error];
     }
 
-    return { accessToken, refreshToken, me, isLoggedIn, login, logout, loadMe };
+    function setAccessToken(token) {
+      accessToken.value = token;
+    }
+
+    return {
+      accessToken,
+      refreshToken,
+      me,
+      isLoggedIn,
+      login,
+      logout,
+      loadMe,
+      setAccessToken,
+    };
   },
   { persist: true },
 );

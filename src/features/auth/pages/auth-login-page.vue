@@ -138,11 +138,11 @@ function onGithubLogin() {
           color="light"
           :loading="loadingGoogleLogin"
           loading-block
-          v-on:click="onGoogleLogin"
+          @click="onGoogleLogin"
         >
           <google-icon class="w-4 h-4" />
         </base-button>
-        <base-button fullwidth color="light" v-on:click="onGithubLogin">
+        <base-button fullwidth color="light" @click="onGithubLogin">
           <github-icon class="w-4 h-4" />
         </base-button>
       </div>
