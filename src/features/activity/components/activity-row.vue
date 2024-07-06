@@ -53,12 +53,12 @@ async function onToggleDone() {
 
   loadingToggleDone.value = false;
 }
-async function onAddToToday() {
+async function onToggleToday() {
   const [, error] = await updateActivity({
     url: `/activities/${props.activity.id}`,
     method: 'patch',
     data: {
-      date: date(),
+      date: isToday.value ? null : date(),
     },
   });
 
@@ -86,7 +86,7 @@ async function onAddToToday() {
         @click="onToggleDone(activity)"
         >{{ activity.done ? 'Mark as Todo' : 'Mark as Done' }}</base-button
       >
-      <button @click="onAddToToday(activity)">
+      <button @click="onToggleToday(activity)">
         <component
           :is="isToday ? RemoveToTodayIcon : AddToTodayIcon"
           class="w-4 h-4 text-gray-900"
