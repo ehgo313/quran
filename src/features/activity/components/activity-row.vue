@@ -1,6 +1,10 @@
 <script setup>
 import BaseButton from 'src/components/base/base-button.vue';
 import ActivityRowAction from './activity-row-action.vue';
+import {
+  Calendar as AddToTodayIcon,
+  CalendarOff as RemoveToTodayIcon,
+} from '@vicons/tabler';
 import { useRequest } from 'src/core/request/request';
 import { computed, ref } from 'vue';
 import { date } from 'src/utils/date';
@@ -17,7 +21,6 @@ const emit = defineEmits(['edit', 'delete', 'updated']);
 const { request: updateActivity } = useRequest();
 
 const loadingToggleDone = ref(false);
-const loadingAddToToday = ref(false);
 
 const isToday = computed(() => {
   if (!props.activity.date) {
@@ -51,8 +54,6 @@ async function onToggleDone() {
   loadingToggleDone.value = false;
 }
 async function onAddToToday() {
-  loadingAddToToday.value = true;
-
   const [, error] = await updateActivity({
     url: `/activities/${props.activity.id}`,
     method: 'patch',
@@ -64,8 +65,6 @@ async function onAddToToday() {
   if (!error) {
     emit('updated');
   }
-
-  loadingAddToToday.value = false;
 }
 </script>
 
@@ -87,14 +86,12 @@ async function onAddToToday() {
         @click="onToggleDone(activity)"
         >{{ activity.done ? 'Mark as Todo' : 'Mark as Done' }}</base-button
       >
-      <base-button
-        v-if="!isToday"
-        size="extra-small"
-        color="light"
-        :loading="loadingAddToToday"
-        @click="onAddToToday(activity)"
-        >Add To Today</base-button
-      >
+      <button @click="onAddToToday(activity)">
+        <component
+          :is="isToday ? RemoveToTodayIcon : AddToTodayIcon"
+          class="w-4 h-4 text-gray-900"
+        />
+      </button>
       <activity-row-action
         @edit="onEdit(activity)"
         @delete="onDelete(activity)"
