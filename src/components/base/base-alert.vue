@@ -2,6 +2,7 @@
 import {
   AlertTriangle as ErrorIcon,
   InfoCircle as InfoIcon,
+  CircleCheck as SuccessIcon,
 } from '@vicons/tabler';
 import { computed } from 'vue';
 
@@ -30,6 +31,7 @@ const color = computed(() => {
   return {
     red: 'bg-red-100 border-red-300 text-red-600',
     sky: 'bg-sky-100 border-sky-300 text-sky-600',
+    green: 'bg-green-100 border-green-300 text-green-600',
   }[props.color];
 });
 const iconSize = computed(() => {
@@ -42,6 +44,7 @@ const icon = computed(() => {
   return {
     error: ErrorIcon,
     info: InfoIcon,
+    success: SuccessIcon,
   }[props.icon];
 });
 </script>

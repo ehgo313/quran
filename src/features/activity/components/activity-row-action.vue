@@ -29,7 +29,7 @@ function onClickOption(option) {
   >
     <template #toggle="{ toggle }">
       <button @click="toggle">
-        <action-icon class="w-3 h-3 text-gray-900" />
+        <action-icon class="w-4 h-4 text-gray-900" />
       </button>
     </template>
   </base-dropdown>

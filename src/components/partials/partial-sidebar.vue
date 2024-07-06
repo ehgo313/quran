@@ -24,6 +24,7 @@ const {
   },
 });
 
+const visibleSidebarMobile = defineModel('sidebar');
 const visibleCreateCollectionModal = ref(false);
 const collectionsLoaded = ref(false);
 
@@ -49,12 +50,23 @@ function onCreateCollection() {
 function onCreatedCollection() {
   loadCollections();
 }
+function onCloseSidebarMobile(e) {
+  if (!document.querySelector('#sidebar-toggle-button').contains(e.target)) {
+    visibleSidebarMobile.value = false;
+  }
+}
 
 loadPage();
 </script>
 
 <template>
-  <div class="hidden sm:block">
+  <div
+    :class="[
+      'fixed top-0 left-0 bg-white border-r h-screen px-4 z-10 min-w-[200px] sm:p-0 sm:static sm:border-0 sm:min-w-[auto] sm:block',
+      visibleSidebarMobile ? '' : 'hidden',
+    ]"
+    v-click-outside="onCloseSidebarMobile"
+  >
     <div class="space-y-2 sticky top-4 left-0">
       <ul>
         <li>

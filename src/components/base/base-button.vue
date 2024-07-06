@@ -19,6 +19,7 @@ const props = defineProps({
   square: Boolean,
   loading: Boolean,
   loadingBlock: Boolean,
+  id: String,
 });
 
 const size = computed(() => {
@@ -46,6 +47,7 @@ const spinnerSize = computed(() => {
 
 <template>
   <button
+    :id="id"
     :type="type"
     :class="[
       fullwidth ? 'w-full' : '',
