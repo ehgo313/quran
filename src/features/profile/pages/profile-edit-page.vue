@@ -55,6 +55,10 @@ async function onSave() {
     });
 
     if (!errorRequest) {
+      emitter.emit('create-toast', {
+        message: 'Profile updated',
+        type: 'success',
+      });
     } else {
       emitter.emit('create-toast', {
         message: getErrorMessage(),
