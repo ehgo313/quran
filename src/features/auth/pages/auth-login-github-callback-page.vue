@@ -49,7 +49,7 @@ loginWithGithub();
 
 <template>
   <div
-    class="h-screen w-full flex flex-col items-center justify-center text-2xl text-gray-300 px-4 text-center"
+    class="h-screen w-full flex flex-col items-center justify-center text-2xl text-gray-400 px-4 text-center"
   >
     <p class="animate-bounce">Authorizing your github account</p>
   </div>
