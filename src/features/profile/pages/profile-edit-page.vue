@@ -26,12 +26,6 @@ const form = reactive({
 const editPasswordModalVisible = ref(false);
 
 const schema = z.object({
-  email: z
-    .string({
-      required_error: 'email is required',
-      invalid_type_error: 'email must be a string',
-    })
-    .email({ message: 'email must be a valid string' }),
   name: z
     .string({
       required_error: 'name is required',
@@ -90,6 +84,7 @@ async function onLogout() {
         v-model="form.email"
         :state="hasError('email') ? 'danger' : 'default'"
         :message="getError('email')"
+        disabled
       />
     </base-form-item>
     <base-form-item label="Name">
