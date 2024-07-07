@@ -79,7 +79,7 @@ search.value = selected.value ? selected.value.name : null;
       class="bg-white border rounded-lg absolute w-full left-0 mt-2 py-1 max-h-36 overflow-y-auto"
       @scroll="onScroll"
     >
-      <p v-if="!options.length" class="px-4 py-2 text-gray-500">Empty Data</p>
+      <p v-if="!options.length" class="px-4 py-2 text-gray-400">Empty Data</p>
       <li
         v-for="option in options"
         :key="option.id"
