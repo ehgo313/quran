@@ -31,6 +31,8 @@ async function loginWithGithub() {
     emitter.emit('create-toast', {
       message: getErrorMessage(),
     });
+
+    router.push({ name: 'auth.login' });
   } else {
     authStore.login({
       accessToken: res.data.accessToken,
