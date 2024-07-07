@@ -67,7 +67,9 @@ async function onSave() {
   }
 }
 async function onLogout() {
-  await postLogout();
+  await postLogout({
+    method: 'post',
+  });
 
   authStore.logout();
 
