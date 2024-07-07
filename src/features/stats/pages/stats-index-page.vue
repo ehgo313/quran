@@ -13,6 +13,10 @@ const { data, loading, error, getErrorMessage, request } = useRequest(
 );
 
 const completedPrecentage = computed(() => {
+  if (data.value.total_activities < 1) {
+    return `0%`;
+  }
+
   const value = Math.round(
     (data.value.total_completed_activities / data.value.total_activities) * 100,
   );
