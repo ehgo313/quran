@@ -99,9 +99,11 @@ async function onToggleToday() {
         {{ activity.name }}
       </p>
       <div class="text-xs flex items-center text-gray-500 gap-x-1">
-        <p>My Did</p>
+        <p v-if="props.activity.collection">
+          {{ props.activity.collection.name }}
+        </p>
         <svg
-          v-if="props.activity.date"
+          v-if="props.activity.collection && props.activity.date"
           viewBox="0 0 2 2"
           class="h-0.5 w-0.5 fill-current"
         >
