@@ -14,6 +14,7 @@ const props = defineProps({
     default: 'default',
   },
   message: String,
+  disabled: Boolean,
 });
 const emit = defineEmits(['focus', 'debounce-input']);
 const value = defineModel();
@@ -50,9 +51,10 @@ function onInput() {
       :id="id"
       :placeholder="placeholder"
       :class="[
-        'border rounded-lg w-full py-2 px-2.5 focus:outline-none',
+        'border rounded-lg w-full py-2 px-2.5 focus:outline-none disabled:bg-gray-50',
         state.input,
       ]"
+      :disabled="disabled"
       v-model="value"
       @focus="onFocus"
       @input="onInput"
