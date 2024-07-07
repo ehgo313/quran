@@ -48,6 +48,9 @@ const relativeDate = computed(() => {
 
   return activityDate.from(now);
 });
+const isLate = computed(() => {
+  return date(props.activity.date).isBefore(new Date(), 'day');
+});
 
 function onEdit() {
   emit('edit', props.activity);
@@ -109,7 +112,9 @@ async function onToggleToday() {
         >
           <circle cx="1" cy="1" r="1" />
         </svg>
-        <p v-if="props.activity.date">{{ relativeDate }}</p>
+        <p v-if="props.activity.date" :class="{ 'text-red-600': isLate }">
+          {{ relativeDate }}
+        </p>
       </div>
     </div>
     <div class="flex items-center gap-x-2">
