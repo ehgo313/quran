@@ -30,6 +30,24 @@ const isToday = computed(() => {
 
   return date(props.activity.date).isSame(new Date(), 'day');
 });
+const relativeDate = computed(() => {
+  const now = date().startOf('day');
+  const activityDate = date(props.activity.date).startOf('day');
+
+  if (now.isSame(activityDate, 'day')) {
+    return 'today';
+  }
+
+  if (now.diff(activityDate, 'day') === 1) {
+    return 'yesterday';
+  }
+
+  if (now.diff(activityDate, 'day') === -1) {
+    return 'tomorrow';
+  }
+
+  return activityDate.from(now);
+});
 
 function onEdit() {
   emit('edit', props.activity);
@@ -82,10 +100,14 @@ async function onToggleToday() {
       </p>
       <div class="text-xs flex items-center text-gray-500 gap-x-1">
         <p>My Did</p>
-        <svg viewBox="0 0 2 2" class="h-0.5 w-0.5 fill-current">
+        <svg
+          v-if="props.activity.date"
+          viewBox="0 0 2 2"
+          class="h-0.5 w-0.5 fill-current"
+        >
           <circle cx="1" cy="1" r="1" />
         </svg>
-        <p>2 days ago</p>
+        <p v-if="props.activity.date">{{ relativeDate }}</p>
       </div>
     </div>
     <div class="flex items-center gap-x-2">
