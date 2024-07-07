@@ -51,6 +51,7 @@ async function loadActivities() {
       user_id: authStore.me.userId,
       collection_id: props.collection ? props.collection.id : null,
       limit: currentLimit.value,
+      withCollection: true,
       ...props.filter,
     },
   });
