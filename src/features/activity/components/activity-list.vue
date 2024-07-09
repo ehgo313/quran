@@ -13,7 +13,7 @@ import ActivityRow from 'src/features/activity/components/activity-row.vue';
 
 const props = defineProps({
   collection: Object,
-  filter: Object,
+  params: Object,
   createPayload: Object,
   creating: {
     type: Boolean,
@@ -52,7 +52,7 @@ async function loadActivities() {
       collection_id: props.collection ? props.collection.id : null,
       limit: currentLimit.value,
       withCollection: true,
-      ...props.filter,
+      ...props.params,
     },
   });
 
