@@ -3,5 +3,8 @@
     "docs:dev": "vitepress dev content",
     "docs:build": "vitepress build content",
     "docs:preview": "vitepress preview content"
+  },
+  "devDependencies": {
+    "vue": "^3.5.6"
   }
 }
