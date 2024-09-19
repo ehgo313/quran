@@ -1,8 +1,11 @@
 <ul>
-    {{ range where .Site.Pages "Section" "surah" }}
+    {{ range sort (where .Site.Pages "Section" "surah") .Params.no "asc" }}
         {{ if and .IsSection (ne .File.Path "surah/_index.md") }}
             <li>
-                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                <a href="{{ .RelPermalink }}">
+                    <p>{{ .Title }}</p>
+                    <p>{{ .Params.arabic }}</p>
+                </a>
             </li>
         {{ end }}
     {{ end }}
