@@ -21,12 +21,16 @@ async function main() {
 
         await createDir(surahPath)
 
-        await fs.writeFile(path.resolve(path.resolve(surahPath, 'index.md')), `---\nname: ${name}latin: "${nameLatin.slice(0, nameLatin.length - 1)}"\nayah: ${allAyah.length}\n---`)
+        await fs.writeFile(path.resolve(surahPath, 'index.md'), `---\nname: ${name}latin: "${removeNewLine(nameLatin)}"\nayah: ${allAyah.length}\n---`)
 
         for (const ayahFile of allAyah) {
             const ayah =  await fs.readFile(path.resolve(quranTextPath, 'surah', surah, ayahFile), { encoding: 'utf-8' })
             const tafsir =  await fs.readFile(path.resolve(quranTextPath, 'tafsir/id/kemenag', surah, ayahFile), { encoding: 'utf-8' })
             const translation =  await fs.readFile(path.resolve(quranTextPath, 'translations/id', surah, ayahFile), { encoding: 'utf-8' })
+
+            const [ayahNo] = ayahFile.split('.')
+
+            await fs.writeFile(path.resolve(surahPath, `${ayahNo}.md`), `---\nno: ${ayahNo}\nayah: ${ayah}translation: "${removeNewLine(translation)}"\ntafsir: "${tafsir}"\n---`)
         }
 
         i++
@@ -43,6 +47,10 @@ async function createDir(path) {
     } catch (err) {
         await fs.mkdir(path)
     }
+}
+
+function removeNewLine(str) {
+    return str.slice(0, str.length - 1)
 }
 
 main()

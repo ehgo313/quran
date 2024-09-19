@@ -1,0 +1,5 @@
+---
+name: السّجدة
+latin: "As-Sajdah"
+ayah: 30
+---
