@@ -1,5 +1,0 @@
----
-name: المزّمّل
-latin: "Al-Muzzammil"
-ayah: 20
----

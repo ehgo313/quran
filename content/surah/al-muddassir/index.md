@@ -1,5 +1,0 @@
----
-name: المدّثّر
-latin: "Al-Muddassir"
-ayah: 56
----
