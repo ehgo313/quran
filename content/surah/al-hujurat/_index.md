@@ -1,0 +1,5 @@
+---
+title: الحجرٰت
+latin: "Al-Hujurat"
+ayah: 18
+---

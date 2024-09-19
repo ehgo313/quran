@@ -1,0 +1,5 @@
+---
+title: لقمٰن
+latin: "Luqman"
+ayah: 34
+---

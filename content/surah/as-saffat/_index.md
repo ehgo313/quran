@@ -1,0 +1,5 @@
+---
+title: الصّٰۤفّٰت
+latin: "As-Saffat"
+ayah: 182
+---

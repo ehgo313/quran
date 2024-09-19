@@ -1,0 +1,9 @@
+{{ .Title }}
+
+<ul>
+    {{ range sort .Pages ".Params.no" "asc" }}
+        <li>
+            {{ .Content }}
+        </li>
+    {{ end }}
+</ul>

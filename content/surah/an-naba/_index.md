@@ -1,0 +1,5 @@
+---
+title: النبأ
+latin: "An-Naba'"
+ayah: 40
+---

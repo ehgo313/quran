@@ -1,0 +1,9 @@
+<ul>
+    {{ range where .Site.Pages "Section" "surah" }}
+        {{ if and .IsSection (ne .File.Path "surah/_index.md") }}
+            <li>
+                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            </li>
+        {{ end }}
+    {{ end }}
+</ul>

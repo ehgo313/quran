@@ -1,0 +1,5 @@
+---
+title: يٰسۤ
+latin: "Yasin"
+ayah: 83
+---
