@@ -1,3 +1,4 @@
+{{ define "main" }}
 <ul>
     {{ range sort (where (where (where .Site.Pages "Section" "surah") ".File.Path" "ne" "surah/_index.md") "Kind" "section") ".Params.no" "asc" }}
         <li>
@@ -8,3 +9,4 @@
         </li>
     {{ end }}
 </ul>
+{{ end }}
