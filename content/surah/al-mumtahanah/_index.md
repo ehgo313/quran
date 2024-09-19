@@ -1,5 +1,5 @@
 ---
-title: الممتحنة
-latin: "Al-Mumtahanah"
+title: "Al-Mumtahanah"
+arabic: "الممتحنة"
 ayah: 13
 ---

@@ -1,5 +1,5 @@
 ---
-title: الكٰفرون
-latin: "Al-Kafirun"
+title: "Al-Kafirun"
+arabic: "الكٰفرون"
 ayah: 6
 ---

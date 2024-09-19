@@ -1,5 +1,5 @@
 ---
-title: الانسان
-latin: "Al-Insan"
+title: "Al-Insan"
+arabic: "الانسان"
 ayah: 31
 ---

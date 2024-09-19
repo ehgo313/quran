@@ -1,5 +1,5 @@
 ---
-title: الدخان
-latin: "Ad-Dukhan"
+title: "Ad-Dukhan"
+arabic: "الدخان"
 ayah: 59
 ---

@@ -1,5 +1,5 @@
 ---
-title: التين
-latin: "At-Tin"
+title: "At-Tin"
+arabic: "التين"
 ayah: 8
 ---

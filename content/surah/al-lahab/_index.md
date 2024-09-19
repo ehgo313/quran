@@ -1,5 +1,5 @@
 ---
-title: اللهب
-latin: "Al-Lahab"
+title: "Al-Lahab"
+arabic: "اللهب"
 ayah: 5
 ---

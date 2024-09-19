@@ -1,5 +1,5 @@
 ---
-title: الصّٰۤفّٰت
-latin: "As-Saffat"
+title: "As-Saffat"
+arabic: "الصّٰۤفّٰت"
 ayah: 182
 ---

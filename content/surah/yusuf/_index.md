@@ -1,5 +1,5 @@
 ---
-title: يوسف
-latin: "Yusuf"
+title: "Yusuf"
+arabic: "يوسف"
 ayah: 111
 ---

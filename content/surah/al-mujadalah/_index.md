@@ -1,5 +1,5 @@
 ---
-title: المجادلة
-latin: "Al-Mujadalah"
+title: "Al-Mujadalah"
+arabic: "المجادلة"
 ayah: 22
 ---

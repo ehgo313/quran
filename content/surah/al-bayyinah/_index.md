@@ -1,5 +1,5 @@
 ---
-title: البيّنة
-latin: "Al-Bayyinah"
+title: "Al-Bayyinah"
+arabic: "البيّنة"
 ayah: 8
 ---

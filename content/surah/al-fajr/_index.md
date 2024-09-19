@@ -1,5 +1,5 @@
 ---
-title: الفجر
-latin: "Al-Fajr"
+title: "Al-Fajr"
+arabic: "الفجر"
 ayah: 30
 ---

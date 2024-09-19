@@ -1,5 +1,5 @@
 ---
-title: المعارج
-latin: "Al-Ma'arij"
+title: "Al-Ma'arij"
+arabic: "المعارج"
 ayah: 44
 ---

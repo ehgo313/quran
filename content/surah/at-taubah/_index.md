@@ -1,5 +1,5 @@
 ---
-title: التوبة
-latin: "At-Taubah"
+title: "At-Taubah"
+arabic: "التوبة"
 ayah: 129
 ---

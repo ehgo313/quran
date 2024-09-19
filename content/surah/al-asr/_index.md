@@ -1,5 +1,5 @@
 ---
-title: العصر
-latin: "Al-'Asr"
+title: "Al-'Asr"
+arabic: "العصر"
 ayah: 3
 ---

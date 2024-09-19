@@ -1,5 +1,5 @@
 ---
-title: ابرٰهيم
-latin: "Ibrahim"
+title: "Ibrahim"
+arabic: "ابرٰهيم"
 ayah: 52
 ---

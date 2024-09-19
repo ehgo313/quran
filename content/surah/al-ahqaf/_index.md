@@ -1,5 +1,5 @@
 ---
-title: الاحقاف
-latin: "Al-Ahqaf"
+title: "Al-Ahqaf"
+arabic: "الاحقاف"
 ayah: 35
 ---

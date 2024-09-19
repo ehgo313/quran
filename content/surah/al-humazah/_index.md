@@ -1,5 +1,5 @@
 ---
-title: الهمزة
-latin: "Al-Humazah"
+title: "Al-Humazah"
+arabic: "الهمزة"
 ayah: 9
 ---

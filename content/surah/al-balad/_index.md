@@ -1,5 +1,5 @@
 ---
-title: البلد
-latin: "Al-Balad"
+title: "Al-Balad"
+arabic: "البلد"
 ayah: 20
 ---

@@ -1,5 +1,5 @@
 ---
-title: الفاتحة
-latin: "Al-Fatihah"
+title: "Al-Fatihah"
+arabic: "الفاتحة"
 ayah: 7
 ---

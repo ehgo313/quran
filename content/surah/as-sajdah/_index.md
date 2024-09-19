@@ -1,5 +1,5 @@
 ---
-title: السّجدة
-latin: "As-Sajdah"
+title: "As-Sajdah"
+arabic: "السّجدة"
 ayah: 30
 ---

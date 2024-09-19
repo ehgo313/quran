@@ -1,5 +1,5 @@
 ---
-title: المنٰفقون
-latin: "Al-Munafiqun"
+title: "Al-Munafiqun"
+arabic: "المنٰفقون"
 ayah: 11
 ---

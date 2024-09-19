@@ -1,5 +1,5 @@
 ---
-title: لقمٰن
-latin: "Luqman"
+title: "Luqman"
+arabic: "لقمٰن"
 ayah: 34
 ---

@@ -1,5 +1,5 @@
 ---
-title: القصص
-latin: "Al-Qasas"
+title: "Al-Qasas"
+arabic: "القصص"
 ayah: 88
 ---

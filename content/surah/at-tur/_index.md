@@ -1,5 +1,5 @@
 ---
-title: الطور
-latin: "At-Tur"
+title: "At-Tur"
+arabic: "الطور"
 ayah: 49
 ---

@@ -1,5 +1,5 @@
 ---
-title: مريم
-latin: "Maryam"
+title: "Maryam"
+arabic: "مريم"
 ayah: 98
 ---

@@ -1,5 +1,5 @@
 ---
-title: النجم
-latin: "An-Najm"
+title: "An-Najm"
+arabic: "النجم"
 ayah: 62
 ---

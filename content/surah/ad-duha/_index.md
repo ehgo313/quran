@@ -1,5 +1,5 @@
 ---
-title: الضحى
-latin: "Ad-Duha"
+title: "Ad-Duha"
+arabic: "الضحى"
 ayah: 11
 ---

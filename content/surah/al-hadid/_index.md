@@ -1,5 +1,5 @@
 ---
-title: الحديد
-latin: "Al-Hadid"
+title: "Al-Hadid"
+arabic: "الحديد"
 ayah: 29
 ---

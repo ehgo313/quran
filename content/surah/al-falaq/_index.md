@@ -1,5 +1,5 @@
 ---
-title: الفلق
-latin: "Al-Falaq"
+title: "Al-Falaq"
+arabic: "الفلق"
 ayah: 5
 ---

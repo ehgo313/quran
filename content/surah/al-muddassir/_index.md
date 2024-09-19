@@ -1,5 +1,5 @@
 ---
-title: المدّثّر
-latin: "Al-Muddassir"
+title: "Al-Muddassir"
+arabic: "المدّثّر"
 ayah: 56
 ---

@@ -1,5 +1,5 @@
 ---
-title: الاعلى
-latin: "Al-A'la"
+title: "Al-A'la"
+arabic: "الاعلى"
 ayah: 19
 ---

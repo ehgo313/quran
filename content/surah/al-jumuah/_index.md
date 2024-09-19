@@ -1,5 +1,5 @@
 ---
-title: الجمعة
-latin: "Al-Jumu'ah"
+title: "Al-Jumu'ah"
+arabic: "الجمعة"
 ayah: 11
 ---

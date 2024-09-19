@@ -1,5 +1,5 @@
 ---
-title: الجاثية
-latin: "Al-Jasiyah"
+title: "Al-Jasiyah"
+arabic: "الجاثية"
 ayah: 37
 ---

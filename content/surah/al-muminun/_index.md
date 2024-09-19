@@ -1,5 +1,5 @@
 ---
-title: المؤمنون
-latin: "Al-Mu'minun"
+title: "Al-Mu'minun"
+arabic: "المؤمنون"
 ayah: 118
 ---

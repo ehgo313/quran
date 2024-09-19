@@ -1,5 +1,5 @@
 ---
-title: الرّعد
-latin: "Ar-Ra'd"
+title: "Ar-Ra'd"
+arabic: "الرّعد"
 ayah: 43
 ---

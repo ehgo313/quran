@@ -1,5 +1,5 @@
 ---
-title: النساۤء
-latin: "An-Nisa'"
+title: "An-Nisa'"
+arabic: "النساۤء"
 ayah: 176
 ---

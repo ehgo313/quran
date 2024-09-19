@@ -1,5 +1,5 @@
 ---
-title: الرّوم
-latin: "Ar-Rum"
+title: "Ar-Rum"
+arabic: "الرّوم"
 ayah: 60
 ---

@@ -1,5 +1,5 @@
 ---
-title: الجن
-latin: "Al-Jinn"
+title: "Al-Jinn"
+arabic: "الجن"
 ayah: 28
 ---

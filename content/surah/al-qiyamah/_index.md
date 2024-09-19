@@ -1,5 +1,5 @@
 ---
-title: القيٰمة
-latin: "Al-Qiyamah"
+title: "Al-Qiyamah"
+arabic: "القيٰمة"
 ayah: 40
 ---

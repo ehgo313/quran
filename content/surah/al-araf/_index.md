@@ -1,5 +1,5 @@
 ---
-title: الاعراف
-latin: "Al-A'raf"
+title: "Al-A'raf"
+arabic: "الاعراف"
 ayah: 206
 ---

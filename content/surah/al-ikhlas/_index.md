@@ -1,5 +1,5 @@
 ---
-title: الاخلاص
-latin: "Al-Ikhlas"
+title: "Al-Ikhlas"
+arabic: "الاخلاص"
 ayah: 4
 ---

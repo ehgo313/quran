@@ -1,5 +1,5 @@
 ---
-title: الطارق
-latin: "At-Tariq"
+title: "At-Tariq"
+arabic: "الطارق"
 ayah: 17
 ---

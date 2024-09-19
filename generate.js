@@ -23,7 +23,7 @@ async function main() {
 
         await createDir(surahPath)
 
-        await fs.writeFile(path.resolve(surahPath, '_index.md'), `---\ntitle: ${name}latin: "${removeNewLine(nameLatin)}"\nayah: ${allAyah.length}\n---`)
+        await fs.writeFile(path.resolve(surahPath, '_index.md'), `---\ntitle: "${removeNewLine(nameLatin)}"\narabic: "${removeNewLine(name)}"\nayah: ${allAyah.length}\n---`)
 
         for (const ayahFile of allAyah) {
             const ayah =  await fs.readFile(path.resolve(quranTextPath, 'surah', surah, ayahFile), { encoding: 'utf-8' })

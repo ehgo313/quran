@@ -1,5 +1,5 @@
 ---
-title: المطفّفين
-latin: "Al-Mutaffifin"
+title: "Al-Mutaffifin"
+arabic: "المطفّفين"
 ayah: 36
 ---

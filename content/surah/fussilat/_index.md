@@ -1,5 +1,5 @@
 ---
-title: فصّلت
-latin: "Fussilat"
+title: "Fussilat"
+arabic: "فصّلت"
 ayah: 54
 ---

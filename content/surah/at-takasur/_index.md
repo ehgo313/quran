@@ -1,5 +1,5 @@
 ---
-title: التكاثر
-latin: "At-Takasur"
+title: "At-Takasur"
+arabic: "التكاثر"
 ayah: 8
 ---

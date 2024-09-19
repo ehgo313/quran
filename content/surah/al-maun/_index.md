@@ -1,5 +1,5 @@
 ---
-title: الماعون
-latin: "Al-Ma'un"
+title: "Al-Ma'un"
+arabic: "الماعون"
 ayah: 7
 ---

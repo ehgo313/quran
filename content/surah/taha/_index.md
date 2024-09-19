@@ -1,5 +1,5 @@
 ---
-title: طٰهٰ
-latin: "Taha"
+title: "Taha"
+arabic: "طٰهٰ"
 ayah: 135
 ---

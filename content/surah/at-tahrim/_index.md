@@ -1,5 +1,5 @@
 ---
-title: التحريم
-latin: "At-Tahrim"
+title: "At-Tahrim"
+arabic: "التحريم"
 ayah: 12
 ---

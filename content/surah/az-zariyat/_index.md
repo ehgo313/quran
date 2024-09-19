@@ -1,5 +1,5 @@
 ---
-title: الذّٰريٰت
-latin: "Az-Zariyat"
+title: "Az-Zariyat"
+arabic: "الذّٰريٰت"
 ayah: 60
 ---

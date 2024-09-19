@@ -1,5 +1,5 @@
 ---
-title: الشورى
-latin: "Asy-Syura"
+title: "Asy-Syura"
+arabic: "الشورى"
 ayah: 53
 ---

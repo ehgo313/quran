@@ -1,5 +1,5 @@
 ---
-title: النّٰزعٰت
-latin: "An-Nazi'at"
+title: "An-Nazi'at"
+arabic: "النّٰزعٰت"
 ayah: 46
 ---

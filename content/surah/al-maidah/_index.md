@@ -1,5 +1,5 @@
 ---
-title: الماۤئدة
-latin: "Al-Ma'idah"
+title: "Al-Ma'idah"
+arabic: "الماۤئدة"
 ayah: 120
 ---

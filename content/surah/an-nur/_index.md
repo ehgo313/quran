@@ -1,5 +1,5 @@
 ---
-title: النّور
-latin: "An-Nur"
+title: "An-Nur"
+arabic: "النّور"
 ayah: 64
 ---

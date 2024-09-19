@@ -1,5 +1,5 @@
 ---
-title: التكوير
-latin: "At-Takwir"
+title: "At-Takwir"
+arabic: "التكوير"
 ayah: 29
 ---

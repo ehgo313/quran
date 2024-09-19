@@ -1,5 +1,5 @@
 ---
-title: الغاشية
-latin: "Al-Gasyiyah"
+title: "Al-Gasyiyah"
+arabic: "الغاشية"
 ayah: 26
 ---

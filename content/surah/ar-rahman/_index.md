@@ -1,5 +1,5 @@
 ---
-title: الرحمن
-latin: "Ar-Rahman"
+title: "Ar-Rahman"
+arabic: "الرحمن"
 ayah: 78
 ---

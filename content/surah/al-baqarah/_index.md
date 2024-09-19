@@ -1,5 +1,5 @@
 ---
-title: البقرة
-latin: "Al-Baqarah"
+title: "Al-Baqarah"
+arabic: "البقرة"
 ayah: 286
 ---

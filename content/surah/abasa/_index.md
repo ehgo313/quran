@@ -1,5 +1,5 @@
 ---
-title: عبس
-latin: "'Abasa"
+title: "'Abasa"
+arabic: "عبس"
 ayah: 42
 ---

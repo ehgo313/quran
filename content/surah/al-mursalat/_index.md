@@ -1,5 +1,5 @@
 ---
-title: المرسلٰت
-latin: "Al-Mursalat"
+title: "Al-Mursalat"
+arabic: "المرسلٰت"
 ayah: 50
 ---

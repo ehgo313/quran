@@ -1,5 +1,5 @@
 ---
-title: الحاۤقّة
-latin: "Al-Haqqah"
+title: "Al-Haqqah"
+arabic: "الحاۤقّة"
 ayah: 52
 ---

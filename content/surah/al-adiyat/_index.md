@@ -1,5 +1,5 @@
 ---
-title: العٰديٰت
-latin: "Al-'Adiyat"
+title: "Al-'Adiyat"
+arabic: "العٰديٰت"
 ayah: 11
 ---

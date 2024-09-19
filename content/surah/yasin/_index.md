@@ -1,5 +1,5 @@
 ---
-title: يٰسۤ
-latin: "Yasin"
+title: "Yasin"
+arabic: "يٰسۤ"
 ayah: 83
 ---

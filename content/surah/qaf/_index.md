@@ -1,5 +1,5 @@
 ---
-title: ق
-latin: "Qaf"
+title: "Qaf"
+arabic: "ق"
 ayah: 45
 ---

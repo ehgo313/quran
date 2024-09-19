@@ -1,5 +1,5 @@
 ---
-title: الفرقان
-latin: "Al-Furqan"
+title: "Al-Furqan"
+arabic: "الفرقان"
 ayah: 77
 ---

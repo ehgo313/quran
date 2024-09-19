@@ -1,5 +1,5 @@
 ---
-title: القمر
-latin: "Al-Qamar"
+title: "Al-Qamar"
+arabic: "القمر"
 ayah: 55
 ---

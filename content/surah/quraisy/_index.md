@@ -1,5 +1,5 @@
 ---
-title: قريش
-latin: "Quraisy"
+title: "Quraisy"
+arabic: "قريش"
 ayah: 4
 ---

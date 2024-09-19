@@ -1,5 +1,5 @@
 ---
-title: الانشقاق
-latin: "Al-Insyiqaq"
+title: "Al-Insyiqaq"
+arabic: "الانشقاق"
 ayah: 25
 ---

@@ -1,5 +1,5 @@
 ---
-title: فاطر
-latin: "Fatir"
+title: "Fatir"
+arabic: "فاطر"
 ayah: 45
 ---

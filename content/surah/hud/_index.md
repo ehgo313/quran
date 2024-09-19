@@ -1,5 +1,5 @@
 ---
-title: هود
-latin: "Hud"
+title: "Hud"
+arabic: "هود"
 ayah: 123
 ---

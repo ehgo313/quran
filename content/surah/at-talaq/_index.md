@@ -1,5 +1,5 @@
 ---
-title: الطلاق
-latin: "At-Talaq"
+title: "At-Talaq"
+arabic: "الطلاق"
 ayah: 12
 ---

@@ -1,5 +1,5 @@
 ---
-title: الانفال
-latin: "Al-Anfal"
+title: "Al-Anfal"
+arabic: "الانفال"
 ayah: 75
 ---

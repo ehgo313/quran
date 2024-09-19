@@ -1,5 +1,5 @@
 ---
-title: المزّمّل
-latin: "Al-Muzzammil"
+title: "Al-Muzzammil"
+arabic: "المزّمّل"
 ayah: 20
 ---

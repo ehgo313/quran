@@ -1,5 +1,5 @@
 ---
-title: محمّد
-latin: "Muhammad"
+title: "Muhammad"
+arabic: "محمّد"
 ayah: 38
 ---

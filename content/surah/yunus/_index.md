@@ -1,5 +1,5 @@
 ---
-title: يونس
-latin: "Yunus"
+title: "Yunus"
+arabic: "يونس"
 ayah: 109
 ---

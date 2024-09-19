@@ -1,5 +1,5 @@
 ---
-title: التغابن
-latin: "At-Tagabun"
+title: "At-Tagabun"
+arabic: "التغابن"
 ayah: 18
 ---

@@ -1,5 +1,5 @@
 ---
-title: النبأ
-latin: "An-Naba'"
+title: "An-Naba'"
+arabic: "النبأ"
 ayah: 40
 ---

@@ -1,5 +1,5 @@
 ---
-title: الزلزلة
-latin: "Az-Zalzalah"
+title: "Az-Zalzalah"
+arabic: "الزلزلة"
 ayah: 8
 ---

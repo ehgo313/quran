@@ -1,5 +1,5 @@
 ---
-title: الفتح
-latin: "Al-Fath"
+title: "Al-Fath"
+arabic: "الفتح"
 ayah: 29
 ---

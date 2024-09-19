@@ -1,5 +1,5 @@
 ---
-title: الناس
-latin: "An-Nas"
+title: "An-Nas"
+arabic: "الناس"
 ayah: 6
 ---

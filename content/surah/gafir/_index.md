@@ -1,5 +1,5 @@
 ---
-title: غافر
-latin: "Gafir"
+title: "Gafir"
+arabic: "غافر"
 ayah: 85
 ---

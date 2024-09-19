@@ -1,5 +1,5 @@
 ---
-title: سبأ
-latin: "Saba'"
+title: "Saba'"
+arabic: "سبأ"
 ayah: 54
 ---

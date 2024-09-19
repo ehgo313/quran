@@ -1,5 +1,5 @@
 ---
-title: العنكبوت
-latin: "Al-'Ankabut"
+title: "Al-'Ankabut"
+arabic: "العنكبوت"
 ayah: 69
 ---

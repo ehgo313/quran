@@ -1,5 +1,5 @@
 ---
-title: الواقعة
-latin: "Al-Waqi'ah"
+title: "Al-Waqi'ah"
+arabic: "الواقعة"
 ayah: 96
 ---

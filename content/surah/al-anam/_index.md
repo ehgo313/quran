@@ -1,5 +1,5 @@
 ---
-title: الانعام
-latin: "Al-An'am"
+title: "Al-An'am"
+arabic: "الانعام"
 ayah: 165
 ---

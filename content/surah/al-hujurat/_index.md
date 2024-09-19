@@ -1,5 +1,5 @@
 ---
-title: الحجرٰت
-latin: "Al-Hujurat"
+title: "Al-Hujurat"
+arabic: "الحجرٰت"
 ayah: 18
 ---

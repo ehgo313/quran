@@ -1,5 +1,5 @@
 ---
-title: الّيل
-latin: "Al-Lail"
+title: "Al-Lail"
+arabic: "الّيل"
 ayah: 21
 ---

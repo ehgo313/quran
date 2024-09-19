@@ -1,5 +1,5 @@
 ---
-title: القدر
-latin: "Al-Qadr"
+title: "Al-Qadr"
+arabic: "القدر"
 ayah: 5
 ---

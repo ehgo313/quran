@@ -1,5 +1,5 @@
 ---
-title: الاسراۤء
-latin: "Al-Isra'"
+title: "Al-Isra'"
+arabic: "الاسراۤء"
 ayah: 111
 ---

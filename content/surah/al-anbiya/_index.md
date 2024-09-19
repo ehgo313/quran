@@ -1,5 +1,5 @@
 ---
-title: الانبياۤء
-latin: "Al-Anbiya'"
+title: "Al-Anbiya'"
+arabic: "الانبياۤء"
 ayah: 112
 ---

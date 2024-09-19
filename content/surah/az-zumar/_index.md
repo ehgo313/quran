@@ -1,5 +1,5 @@
 ---
-title: الزمر
-latin: "Az-Zumar"
+title: "Az-Zumar"
+arabic: "الزمر"
 ayah: 75
 ---

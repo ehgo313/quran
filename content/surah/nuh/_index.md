@@ -1,5 +1,5 @@
 ---
-title: نوح
-latin: "Nuh"
+title: "Nuh"
+arabic: "نوح"
 ayah: 28
 ---

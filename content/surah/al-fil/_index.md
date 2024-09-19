@@ -1,5 +1,5 @@
 ---
-title: الفيل
-latin: "Al-Fil"
+title: "Al-Fil"
+arabic: "الفيل"
 ayah: 5
 ---

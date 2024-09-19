@@ -1,5 +1,5 @@
 ---
-title: اٰل عمران
-latin: "Ali 'Imran"
+title: "Ali 'Imran"
+arabic: "اٰل عمران"
 ayah: 200
 ---

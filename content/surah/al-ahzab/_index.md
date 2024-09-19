@@ -1,5 +1,5 @@
 ---
-title: الاحزاب
-latin: "Al-Ahzab"
+title: "Al-Ahzab"
+arabic: "الاحزاب"
 ayah: 73
 ---

@@ -1,5 +1,5 @@
 ---
-title: العلق
-latin: "Al-'Alaq"
+title: "Al-'Alaq"
+arabic: "العلق"
 ayah: 19
 ---

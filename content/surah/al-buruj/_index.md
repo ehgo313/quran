@@ -1,5 +1,5 @@
 ---
-title: البروج
-latin: "Al-Buruj"
+title: "Al-Buruj"
+arabic: "البروج"
 ayah: 22
 ---

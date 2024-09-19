@@ -1,5 +1,5 @@
 ---
-title: النمل
-latin: "An-Naml"
+title: "An-Naml"
+arabic: "النمل"
 ayah: 93
 ---

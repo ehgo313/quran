@@ -1,5 +1,5 @@
 ---
-title: الكوثر
-latin: "Al-Kausar"
+title: "Al-Kausar"
+arabic: "الكوثر"
 ayah: 3
 ---

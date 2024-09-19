@@ -1,5 +1,5 @@
 ---
-title: الشعراۤء
-latin: "Asy-Syu'ara'"
+title: "Asy-Syu'ara'"
+arabic: "الشعراۤء"
 ayah: 227
 ---

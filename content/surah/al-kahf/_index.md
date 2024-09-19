@@ -1,5 +1,5 @@
 ---
-title: الكهف
-latin: "Al-Kahf"
+title: "Al-Kahf"
+arabic: "الكهف"
 ayah: 110
 ---
