@@ -9,6 +9,8 @@ async function main() {
 
     await createDir(allSurahPath)
 
+    let i = 0
+
     for (const surah of allSurah) {
         const surahDetail = await fs.readdir(path.resolve(quranTextPath, 'surah', surah))
         const name = await fs.readFile(path.resolve(quranTextPath, 'surah', surah, surahDetail[surahDetail.length - 1]), { encoding: 'utf-8' })
@@ -26,6 +28,10 @@ async function main() {
             const tafsir =  await fs.readFile(path.resolve(quranTextPath, 'tafsir/id/kemenag', surah, ayahFile), { encoding: 'utf-8' })
             const translation =  await fs.readFile(path.resolve(quranTextPath, 'translations/id', surah, ayahFile), { encoding: 'utf-8' })
         }
+
+        i++
+
+        console.log(`${i}/${allSurah.length}`)
     }
 
     process.exit(1)
