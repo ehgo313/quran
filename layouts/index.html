@@ -1,12 +1,10 @@
 <ul>
-    {{ range sort (where .Site.Pages "Section" "surah") .Params.no "asc" }}
-        {{ if and .IsSection (ne .File.Path "surah/_index.md") }}
-            <li>
-                <a href="{{ .RelPermalink }}">
-                    <p>{{ .Title }}</p>
-                    <p>{{ .Params.arabic }}</p>
-                </a>
-            </li>
-        {{ end }}
+    {{ range sort (where (where (where .Site.Pages "Section" "surah") ".File.Path" "ne" "surah/_index.md") "Kind" "section") ".Params.no" "asc" }}
+        <li>
+            <a href="{{ .RelPermalink }}">
+                <p>{{ .Params.title }}</p>
+                <p>{{ .Params.arabic }}</p>
+            </a>
+        </li>
     {{ end }}
 </ul>
