@@ -1,12 +1,14 @@
 {{ define "main" }}
-<ul>
-    {{ range sort (where (where (where .Site.Pages "Section" "surah") ".File.Path" "ne" "surah/_index.md") "Kind" "section") ".Params.no" "asc" }}
-        <li>
-            <a href="{{ .RelPermalink }}">
-                <p>{{ .Params.title }}</p>
-                <p>{{ .Params.arabic }}</p>
-            </a>
-        </li>
-    {{ end }}
-</ul>
+<section class="prose">
+    <h1>al-Quran</h1>
+    <p>List Surah</p>
+    <hr>
+    <ol>
+        {{ range sort (where (where (where .Site.Pages "Section" "surah") ".File.Path" "ne" "surah/_index.md") "Kind" "section") ".Params.no" "asc" }}
+            <li>
+                <a href="{{ .RelPermalink }}">{{ .Params.title }} ({{ .Params.arabic }})</a>
+            </li>
+        {{ end }}
+    </ol>
+</section>
 {{ end }}
