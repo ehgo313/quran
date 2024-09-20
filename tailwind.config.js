@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'sans': ['Rubik', ...defaultTheme.fontFamily.sans],
+        'sans': ['LPMQ', ...defaultTheme.fontFamily.sans],
       },
     }
   },
