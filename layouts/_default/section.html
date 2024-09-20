@@ -1,9 +1,18 @@
-{{ .Title }}
-
-<ul>
-    {{ range sort .Pages ".Params.no" "asc" }}
-        <li>
-            {{ .Content }}
-        </li>
-    {{ end }}
-</ul>
+{{ define "main" }}
+<div class="prose mx-auto">
+    <h1>{{ .Title }} - {{ .Params.arabic }}</h1>
+    <hr>
+    <div>
+        {{ range sort .Pages ".Params.no" "asc" }}
+            <div>
+                <div dir="rtl" class="text-2xl">
+                    {{ .Content }}
+                </div>
+                <p><i>{{ .Params.translation }}</i></p>
+            </div>
+            <hr>
+        {{ end }}
+    </div>
+    </div>
+</div>
+{{ end }}
