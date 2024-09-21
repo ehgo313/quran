@@ -1,11 +1,11 @@
 {{ define "main" }}
 <div class="prose mx-auto">
-    <h1>{{ .Title }} - {{ .Params.arabic }}</h1>
+    <h1>{{ .Title }} - <span class="font-arab">{{ .Params.arabic }}</span></h1>
     <hr>
     <div>
         {{ range sort .Pages ".Params.no" "asc" }}
             <div>
-                <div dir="rtl" class="text-3xl leading-[2.5]">
+                <div dir="rtl" class="text-3xl leading-[2.5] font-arab">
                     <p>{{ .RawContent }} {{ .Params.arabic_no }}</p>
                 </div>
                 <p><i>{{ .Params.translation }}</i></p>

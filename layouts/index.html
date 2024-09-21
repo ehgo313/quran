@@ -6,7 +6,7 @@
     <ol>
         {{ range sort (where (where (where .Site.Pages "Section" "surah") ".File.Path" "ne" "surah/_index.md") "Kind" "section") ".Params.no" "asc" }}
             <li>
-                <a href="{{ .RelPermalink }}">{{ .Params.title }} - {{ .Params.arabic }}</a>
+                <a href="{{ .RelPermalink }}">{{ .Params.title }} - <span class="font-arab">{{ .Params.arabic }}</span></a>
             </li>
         {{ end }}
     </ol>
