@@ -1,7 +1,7 @@
 {{ define "main" }}
 <section class="prose mx-auto">
-    <h1>al-Quran</h1>
-    <p>List Surah</p>
+    <h1>Al-Quran</h1>
+    <p>Terdapat 114 Surah di dalam Al-Quran.</p>
     <hr>
     <ol>
         {{ range sort (where (where (where .Site.Pages "Section" "surah") ".File.Path" "ne" "surah/_index.md") "Kind" "section") ".Params.no" "asc" }}
