@@ -23,7 +23,7 @@ async function main() {
 
         await createDir(surahPath)
 
-        await fs.writeFile(path.resolve(surahPath, '_index.md'), `---\ntitle: "${removeNewLine(nameLatin)}"\narabic: "${removeNewLine(name)}"\nno: ${surah}\nayah: ${allAyah.length}\n---`)
+        await fs.writeFile(path.resolve(surahPath, '_index.md'), `---\ntitle: "${removeNewLine(nameLatin)}"\narabic: "${removeNewLine(name)}"\nno: ${surah}\narabic_no: ${numToArabic(surah)}\nayah: ${allAyah.length}\n---`)
 
         for (const ayahFile of allAyah) {
             const ayah =  await fs.readFile(path.resolve(quranTextPath, 'surah', surah, ayahFile), { encoding: 'utf-8' })
@@ -32,7 +32,7 @@ async function main() {
 
             const [ayahNo] = ayahFile.split('.')
 
-            await fs.writeFile(path.resolve(surahPath, `${ayahNo}.md`), `---\ntitle: "${removeNewLine(nameLatin)} - ${ayahNo}"\nno: ${ayahNo}\ntranslation: "${removeNewLine(translation)}"\ntafsir: "${wrapQuotes(tafsir)}"\n---\n\n${ayah}`)
+            await fs.writeFile(path.resolve(surahPath, `${ayahNo}.md`), `---\ntitle: "${removeNewLine(nameLatin)} - ${ayahNo}"\nno: ${ayahNo}\narabic_no: ${numToArabic(ayahNo)}\ntranslation: "${removeNewLine(translation)}"\ntafsir: "${wrapQuotes(tafsir)}"\n---\n\n${ayah}`)
         }
 
         i++
@@ -57,6 +57,10 @@ function removeNewLine(str) {
 
 function wrapQuotes(str) {
     return str.replace(/["]/gi, '\\"')
+}
+
+function numToArabic(num) {
+    return `${num}`.replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d])
 }
 
 main()
