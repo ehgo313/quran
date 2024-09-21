@@ -4,10 +4,10 @@
 
 @layer base {
     @font-face {
-        font-family: 'LPMQ';
+        font-family: 'Utmanic';
         font-style: normal;
         font-weight: 400;
         font-display: swap;
-        src: url(/font/lpmq.otf) format('opentype');
+        src: url(/font/utmanic.otf) format('opentype');
     }
 }
