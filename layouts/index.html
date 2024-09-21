@@ -1,5 +1,5 @@
 {{ define "main" }}
-<section class="prose mx-auto px-4 md:px-0">
+<section class="prose prose-a:no-underline hover:prose-a:underline mx-auto px-4 md:px-0">
     <h1>Al-Quran</h1>
     <p>Terdapat 114 Surah di dalam Al-Quran.</p>
     <input type="search" name="" id="" placeholder="Cari Nama Surah" class="w-full">
@@ -7,7 +7,10 @@
     <ol>
         {{ range sort (where (where (where .Site.Pages "Section" "surah") ".File.Path" "ne" "surah/_index.md") "Kind" "section") ".Params.no" "asc" }}
             <li>
-                <a href="{{ .RelPermalink }}">{{ .Params.title }} - <span class="font-arab">{{ .Params.arabic }}</span></a>
+                <div class="flex justify-between">
+                    <a href="{{ .RelPermalink }}">{{ .Params.title }}</a>
+                    <a href="{{ .RelPermalink }}" dir="rtl" class="font-arab text-xl">{{ .Params.arabic }}</a>
+                </div>
             </li>
         {{ end }}
     </ol>
