@@ -1,0 +1,19 @@
+<script>
+    document.querySelector('#select-surah')
+        .addEventListener('change', e => {
+            window.location.href = e.target.value
+        })
+
+    {{ if eq .Section "surah" }}
+    document.querySelector('#select-ayah')
+        .addEventListener('change', e => {
+            const ayah = document.querySelector(`#ayah-${e.target.value}`)
+
+            window.scrollTo({
+                top: ayah.offsetTop
+            })
+
+            e.target.blur()
+        })
+    {{ end }}
+</script>

@@ -1,18 +1,10 @@
 {{ define "main" }}
-<div class="prose mx-auto px-4 md:px-0">
+<div class="prose max-w-none">
     <h1 class="flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-0 text-center sm:text-left">
         <span class="order-last sm:order-first">{{ .Title }}</span> 
         <span class="font-arab">{{ .Params.arabic }}</span>
     </h1>
-    <p>Terdapat {{ .Params.ayah }} ayat dalam surah {{ .Title }}.</p>
-    <div>
-        <label for="go-to-ayah-select" class="block mb-1">Ke Ayat</label>
-        <select id="go-to-ayah-select">
-            {{ range sort .Pages ".Params.no" "asc" }}
-                <option value="{{ .Params.no }}">{{ .Params.no }}</option>
-            {{ end }}
-        </select>
-    </div>
+    <p class="text-center sm:text-left">Terdapat {{ .Params.ayah }} ayat dalam surah {{ .Title }}.</p>
     <hr>
     <div>
         {{ range sort .Pages ".Params.no" "asc" }}
@@ -27,20 +19,4 @@
     </div>
     </div>
 </div>
-{{ end }}
-
-{{ define "script" }}
-<script>
-    document
-        .querySelector('#go-to-ayah-select')
-        .addEventListener('change', e => {
-            const ayah = document.querySelector(`#ayah-${e.target.value}`)
-
-            window.scrollTo({
-                top: ayah.offsetTop
-            })
-
-            e.target.blur()
-        })
-</script>
 {{ end }}
