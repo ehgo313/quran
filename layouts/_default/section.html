@@ -1,6 +1,7 @@
 {{ define "main" }}
 <div class="prose mx-auto">
-    <h1>{{ .Title }} - <span class="font-arab">{{ .Params.arabic }}</span></h1>
+    <h1 class="flex items-center justify-between">{{ .Title }} <span class="font-arab">{{ .Params.arabic }}</span></h1>
+    <p>Terdapat {{ .Params.ayah }} ayat dalam surah {{ .Title }}.</p>
     <hr>
     <div>
         {{ range sort .Pages ".Params.no" "asc" }}

@@ -1080,9 +1080,26 @@ video {
   display: block;
 }
 
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
 .py-24 {
   padding-top: 6rem;
   padding-bottom: 6rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .font-serif {
@@ -1100,4 +1117,11 @@ video {
 
 .leading-\[2\.5\] {
   line-height: 2.5;
+}
+
+@media (min-width: 640px) {
+  .sm\:px-0 {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
 }
