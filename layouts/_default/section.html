@@ -1,6 +1,9 @@
 {{ define "main" }}
-<div class="prose mx-auto">
-    <h1 class="flex items-center justify-between">{{ .Title }} <span class="font-arab">{{ .Params.arabic }}</span></h1>
+<div class="prose mx-auto px-4 md:px-0">
+    <h1 class="flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-0 text-center sm:text-left">
+        <span class="order-last sm:order-first">{{ .Title }}</span> 
+        <span class="font-arab">{{ .Params.arabic }}</span>
+    </h1>
     <p>Terdapat {{ .Params.ayah }} ayat dalam surah {{ .Title }}.</p>
     <hr>
     <div>
