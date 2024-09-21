@@ -2,5 +2,6 @@
 title: "Al-Haqqah"
 arabic: "الحاۤقّة"
 no: 69
+arabic_no: ٦٩
 ayah: 52
 ---
