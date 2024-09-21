@@ -2,17 +2,63 @@
 <section class="prose prose-a:no-underline hover:prose-a:underline mx-auto px-4 md:px-0">
     <h1>Al-Quran</h1>
     <p>Terdapat 114 Surah di dalam Al-Quran.</p>
-    <input type="search" name="" id="" placeholder="Cari Nama Surah" class="w-full">
+    <input type="search" name="search" id="search" placeholder="Cari Nama Surah" class="w-full">
     <hr>
-    <ol>
+    <p class="hidden" id="surah-empty-message">Surah Yang Dicari Tidak Ditemukan</p>
+    <ol id="surah-list">
         {{ range sort (where (where (where .Site.Pages "Section" "surah") ".File.Path" "ne" "surah/_index.md") "Kind" "section") ".Params.no" "asc" }}
             <li>
                 <div class="flex justify-between">
-                    <a href="{{ .RelPermalink }}">{{ .Params.title }}</a>
+                    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
                     <a href="{{ .RelPermalink }}" dir="rtl" class="font-arab text-xl">{{ .Params.arabic }}</a>
                 </div>
             </li>
         {{ end }}
     </ol>
 </section>
+{{ end }}
+
+{{ define "script" }}
+<script>
+    const allSurah = [
+        {{ range sort (where (where (where .Site.Pages "Section" "surah") ".File.Path" "ne" "surah/_index.md") "Kind" "section") ".Params.no" "asc" }}
+            {
+                "title": "{{ .Title }}",
+                "arabic": "{{ .Params.arabic }}",
+                "link": "{{ .RelPermalink }}",
+            },
+        {{ end }}
+    ]
+
+    document
+        .querySelector('#search')
+        .addEventListener('input', e => {
+            const filteredSurah = allSurah.filter(surah => surah.title.toLowerCase().includes(e.target.value))
+
+            if (!filteredSurah.length) {
+                document.querySelector('#surah-list')
+                    .innerHTML = ''
+                document
+                    .querySelector('#surah-empty-message')
+                    .classList
+                    .remove('hidden')
+            } else {
+                document
+                    .querySelector('#surah-empty-message')
+                    .classList
+                    .add('hidden')
+                    
+                document
+                    .querySelector('#surah-list')
+                    .innerHTML = filteredSurah.map(surah => `
+                        <li>
+                            <div class="flex justify-between">
+                                <a href="${surah.link}">${surah.title}</a>
+                                <a href="${surah.link}" dir="rtl" class="font-arab text-xl">${surah.arabic}</a>
+                            </div>
+                        </li>
+                    `).join('')
+            }
+        })
+</script>
 {{ end }}
