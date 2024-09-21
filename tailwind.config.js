@@ -5,7 +5,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'sans': ['Utmanic', ...defaultTheme.fontFamily.sans],
+        'serif': ['Merriweather', ...defaultTheme.fontFamily.sans],
+        'arab': ['Utmanic', 'Merriweather', ...defaultTheme.fontFamily.serif]
       },
     }
   },
