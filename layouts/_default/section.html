@@ -6,7 +6,7 @@
         {{ range sort .Pages ".Params.no" "asc" }}
             <div>
                 <div dir="rtl" class="text-3xl leading-[2.5]">
-                    {{ .Content }}
+                    <p>{{ .RawContent }} {{ .Params.arabic_no }}</p>
                 </div>
                 <p><i>{{ .Params.translation }}</i></p>
             </div>
