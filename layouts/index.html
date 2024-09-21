@@ -2,6 +2,7 @@
 <section class="prose mx-auto px-4 md:px-0">
     <h1>Al-Quran</h1>
     <p>Terdapat 114 Surah di dalam Al-Quran.</p>
+    <input type="search" name="" id="" placeholder="Cari Nama Surah" class="w-full">
     <hr>
     <ol>
         {{ range sort (where (where (where .Site.Pages "Section" "surah") ".File.Path" "ne" "surah/_index.md") "Kind" "section") ".Params.no" "asc" }}
