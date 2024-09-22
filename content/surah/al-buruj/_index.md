@@ -1,7 +1,8 @@
 ---
 title: "Al-Buruj"
-arabic_no: ٨٥
+arabic: "البروج"
 no: 85
+arabic_no: ٨٥
 ayah: 22
 prev: al-insyiqaq
 next: at-tariq

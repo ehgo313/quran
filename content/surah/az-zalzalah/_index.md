@@ -1,7 +1,8 @@
 ---
 title: "Az-Zalzalah"
-arabic_no: ٩٩
+arabic: "الزلزلة"
 no: 99
+arabic_no: ٩٩
 ayah: 8
 prev: al-bayyinah
 next: al-adiyat

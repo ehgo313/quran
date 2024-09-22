@@ -1,7 +1,8 @@
 ---
 title: "Sad"
-arabic_no: ٣٨
+arabic: "ص"
 no: 38
+arabic_no: ٣٨
 ayah: 88
 prev: as-saffat
 next: az-zumar

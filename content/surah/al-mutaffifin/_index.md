@@ -1,7 +1,8 @@
 ---
 title: "Al-Mutaffifin"
-arabic_no: ٨٣
+arabic: "المطفّفين"
 no: 83
+arabic_no: ٨٣
 ayah: 36
 prev: al-infitar
 next: al-insyiqaq

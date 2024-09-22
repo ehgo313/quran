@@ -1,7 +1,8 @@
 ---
 title: "An-Naml"
-arabic_no: ٢٧
+arabic: "النمل"
 no: 27
+arabic_no: ٢٧
 ayah: 93
 prev: asy-syuara
 next: al-qasas

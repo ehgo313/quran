@@ -1,7 +1,8 @@
 ---
 title: "As-Saff"
-arabic_no: ٦١
+arabic: "الصّفّ"
 no: 61
+arabic_no: ٦١
 ayah: 14
 prev: al-mumtahanah
 next: al-jumuah

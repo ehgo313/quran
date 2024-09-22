@@ -1,7 +1,8 @@
 ---
 title: "Al-Anbiya'"
-arabic_no: ٢١
+arabic: "الانبياۤء"
 no: 21
+arabic_no: ٢١
 ayah: 112
 prev: taha
 next: al-hajj

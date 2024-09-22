@@ -1,7 +1,8 @@
 ---
 title: "Al-Qamar"
-arabic_no: ٥٤
+arabic: "القمر"
 no: 54
+arabic_no: ٥٤
 ayah: 55
 prev: an-najm
 next: ar-rahman

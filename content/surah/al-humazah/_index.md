@@ -1,7 +1,8 @@
 ---
 title: "Al-Humazah"
-arabic_no: ١٠٤
+arabic: "الهمزة"
 no: 104
+arabic_no: ١٠٤
 ayah: 9
 prev: al-asr
 next: al-fil

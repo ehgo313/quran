@@ -1,7 +1,8 @@
 ---
 title: "Al-'Ankabut"
-arabic_no: ٢٩
+arabic: "العنكبوت"
 no: 29
+arabic_no: ٢٩
 ayah: 69
 prev: al-qasas
 next: ar-rum

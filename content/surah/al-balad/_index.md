@@ -1,7 +1,8 @@
 ---
 title: "Al-Balad"
-arabic_no: ٩٠
+arabic: "البلد"
 no: 90
+arabic_no: ٩٠
 ayah: 20
 prev: al-fajr
 next: asy-syams

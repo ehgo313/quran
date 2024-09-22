@@ -1,7 +1,8 @@
 ---
 title: "Al-Gasyiyah"
-arabic_no: ٨٨
+arabic: "الغاشية"
 no: 88
+arabic_no: ٨٨
 ayah: 26
 prev: al-ala
 next: al-fajr

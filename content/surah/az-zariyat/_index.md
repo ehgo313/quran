@@ -1,7 +1,8 @@
 ---
 title: "Az-Zariyat"
-arabic_no: ٥١
+arabic: "الذّٰريٰت"
 no: 51
+arabic_no: ٥١
 ayah: 60
 prev: qaf
 next: at-tur

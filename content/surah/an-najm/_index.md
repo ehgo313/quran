@@ -1,7 +1,8 @@
 ---
 title: "An-Najm"
-arabic_no: ٥٣
+arabic: "النجم"
 no: 53
+arabic_no: ٥٣
 ayah: 62
 prev: at-tur
 next: al-qamar

@@ -1,7 +1,8 @@
 ---
 title: "Ar-Ra'd"
-arabic_no: ١٣
+arabic: "الرّعد"
 no: 13
+arabic_no: ١٣
 ayah: 43
 prev: yusuf
 next: ibrahim

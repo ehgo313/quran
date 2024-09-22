@@ -1,7 +1,8 @@
 ---
 title: "As-Sajdah"
-arabic_no: ٣٢
+arabic: "السّجدة"
 no: 32
+arabic_no: ٣٢
 ayah: 30
 prev: luqman
 next: al-ahzab

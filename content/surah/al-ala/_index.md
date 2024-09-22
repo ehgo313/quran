@@ -1,7 +1,8 @@
 ---
 title: "Al-A'la"
-arabic_no: ٨٧
+arabic: "الاعلى"
 no: 87
+arabic_no: ٨٧
 ayah: 19
 prev: at-tariq
 next: al-gasyiyah

@@ -1,7 +1,8 @@
 ---
 title: "Ar-Rum"
-arabic_no: ٣٠
+arabic: "الرّوم"
 no: 30
+arabic_no: ٣٠
 ayah: 60
 prev: al-ankabut
 next: luqman

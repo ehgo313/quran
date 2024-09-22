@@ -1,7 +1,8 @@
 ---
 title: "Al-Furqan"
-arabic_no: ٢٥
+arabic: "الفرقان"
 no: 25
+arabic_no: ٢٥
 ayah: 77
 prev: an-nur
 next: asy-syuara

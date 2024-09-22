@@ -1,7 +1,8 @@
 ---
 title: "Saba'"
-arabic_no: ٣٤
+arabic: "سبأ"
 no: 34
+arabic_no: ٣٤
 ayah: 54
 prev: al-ahzab
 next: fatir

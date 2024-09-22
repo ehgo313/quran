@@ -1,7 +1,8 @@
 ---
 title: "Al-Qalam"
-arabic_no: ٦٨
+arabic: "القلم"
 no: 68
+arabic_no: ٦٨
 ayah: 52
 prev: al-mulk
 next: al-haqqah

@@ -1,7 +1,8 @@
 ---
 title: "Al-A'raf"
-arabic_no: ٧
+arabic: "الاعراف"
 no: 7
+arabic_no: ٧
 ayah: 206
 prev: al-anam
 next: al-anfal

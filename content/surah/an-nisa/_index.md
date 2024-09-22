@@ -1,7 +1,8 @@
 ---
 title: "An-Nisa'"
-arabic_no: ٤
+arabic: "النساۤء"
 no: 4
+arabic_no: ٤
 ayah: 176
 prev: aliimran
 next: al-maidah

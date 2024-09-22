@@ -1,7 +1,8 @@
 ---
 title: "Yasin"
-arabic_no: ٣٦
+arabic: "يٰسۤ"
 no: 36
+arabic_no: ٣٦
 ayah: 83
 prev: fatir
 next: as-saffat

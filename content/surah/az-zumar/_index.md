@@ -1,7 +1,8 @@
 ---
 title: "Az-Zumar"
-arabic_no: ٣٩
+arabic: "الزمر"
 no: 39
+arabic_no: ٣٩
 ayah: 75
 prev: sad
 next: gafir

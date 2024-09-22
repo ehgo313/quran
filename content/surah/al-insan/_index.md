@@ -1,7 +1,8 @@
 ---
 title: "Al-Insan"
-arabic_no: ٧٦
+arabic: "الانسان"
 no: 76
+arabic_no: ٧٦
 ayah: 31
 prev: al-qiyamah
 next: al-mursalat

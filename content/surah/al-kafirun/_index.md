@@ -1,7 +1,8 @@
 ---
 title: "Al-Kafirun"
-arabic_no: ١٠٩
+arabic: "الكٰفرون"
 no: 109
+arabic_no: ١٠٩
 ayah: 6
 prev: al-kausar
 next: an-nasr

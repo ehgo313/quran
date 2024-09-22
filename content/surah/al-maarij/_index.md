@@ -1,7 +1,8 @@
 ---
 title: "Al-Ma'arij"
-arabic_no: ٧٠
+arabic: "المعارج"
 no: 70
+arabic_no: ٧٠
 ayah: 44
 prev: al-haqqah
 next: nuh

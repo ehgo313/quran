@@ -1,7 +1,8 @@
 ---
 title: "Al-Ikhlas"
-arabic_no: ١١٢
+arabic: "الاخلاص"
 no: 112
+arabic_no: ١١٢
 ayah: 4
 prev: al-lahab
 next: al-falaq

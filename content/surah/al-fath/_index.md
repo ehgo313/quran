@@ -1,7 +1,8 @@
 ---
 title: "Al-Fath"
-arabic_no: ٤٨
+arabic: "الفتح"
 no: 48
+arabic_no: ٤٨
 ayah: 29
 prev: muhammad
 next: al-hujurat

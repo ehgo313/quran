@@ -1,7 +1,8 @@
 ---
 title: "Al-Mu'minun"
-arabic_no: ٢٣
+arabic: "المؤمنون"
 no: 23
+arabic_no: ٢٣
 ayah: 118
 prev: al-hajj
 next: an-nur

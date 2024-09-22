@@ -1,7 +1,8 @@
 ---
 title: "Al-Jinn"
-arabic_no: ٧٢
+arabic: "الجن"
 no: 72
+arabic_no: ٧٢
 ayah: 28
 prev: nuh
 next: al-muzzammil

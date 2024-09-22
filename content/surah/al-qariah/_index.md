@@ -1,7 +1,8 @@
 ---
 title: "Al-Qari'ah"
-arabic_no: ١٠١
+arabic: "القارعة"
 no: 101
+arabic_no: ١٠١
 ayah: 11
 prev: al-adiyat
 next: at-takasur

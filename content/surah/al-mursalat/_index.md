@@ -1,7 +1,8 @@
 ---
 title: "Al-Mursalat"
-arabic_no: ٧٧
+arabic: "المرسلٰت"
 no: 77
+arabic_no: ٧٧
 ayah: 50
 prev: al-insan
 next: an-naba
