@@ -1,0 +1,20 @@
+<section class="prose prose-a:no-underline hover:prose-a:underline max-w-none">
+    <h1>{{ .Title }}</h1>
+    <p>{{ .Description }}</p>
+    <input type="search" name="search" id="search" placeholder="Cari Nama Surah" class="w-full">
+    <hr>
+    <p class="hidden" id="surah-empty-message" data-nosnippet>Surah Yang Dicari Tidak Ditemukan</p>
+    <ol id="surah-list">
+        {{ $site := .Site }}
+        {{ range sort $site.Data.surah "no" "asc" }}
+        {{ with $site.GetPage (printf "/surah/%s" .slug) }}
+            <li>
+                <div class="flex justify-between">
+                    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                    <a href="{{ .RelPermalink }}" dir="rtl" class="font-arab text-xl">{{ .Params.arabic }}</a>
+                </div>
+            </li>
+        {{ end }}
+        {{ end }}
+    </ol>
+</section>

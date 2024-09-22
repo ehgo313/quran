@@ -12,7 +12,7 @@
                     <option value="{{ .slug }}" {{ if eq .name $sectionTitle }} selected {{ end }}>{{ .name }}</option>
                 {{ end }}
             </select>
-            {{ if eq .Section "surah" }}
+            {{ if and (eq .Section "surah") (ne .File.Path "surah/_index.md") }}
             <select id="select-ayah" class="py-1.5 pl-3 pr-10 text-sm">
                 <option value="" selected disabled>Pilih Ayat</option>
                 {{ $isSection := .IsSection }}

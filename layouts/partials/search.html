@@ -1,0 +1,45 @@
+<script>
+    const allSurah = [
+        {{ $site := .Site }}
+        {{ range sort $site.Data.surah "no" "asc" }}
+        {{ with $site.GetPage (printf "/surah/%s" .slug) }}
+            {
+                "title": "{{ .Title }}",
+                "arabic": "{{ .Params.arabic }}",
+                "link": "{{ .RelPermalink }}",
+            },
+        {{ end }}
+        {{ end }}
+    ]
+
+    document
+        .querySelector('#search')
+        .addEventListener('input', e => {
+            const filteredSurah = allSurah.filter(surah => surah.title.toLowerCase().includes(e.target.value))
+
+            if (!filteredSurah.length) {
+                document.querySelector('#surah-list')
+                    .innerHTML = ''
+                document
+                    .querySelector('#surah-empty-message')
+                    .classList
+                    .remove('hidden')
+            } else {
+                document
+                    .querySelector('#surah-empty-message')
+                    .classList
+                    .add('hidden')
+                    
+                document
+                    .querySelector('#surah-list')
+                    .innerHTML = filteredSurah.map(surah => `
+                        <li>
+                            <div class="flex justify-between">
+                                <a href="${surah.link}">${surah.title}</a>
+                                <a href="${surah.link}" dir="rtl" class="font-arab text-xl">${surah.arabic}</a>
+                            </div>
+                        </li>
+                    `).join('')
+            }
+        })
+</script>

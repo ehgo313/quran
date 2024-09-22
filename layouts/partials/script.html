@@ -5,7 +5,7 @@
             window.location.href = new URL(`/surah/${e.target.value}`, baseUrl).href
         })
 
-    {{ if eq .Section "surah" }}
+    {{ if and (eq .Section "surah") (ne .File.Path "surah/_index.md") }}
     document.querySelector('#select-ayah')
         .addEventListener('change', e => {
             {{ if .IsSection }}
