@@ -1,0 +1,25 @@
+{{ define "main" }}
+<article class="prose max-w-none">
+    <h1>{{ .Title }}</h1>
+    <hr>
+    <p class="font-arab text-3xl leading-[2.5]" dir="rtl">{{ .Params.ayah }} {{ .Params.arabic_no }}</p>
+    <p><i>{{ .Params.no }}. {{ .Params.translation }}</i></p>
+    <hr>
+    {{ .Content }}
+    <hr>
+    <div class="flex items-center {{ if gt .Params.no 1 }} justify-between {{ else }} justify-end {{ end }}">
+        {{ with .Site.GetPage (printf "/surah/%s/%d" .CurrentSection.Params.slug (sub .Params.no 1)) }}
+        <div class="flex items-center gap-x-2">
+            <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M5 12l4 4"></path><path d="M5 12l4-4"></path></g></svg>
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </div>
+        {{ end }}
+        {{ with .Site.GetPage (printf "/surah/%s/%d" .CurrentSection.Params.slug (add .Params.no 1)) }}
+        <div class="flex items-center gap-x-2">
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M15 16l4-4"></path><path d="M15 8l4 4"></path></g></svg>
+        </div>
+        {{ end }}
+    </div>
+</article>
+{{ end }}
