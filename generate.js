@@ -29,7 +29,7 @@ async function main() {
 
         const surahFm = createFrontMatter({
             title: `"${removeNewLine(nameLatin)}"`,
-            arabic_no: `"${removeNewLine(name)}"`,
+            arabic: `"${removeNewLine(name)}"`,
             no: surah,
             arabic_no: numToArabic(surah),
             ayah: allAyah.length,
@@ -50,12 +50,11 @@ async function main() {
                 title: `"${removeNewLine(nameLatin)} - ${ayahNo}"`,
                 no: ayahNo,
                 arabic_no: numToArabic(ayahNo),
-                ayah: removeNewLine(ayah),
                 translation: `"${removeNewLine(translation)}"`,
                 tafsir: `"${wrapQuotes(tafsir)}"`
             })
 
-            await fs.writeFile(path.resolve(surahPath, `${ayahNo}.md`), ayahFm)
+            await fs.writeFile(path.resolve(surahPath, `${ayahNo}.md`), `${ayahFm}\n${removeNewLine(ayah)}`)
         }
 
         i++

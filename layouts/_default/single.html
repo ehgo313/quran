@@ -1,1 +1,13 @@
-{{ .Content }}
+{{ define "main" }}
+<article class="prose max-w-none">
+    <h1>Surah {{ .CurrentSection.Title }} Ayat {{ .Params.no }}</h1>
+    <hr>
+    <p class="font-arab text-3xl leading-[2.5]" dir="rtl">{{ .RawContent }} {{ .Params.arabic_no }}</p>
+    <hr>
+    <h2>Arti</h2>
+    <p><i>{{ .Params.translation }}</i></p>
+    <hr>
+    <h2>Tafsir</h2>
+    <p>{{ .Params.tafsir }}</p>
+</article>
+{{ end }}
