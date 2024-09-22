@@ -1,7 +1,8 @@
 ---
 title: "Gafir"
-arabic: "غافر"
-no: 40
 arabic_no: ٤٠
+no: 40
 ayah: 85
+prev: az-zumar
+next: fussilat
 ---

@@ -1,7 +1,8 @@
 ---
 title: "Al-'Asr"
-arabic: "العصر"
-no: 103
 arabic_no: ١٠٣
+no: 103
 ayah: 3
+prev: at-takasur
+next: al-humazah
 ---

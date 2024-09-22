@@ -1,7 +1,8 @@
 ---
 title: "At-Talaq"
-arabic: "الطلاق"
-no: 65
 arabic_no: ٦٥
+no: 65
 ayah: 12
+prev: at-tagabun
+next: at-tahrim
 ---

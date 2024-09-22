@@ -1,7 +1,8 @@
 ---
 title: "Al-Hujurat"
-arabic: "الحجرٰت"
-no: 49
 arabic_no: ٤٩
+no: 49
 ayah: 18
+prev: al-fath
+next: qaf
 ---

@@ -1,7 +1,8 @@
 ---
 title: "Al-Hajj"
-arabic: "الحج"
-no: 22
 arabic_no: ٢٢
+no: 22
 ayah: 78
+prev: al-anbiya
+next: al-muminun
 ---

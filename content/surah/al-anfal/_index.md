@@ -1,7 +1,8 @@
 ---
 title: "Al-Anfal"
-arabic: "الانفال"
-no: 8
 arabic_no: ٨
+no: 8
 ayah: 75
+prev: al-araf
+next: at-taubah
 ---

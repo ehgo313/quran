@@ -1,7 +1,8 @@
 ---
 title: "An-Nas"
-arabic: "الناس"
-no: 114
 arabic_no: ١١٤
+no: 114
 ayah: 6
+prev: al-falaq
+next: null
 ---

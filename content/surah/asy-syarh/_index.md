@@ -1,7 +1,8 @@
 ---
 title: "Asy-Syarh"
-arabic: "الشرح"
-no: 94
 arabic_no: ٩٤
+no: 94
 ayah: 8
+prev: ad-duha
+next: at-tin
 ---

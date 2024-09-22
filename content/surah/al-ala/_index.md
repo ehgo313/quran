@@ -1,7 +1,8 @@
 ---
 title: "Al-A'la"
-arabic: "الاعلى"
-no: 87
 arabic_no: ٨٧
+no: 87
 ayah: 19
+prev: at-tariq
+next: al-gasyiyah
 ---

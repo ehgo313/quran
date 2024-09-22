@@ -1,7 +1,8 @@
 ---
 title: "Nuh"
-arabic: "نوح"
-no: 71
 arabic_no: ٧١
+no: 71
 ayah: 28
+prev: al-maarij
+next: al-jinn
 ---

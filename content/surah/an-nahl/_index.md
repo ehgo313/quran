@@ -1,7 +1,8 @@
 ---
 title: "An-Nahl"
-arabic: "النحل"
-no: 16
 arabic_no: ١٦
+no: 16
 ayah: 128
+prev: al-hijr
+next: al-isra
 ---

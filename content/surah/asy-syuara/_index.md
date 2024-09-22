@@ -1,7 +1,8 @@
 ---
 title: "Asy-Syu'ara'"
-arabic: "الشعراۤء"
-no: 26
 arabic_no: ٢٦
+no: 26
 ayah: 227
+prev: al-furqan
+next: an-naml
 ---

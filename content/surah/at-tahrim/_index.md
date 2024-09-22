@@ -1,7 +1,8 @@
 ---
 title: "At-Tahrim"
-arabic: "التحريم"
-no: 66
 arabic_no: ٦٦
+no: 66
 ayah: 12
+prev: at-talaq
+next: al-mulk
 ---

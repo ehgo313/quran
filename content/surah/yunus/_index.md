@@ -1,7 +1,8 @@
 ---
 title: "Yunus"
-arabic: "يونس"
-no: 10
 arabic_no: ١٠
+no: 10
 ayah: 109
+prev: at-taubah
+next: hud
 ---

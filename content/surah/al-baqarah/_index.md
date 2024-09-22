@@ -1,7 +1,8 @@
 ---
 title: "Al-Baqarah"
-arabic: "البقرة"
-no: 2
 arabic_no: ٢
+no: 2
 ayah: 286
+prev: al-fatihah
+next: aliimran
 ---

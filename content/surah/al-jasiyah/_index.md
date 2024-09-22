@@ -1,7 +1,8 @@
 ---
 title: "Al-Jasiyah"
-arabic: "الجاثية"
-no: 45
 arabic_no: ٤٥
+no: 45
 ayah: 37
+prev: ad-dukhan
+next: al-ahqaf
 ---

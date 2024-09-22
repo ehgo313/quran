@@ -1,7 +1,8 @@
 ---
 title: "As-Saffat"
-arabic: "الصّٰۤفّٰت"
-no: 37
 arabic_no: ٣٧
+no: 37
 ayah: 182
+prev: yasin
+next: sad
 ---

@@ -1,7 +1,8 @@
 ---
 title: "Al-Fath"
-arabic: "الفتح"
-no: 48
 arabic_no: ٤٨
+no: 48
 ayah: 29
+prev: muhammad
+next: al-hujurat
 ---

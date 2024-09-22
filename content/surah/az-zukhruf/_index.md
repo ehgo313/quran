@@ -1,7 +1,8 @@
 ---
 title: "Az-Zukhruf"
-arabic: "الزخرف"
-no: 43
 arabic_no: ٤٣
+no: 43
 ayah: 89
+prev: asy-syura
+next: ad-dukhan
 ---

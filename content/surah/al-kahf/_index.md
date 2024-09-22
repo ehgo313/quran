@@ -1,7 +1,8 @@
 ---
 title: "Al-Kahf"
-arabic: "الكهف"
-no: 18
 arabic_no: ١٨
+no: 18
 ayah: 110
+prev: al-isra
+next: maryam
 ---

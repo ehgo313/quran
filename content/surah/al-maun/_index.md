@@ -1,7 +1,8 @@
 ---
 title: "Al-Ma'un"
-arabic: "الماعون"
-no: 107
 arabic_no: ١٠٧
+no: 107
 ayah: 7
+prev: quraisy
+next: al-kausar
 ---

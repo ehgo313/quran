@@ -1,7 +1,8 @@
 ---
 title: "Al-Qiyamah"
-arabic: "القيٰمة"
-no: 75
 arabic_no: ٧٥
+no: 75
 ayah: 40
+prev: al-muddassir
+next: al-insan
 ---

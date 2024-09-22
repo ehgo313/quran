@@ -1,7 +1,8 @@
 ---
 title: "Al-'Alaq"
-arabic: "العلق"
-no: 96
 arabic_no: ٩٦
+no: 96
 ayah: 19
+prev: at-tin
+next: al-qadr
 ---

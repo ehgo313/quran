@@ -1,7 +1,8 @@
 ---
 title: "Al-Bayyinah"
-arabic: "البيّنة"
-no: 98
 arabic_no: ٩٨
+no: 98
 ayah: 8
+prev: al-qadr
+next: az-zalzalah
 ---

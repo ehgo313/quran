@@ -1,7 +1,8 @@
 ---
 title: "Al-Kausar"
-arabic: "الكوثر"
-no: 108
 arabic_no: ١٠٨
+no: 108
 ayah: 3
+prev: al-maun
+next: al-kafirun
 ---

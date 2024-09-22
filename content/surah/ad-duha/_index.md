@@ -1,7 +1,8 @@
 ---
 title: "Ad-Duha"
-arabic: "الضحى"
-no: 93
 arabic_no: ٩٣
+no: 93
 ayah: 11
+prev: al-lail
+next: asy-syarh
 ---

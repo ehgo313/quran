@@ -1,7 +1,8 @@
 ---
 title: "Al-Fatihah"
-arabic: "الفاتحة"
-no: 1
 arabic_no: ١
+no: 1
 ayah: 7
+prev: null
+next: al-baqarah
 ---

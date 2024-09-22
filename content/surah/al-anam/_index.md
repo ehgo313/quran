@@ -1,7 +1,8 @@
 ---
 title: "Al-An'am"
-arabic: "الانعام"
-no: 6
 arabic_no: ٦
+no: 6
 ayah: 165
+prev: al-maidah
+next: al-araf
 ---

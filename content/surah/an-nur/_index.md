@@ -1,7 +1,8 @@
 ---
 title: "An-Nur"
-arabic: "النّور"
-no: 24
 arabic_no: ٢٤
+no: 24
 ayah: 64
+prev: al-muminun
+next: al-furqan
 ---

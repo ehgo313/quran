@@ -1,7 +1,8 @@
 ---
 title: "Al-A'raf"
-arabic: "الاعراف"
-no: 7
 arabic_no: ٧
+no: 7
 ayah: 206
+prev: al-anam
+next: al-anfal
 ---

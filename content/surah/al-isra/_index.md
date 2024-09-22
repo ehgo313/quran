@@ -1,7 +1,8 @@
 ---
 title: "Al-Isra'"
-arabic: "الاسراۤء"
-no: 17
 arabic_no: ١٧
+no: 17
 ayah: 111
+prev: an-nahl
+next: al-kahf
 ---

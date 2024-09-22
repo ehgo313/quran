@@ -1,7 +1,8 @@
 ---
 title: "At-Tariq"
-arabic: "الطارق"
-no: 86
 arabic_no: ٨٦
+no: 86
 ayah: 17
+prev: al-buruj
+next: al-ala
 ---

@@ -1,7 +1,8 @@
 ---
 title: "At-Tur"
-arabic: "الطور"
-no: 52
 arabic_no: ٥٢
+no: 52
 ayah: 49
+prev: az-zariyat
+next: an-najm
 ---

@@ -1,7 +1,8 @@
 ---
 title: "An-Naba'"
-arabic: "النبأ"
-no: 78
 arabic_no: ٧٨
+no: 78
 ayah: 40
+prev: al-mursalat
+next: an-naziat
 ---

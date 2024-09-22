@@ -1,7 +1,8 @@
 ---
 title: "Ar-Rahman"
-arabic: "الرحمن"
-no: 55
 arabic_no: ٥٥
+no: 55
 ayah: 78
+prev: al-qamar
+next: al-waqiah
 ---

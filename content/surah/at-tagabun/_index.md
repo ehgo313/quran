@@ -1,7 +1,8 @@
 ---
 title: "At-Tagabun"
-arabic: "التغابن"
-no: 64
 arabic_no: ٦٤
+no: 64
 ayah: 18
+prev: al-munafiqun
+next: at-talaq
 ---

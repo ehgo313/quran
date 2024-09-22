@@ -1,7 +1,8 @@
 ---
 title: "Al-Ahqaf"
-arabic: "الاحقاف"
-no: 46
 arabic_no: ٤٦
+no: 46
 ayah: 35
+prev: al-jasiyah
+next: muhammad
 ---

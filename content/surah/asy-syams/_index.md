@@ -1,7 +1,8 @@
 ---
 title: "Asy-Syams"
-arabic: "الشمس"
-no: 91
 arabic_no: ٩١
+no: 91
 ayah: 15
+prev: al-balad
+next: al-lail
 ---
