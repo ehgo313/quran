@@ -1,3 +1,5 @@
+{{ $site := .Site }}
+
 <div class="border-b sticky top-0 left-0 bg-white">
     <nav class="max-w-screen-md mx-auto py-4 flex items-center justify-between px-4 md:px-0">
         <a href="/" class="font-bold text-gray-900">Beranda</a>
@@ -5,8 +7,9 @@
             <select id="select-surah" class="py-1.5 pl-3 pr-10 text-sm">
                 <option value="" selected disabled>Pilih Surah</option>
                 {{ $sectionTitle := .CurrentSection.Title }}
-                {{ range sort (where (where (where .Site.Pages "Section" "surah") ".File.Path" "ne" "surah/_index.md") "Kind" "section") ".Params.no" "asc" }}
-                    <option value="{{ .RelPermalink }}" {{ if eq .Title $sectionTitle }} selected {{ end }}>{{ .Title }}</option>
+
+                {{ range sort $site.Data.surah "no" "asc" }}
+                    <option value="{{ .slug }}" {{ if eq .name $sectionTitle }} selected {{ end }}>{{ .name }}</option>
                 {{ end }}
             </select>
             {{ if eq .Section "surah" }}
@@ -14,8 +17,10 @@
                 <option value="" selected disabled>Pilih Ayat</option>
                 {{ $isSection := .IsSection }}
                 {{ $currentAyah := .Params.no }}
-                {{ range sort .CurrentSection.Pages ".Params.no" "asc" }}
-                    <option value="{{ if $isSection }}{{ .Params.no }}{{ else }}{{ .RelPermalink }}{{ end }}" {{ if and (not $isSection) (eq $currentAyah .Params.no) }} selected {{ end }}>{{ .Params.no }}</option>
+                {{ $slug := .CurrentSection.Params.slug }}
+
+                {{ range seq .CurrentSection.Params.ayah }}
+                    <option value="{{ . }}" {{ if and (not $isSection) (eq $currentAyah .) }} selected {{ end }}>{{ . }}</option>
                 {{ end }}
             </select>
             {{ end }}
