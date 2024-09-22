@@ -9,7 +9,7 @@
     {{ range sort .Pages ".Params.no" "asc" }}
         <div id="ayah-{{ .Params.no }}">
             <div dir="rtl" class="text-3xl leading-[2.5] font-arab">
-                <p>{{ .RawContent }} {{ .Params.arabic_no }}</p>
+                <p>{{ .Params.ayah }} {{ .Params.arabic_no }}</p>
             </div>
             <p><i>{{ .Params.no }}. {{ .Params.translation }}</i></p>
             <p>

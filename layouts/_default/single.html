@@ -2,13 +2,10 @@
 <article class="prose max-w-none">
     <h1>{{ .Title }}</h1>
     <hr>
-    <p class="font-arab text-3xl leading-[2.5]" dir="rtl">{{ .RawContent }} {{ .Params.arabic_no }}</p>
+    <p class="font-arab text-3xl leading-[2.5]" dir="rtl">{{ .Params.ayah }} {{ .Params.arabic_no }}</p>
+    <p><i>{{ .Params.no }}. {{ .Params.translation }}</i></p>
     <hr>
-    <h2>Arti</h2>
-    <p><i>{{ .Params.translation }}</i></p>
-    <hr>
-    <h2>Tafsir</h2>
-    <p>{{ .Params.tafsir }}</p>
+    {{ .Content }}
     <hr>
     <div class="flex items-center {{ if gt .Params.no 1 }} justify-between {{ else }} justify-end {{ end }}">
         {{ with .Site.GetPage (printf "/surah/%s/%d" .CurrentSection.Params.slug (sub .Params.no 1)) }}
