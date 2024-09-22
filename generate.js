@@ -9,10 +9,12 @@ async function main() {
     const allSurah = await fs.readdir(path.resolve(quranTextPath, 'surah'))
 
     await createDir(allSurahPath)
+    await createDir(path.resolve('data'))
 
     await fs.writeFile(path.resolve(allSurahPath, '_index.md'), '---\ntitle: Surah\n---')
 
     let i = 0
+    const dataIndex = []
 
     for (const surah of allSurah) {
         const surahDetail = await fs.readdir(path.resolve(quranTextPath, 'surah', surah))
@@ -33,6 +35,7 @@ async function main() {
             no: surah,
             arabic_no: numToArabic(surah),
             ayah: allAyah.length,
+            slug: normalizeSurah(nameLatin),
             prev,
             next
         })
@@ -47,7 +50,7 @@ async function main() {
             const [ayahNo] = ayahFile.split('.')
 
             const ayahFm = createFrontMatter({
-                title: `"${removeNewLine(nameLatin)} - ${ayahNo}"`,
+                title: `"Surah ${removeNewLine(nameLatin)} Ayat ${ayahNo}"`,
                 no: ayahNo,
                 arabic_no: numToArabic(ayahNo),
                 translation: `"${removeNewLine(translation)}"`,
@@ -57,10 +60,19 @@ async function main() {
             await fs.writeFile(path.resolve(surahPath, `${ayahNo}.md`), `${ayahFm}\n${removeNewLine(ayah)}`)
         }
 
+        dataIndex.push({
+            slug: normalizeSurah(nameLatin),
+            name: removeNewLine(nameLatin),
+            ayah: allAyah.length,
+            no: +surah
+        })
+
         i++
 
         console.log(`${i}/${allSurah.length}`)
     }
+
+    await fs.writeFile(path.resolve('data', 'surah.json'), JSON.stringify(dataIndex, null, 2), { encoding: 'utf-8' })
 
     process.exit(1)
 }
