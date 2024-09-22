@@ -1,7 +1,8 @@
 <script>
+    const baseUrl = '{{ .Site.BaseURL }}'
     document.querySelector('#select-surah')
         .addEventListener('change', e => {
-            window.location.href = e.target.value
+            window.location.href = new URL(`/surah/${e.target.value}`, baseUrl).href
         })
 
     {{ if eq .Section "surah" }}
@@ -16,7 +17,8 @@
 
             e.target.blur()
             {{ else }}
-            window.location.href = e.target.value
+            const sectionSlug = '{{ .CurrentSection.Params.slug }}'
+            window.location.href = new URL('/surah/' + sectionSlug + '/' + e.target.value, baseUrl).href
             {{ end}}
         })
     {{ end }}
