@@ -1303,6 +1303,10 @@ select {
   height: 1rem;
 }
 
+.h-5 {
+  height: 1.25rem;
+}
+
 .min-h-screen {
   min-height: 100vh;
 }
@@ -1313,6 +1317,10 @@ select {
 
 .w-full {
   width: 100%;
+}
+
+.w-5 {
+  width: 1.25rem;
 }
 
 .max-w-none {
@@ -1454,6 +1462,14 @@ select {
 @media (min-width: 640px) {
   .sm\:order-first {
     order: -9999;
+  }
+
+  .sm\:block {
+    display: block;
+  }
+
+  .sm\:hidden {
+    display: none;
   }
 
   .sm\:flex-row {
