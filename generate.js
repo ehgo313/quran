@@ -11,8 +11,6 @@ async function main() {
     await createDir(allSurahPath)
     await createDir(path.resolve('data'))
 
-    await fs.writeFile(path.resolve(allSurahPath, '_index.md'), '---\ntitle: Surah\n---')
-
     let i = 0
     const dataIndex = []
 
