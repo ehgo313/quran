@@ -1,10 +1,10 @@
 {{ define "main" }}
 <section class="prose prose-a:no-underline hover:prose-a:underline max-w-none">
-    <h1>Al-Quran</h1>
-    <p>Terdapat 114 Surah di dalam Al-Quran.</p>
+    <h1>{{ .Title }}</h1>
+    <p>{{ .Description }}</p>
     <input type="search" name="search" id="search" placeholder="Cari Nama Surah" class="w-full">
     <hr>
-    <p class="hidden" id="surah-empty-message">Surah Yang Dicari Tidak Ditemukan</p>
+    <p class="hidden" id="surah-empty-message" data-nosnippet>Surah Yang Dicari Tidak Ditemukan</p>
     <ol id="surah-list">
         {{ range sort (where (where (where .Site.Pages "Section" "surah") ".File.Path" "ne" "surah/_index.md") "Kind" "section") ".Params.no" "asc" }}
             <li>
