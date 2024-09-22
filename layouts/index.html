@@ -6,13 +6,16 @@
     <hr>
     <p class="hidden" id="surah-empty-message" data-nosnippet>Surah Yang Dicari Tidak Ditemukan</p>
     <ol id="surah-list">
-        {{ range sort (where (where (where .Site.Pages "Section" "surah") ".File.Path" "ne" "surah/_index.md") "Kind" "section") ".Params.no" "asc" }}
+        {{ $site := .Site }}
+        {{ range sort $site.Data.surah "no" "asc" }}
+        {{ with $site.GetPage (printf "/surah/%s" .slug) }}
             <li>
                 <div class="flex justify-between">
                     <a href="{{ .RelPermalink }}">{{ .Title }}</a>
                     <a href="{{ .RelPermalink }}" dir="rtl" class="font-arab text-xl">{{ .Params.arabic }}</a>
                 </div>
             </li>
+        {{ end }}
         {{ end }}
     </ol>
 </section>
@@ -21,12 +24,15 @@
 {{ define "script" }}
 <script>
     const allSurah = [
-        {{ range sort (where (where (where .Site.Pages "Section" "surah") ".File.Path" "ne" "surah/_index.md") "Kind" "section") ".Params.no" "asc" }}
+        {{ $site := .Site }}
+        {{ range sort $site.Data.surah "no" "asc" }}
+        {{ with $site.GetPage (printf "/surah/%s" .slug) }}
             {
                 "title": "{{ .Title }}",
                 "arabic": "{{ .Params.arabic }}",
                 "link": "{{ .RelPermalink }}",
             },
+        {{ end }}
         {{ end }}
     ]
 
