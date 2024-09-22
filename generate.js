@@ -1,8 +1,9 @@
 const path = require('path')
 const fs = require('fs/promises')
 
+const quranTextPath = path.resolve(process.env.QURAN_TEXT)
+
 async function main() {
-    const quranTextPath = path.resolve(process.env.QURAN_TEXT)
     const allSurahPath = path.resolve('content/surah')
 
     const allSurah = await fs.readdir(path.resolve(quranTextPath, 'surah'))
@@ -19,11 +20,24 @@ async function main() {
         const nameLatin = await fs.readFile(path.resolve(quranTextPath, 'surah', surah, surahDetail[surahDetail.length - 2]), { encoding: 'utf-8' })
         const allAyah = surahDetail.slice(0, surahDetail.length - 2)
 
-        const surahPath = path.resolve('content/surah', nameLatin.replace(/[^\w-]/gi, '').toLowerCase())
+        const surahPath = path.resolve('content/surah', normalizeSurah(nameLatin))
 
         await createDir(surahPath)
 
-        await fs.writeFile(path.resolve(surahPath, '_index.md'), `---\ntitle: "${removeNewLine(nameLatin)}"\narabic: "${removeNewLine(name)}"\nno: ${surah}\narabic_no: ${numToArabic(surah)}\nayah: ${allAyah.length}\n---`)
+        const prev = await getPrev(+surah)
+        const next = await getNext(+surah)
+
+        const surahFm = createFrontMatter({
+            title: `"${removeNewLine(nameLatin)}"`,
+            arabic_no: `"${removeNewLine(name)}"`,
+            no: surah,
+            arabic_no: numToArabic(surah),
+            ayah: allAyah.length,
+            prev,
+            next
+        })
+
+        await fs.writeFile(path.resolve(surahPath, '_index.md'), surahFm)
 
         for (const ayahFile of allAyah) {
             const ayah =  await fs.readFile(path.resolve(quranTextPath, 'surah', surah, ayahFile), { encoding: 'utf-8' })
@@ -32,7 +46,16 @@ async function main() {
 
             const [ayahNo] = ayahFile.split('.')
 
-            await fs.writeFile(path.resolve(surahPath, `${ayahNo}.md`), `---\ntitle: "${removeNewLine(nameLatin)} - ${ayahNo}"\nno: ${ayahNo}\narabic_no: ${numToArabic(ayahNo)}\ntranslation: "${removeNewLine(translation)}"\ntafsir: "${wrapQuotes(tafsir)}"\n---\n\n${ayah}`)
+            const ayahFm = createFrontMatter({
+                title: `"${removeNewLine(nameLatin)} - ${ayahNo}"`,
+                no: ayahNo,
+                arabic_no: numToArabic(ayahNo),
+                ayah: removeNewLine(ayah),
+                translation: `"${removeNewLine(translation)}"`,
+                tafsir: `"${wrapQuotes(tafsir)}"`
+            })
+
+            await fs.writeFile(path.resolve(surahPath, `${ayahNo}.md`), ayahFm)
         }
 
         i++
@@ -61,6 +84,45 @@ function wrapQuotes(str) {
 
 function numToArabic(num) {
     return `${num}`.replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d])
+}
+
+function createFrontMatter(data) {
+    const text = Object
+        .entries(data)
+        .map(([key, value]) => `${key}: ${value}\n`)
+        .join('')
+
+    return '---\n' + text + '---'
+}
+
+function normalizeSurah(surah) {
+    return surah.replace(/[^\w-]/gi, '').toLowerCase()
+}
+
+async function getPrev(i) {
+    if (i === 1) {
+        return null
+    }
+
+    const prevI = `${i - 1}`
+
+    const surahDetail = await fs.readdir(path.resolve(quranTextPath, 'surah', prevI))
+    const nameLatin = await fs.readFile(path.resolve(quranTextPath, 'surah', prevI, surahDetail[surahDetail.length - 2]), { encoding: 'utf-8' })
+
+    return normalizeSurah(nameLatin)
+}
+
+async function getNext(i) {
+    if (i === 114) {
+        return null
+    }
+
+    const nextI = `${i + 1}`
+
+    const surahDetail = await fs.readdir(path.resolve(quranTextPath, 'surah', nextI))
+    const nameLatin = await fs.readFile(path.resolve(quranTextPath, 'surah', nextI, surahDetail[surahDetail.length - 2]), { encoding: 'utf-8' })
+
+    return normalizeSurah(nameLatin)
 }
 
 main()
