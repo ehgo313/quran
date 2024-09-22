@@ -43,21 +43,30 @@ async function main() {
         await fs.writeFile(path.resolve(surahPath, '_index.md'), surahFm)
 
         for (const ayahFile of allAyah) {
-            const ayah =  await fs.readFile(path.resolve(quranTextPath, 'surah', surah, ayahFile), { encoding: 'utf-8' })
-            const tafsir =  await fs.readFile(path.resolve(quranTextPath, 'tafsir/id/kemenag', surah, ayahFile), { encoding: 'utf-8' })
-            const translation =  await fs.readFile(path.resolve(quranTextPath, 'translations/id', surah, ayahFile), { encoding: 'utf-8' })
+            const ayah = removeNewLine(await fs.readFile(path.resolve(quranTextPath, 'surah', surah, ayahFile), { encoding: 'utf-8' }))
+            const tafsir = fixSymbol(await fs.readFile(path.resolve(quranTextPath, 'tafsir/id/kemenag', surah, ayahFile), { encoding: 'utf-8' }))
+            const translation = removeNewLine(await fs.readFile(path.resolve(quranTextPath, 'translations/id', surah, ayahFile), { encoding: 'utf-8' }))
+
+            if (/\\(?![nr])/.test(tafsir)) {
+                console.log(`${surah} - ${ayahFile}`)
+                console.log(tafsir)
+
+                process.exit(0)
+            }
 
             const [ayahNo] = ayahFile.split('.')
 
             const ayahFm = createFrontMatter({
                 title: `"Surah ${removeNewLine(nameLatin)} Ayat ${ayahNo}"`,
                 no: ayahNo,
+                ayah,
                 arabic_no: numToArabic(ayahNo),
-                translation: `"${removeNewLine(translation)}"`,
-                tafsir: `"${wrapQuotes(tafsir)}"`
+                translation: `"${wrapQuotes(translation)}"`,
             })
 
-            await fs.writeFile(path.resolve(surahPath, `${ayahNo}.md`), `${ayahFm}\n${removeNewLine(ayah)}`)
+            const content = createContent(ayahFm, ['## Tafsir', tafsir])
+
+            await fs.writeFile(path.resolve(surahPath, `${ayahNo}.md`), content)
         }
 
         dataIndex.push({
@@ -134,6 +143,20 @@ async function getNext(i) {
     const nameLatin = await fs.readFile(path.resolve(quranTextPath, 'surah', nextI, surahDetail[surahDetail.length - 2]), { encoding: 'utf-8' })
 
     return normalizeSurah(nameLatin)
+}
+
+function fixSymbol(str) {
+    return str
+        .replaceAll('\\n', '\n')
+        .replaceAll('\\r', '\r')
+        .replaceAll(/\\(?![nr])/g, '')
+}
+
+function createContent(fm, elem) {
+    const content = elem
+        .join('\n\n')
+
+    return fm + '\n\n' + content
 }
 
 main()
