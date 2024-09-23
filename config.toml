@@ -1,5 +1,5 @@
 baseURL = 'http://example.org/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'Al Quran Online Digital Terjemahan dan Tafsir Bahasa Indonesia'
 
 disableKinds = ['taxonomy', 'term']

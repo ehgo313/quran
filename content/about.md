@@ -1,5 +1,5 @@
 ---
-title: About
+title: Tentang Al-Quran Digital
 ---
 
 Sebuah website yang menyediakan Al-Quran dengan terjemahan dan tafsir per ayat.

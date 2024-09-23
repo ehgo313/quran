@@ -1,6 +1,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ .Title }}</title>
+<title>{{ if or .IsHome (eq .File.Path "surah/_index.md") }}{{ .Site.Title }}{{ else if (and .IsSection (eq .Section "surah")) }}Surah {{ .Title }}: Arab dan Terjemahan{{ else if (eq .Section "surah") }}Surah {{ .CurrentSection.Title }} Ayat {{ .Params.no }}: Arab, Terjemahan, dan Tafsir{{ else }}{{ .Title }}{{ end }}</title>
 
 <link rel="stylesheet" href="/css/style.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
