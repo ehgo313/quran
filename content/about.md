@@ -1,8 +1,11 @@
 ---
 title: Tentang Website
+keywords: al-quran,baca al-quran,al-quran digital,al-quran online,al-quran-web
 ---
 
-Sebuah website yang menyediakan Al-Quran dengan terjemahan dan tafsir per ayat.
+Al-Quran Digital Online adalah website yang menyajikan Al-Quran dalam bentuk web lengkap dengan terjemahan dan tafsir per ayat dalam Bahasa Indonesia.
+
+<!--more-->
 
 Dibuat menggunakan Hugo dan Tailwind CSS.
 

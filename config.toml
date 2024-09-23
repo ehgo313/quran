@@ -1,5 +1,8 @@
 baseURL = 'http://example.org/'
 languageCode = 'en-us'
-title = 'Al Quran Online Digital Terjemahan dan Tafsir Bahasa Indonesia'
+title = 'Al-Quran Digital Online Terjemahan dan Tafsir Bahasa Indonesia'
 
-disableKinds = ['taxonomy', 'term']
+[params]
+    description = 'Baca Al-Quran Digital Online dengan terjemahan dan tafsir dalam Bahasa Indonesia Lengkap 30 Juz' 
+
+disableKinds = ['taxonomy', 'term'] 

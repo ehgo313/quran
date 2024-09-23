@@ -1,6 +1,52 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ if or .IsHome (eq .File.Path "surah/_index.md") }}{{ .Site.Title }}{{ else if (and .IsSection (eq .Section "surah")) }}Surah {{ .Title }}: Arab dan Terjemahan{{ else if (eq .Section "surah") }}Surah {{ .CurrentSection.Title }} Ayat {{ .Params.no }}: Arab, Terjemahan, dan Tafsir{{ else }}{{ .Title }}{{ end }}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+{{ $isHome := or .IsHome (eq .File.Path "surah/_index.md") }}
+{{ $isSurah := eq .Section "surah" }}
+
+{{ $title := "" }}
+
+{{ if $isHome }}
+  {{ $title = .Site.Title }}
+{{ else if (and .IsSection $isSurah) }}
+  {{ $title = printf "Surah %s: Arab dan Terjemahan" .Title }}
+{{ else if $isSurah }}
+  {{ $title = printf "Surah %s Ayat %d: Arab, Terjemahan, dan Tafsir" .CurrentSection.Title .Params.no }}
+{{ else }}
+  {{ $title = printf "%s - %s" .Title .Site.Title }}
+{{ end }}
+
+{{ $description := "" }}
+
+{{ if $isHome }}
+  {{ $description = .Site.Params.description }}
+{{ else if (and .IsSection $isSurah) }}
+  {{ $description = printf "Surah %s adalah surah no %d dalam Al-Quran yang terdiri dari %d ayat" .Title .Params.no .Params.ayah }}
+{{ else if $isSurah }}
+  {{ $description = printf "Baca surah %s Ayat %d beserta terjemahan dan tafsir dalam Bahasa Indonesia" .CurrentSection.Title .Params.no }}
+{{ else }}
+  {{ $description = .Summary | plainify }}
+{{ end }}
+
+<title>{{ $title }}</title>
+<meta name="description" content="{{ $description }}">
+<meta name="keywords" content="{{ if $isHome }}al-quran,baca al-quran,al-quran digital,al-quran online,al-quran-web{{ else if (and .IsSection $isSurah) }}{{ .Params.slug }},{{ .Params.slug }} terjemahan,{{ .Params.slug }} tafsir{{ else if $isSurah }}{{ .CurrentSection.Params.slug }} ayat {{ .Params.no }},{{ .CurrentSection.Params.slug }} ayat {{ .Params.no }} terjemahan,{{ .CurrentSection.Params.slug }} ayat {{ .Params.no }} tafsir{{ else }}{{ delimit .Keywords " " }}{{ end }}">
+<meta name="robots" content="index, follow">
+
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $description }}">
+<meta property="og:type" content="{{ if $isHome }}web{{ else }}article{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}" />
+<meta property="og:image" content="/images/alquran.jpg" />
+
+{{ if not .IsHome }}
+<meta property="article:section" content="{{ .Section }}" />
+<meta property="article:published_time" content="{{ .Site.Params.publishdate }}" />
+<meta property="article:modified_time" content="{{ .Site.Params.publishdate }}" />
+{{ end }}
+
+<link rel="canonical" href="{{ .Permalink }}" />
 
 <link rel="stylesheet" href="/css/style.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
