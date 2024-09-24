@@ -3,7 +3,7 @@
     <p>{{ .Description }}</p>
     <input type="search" name="search" id="search" placeholder="Cari Nama Surah" class="w-full">
     <hr>
-    <p class="hidden" id="surah-empty-message" data-nosnippet>Surah Yang Dicari Tidak Ditemukan</p>
+    <p id="surah-empty-message" class="hidden" data-nosnippet>Surah Yang Dicari Tidak Ditemukan</p>
     <ol id="surah-list">
         {{ $site := .Site }}
         {{ range sort $site.Data.surah "no" "asc" }}
