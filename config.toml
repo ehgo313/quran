@@ -4,5 +4,6 @@ title = 'Al-Quran Digital Online Terjemahan dan Tafsir Bahasa Indonesia'
 
 [params]
     description = 'Baca Al-Quran Digital Online dengan terjemahan dan tafsir dalam Bahasa Indonesia Lengkap 30 Juz' 
+    publishdate = '2006-01-02T15:04:05-07:00'
 
 disableKinds = ['taxonomy', 'term'] 
