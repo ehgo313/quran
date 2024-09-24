@@ -9,11 +9,16 @@ Al-Quran Digital Online adalah website yang menyajikan Al-Quran dalam bentuk web
 
 Dibuat menggunakan Hugo dan Tailwind CSS.
 
-Sumber data (surah, ayat, terjemahan dan tafsir) didapatkan dari https://github.com/rioastamal/quran-web.
+## Sumber
 
-Source Code : https://github.com/sysym-dev/quran
+- https://github.com/rioastamal/quran-web
+- https://quran.kemenag.go.id
 
-Dukung Kami :
+## Source Code 
+
+https://github.com/sysym-dev/quran
+
+## Support
 
 - https://sysym.dev
 - https://twitter.com/sysym_dev
