@@ -7,7 +7,7 @@
     <hr>
     {{ .Content }}
     <hr>
-    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-0 {{ if gt .Params.no 1 }} justify-between {{ else }} justify-end {{ end }}">
+    <nav class="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-0 {{ if gt .Params.no 1 }} justify-between {{ else }} justify-end {{ end }}">
         {{ with .Site.GetPage (printf "/surah/%s/%d" .CurrentSection.Params.slug (sub .Params.no 1)) }}
         <div class="flex items-center gap-x-2">
             <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M5 12l4 4"></path><path d="M5 12l4-4"></path></g></svg>
@@ -20,6 +20,6 @@
             <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M15 16l4-4"></path><path d="M15 8l4 4"></path></g></svg>
         </div>
         {{ end }}
-    </div>
+    </nav>
 </article>
 {{ end }}
