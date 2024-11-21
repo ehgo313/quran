@@ -1,5 +1,5 @@
 ---
-title: Al-Quran
-description: Terdapat 114 Surah di dalam Al-Quran
+title: Alcorão
+description: Que a paz esteja com o Profeta, seus Ahlul-Bayt e seus seguidores.
 type: sectionbase
 ---
