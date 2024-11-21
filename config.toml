@@ -1,6 +1,6 @@
 baseURL = 'https://qurandigital.online/'
 languageCode = 'en-us'
-title = 'Al-Quran Digital Online Terjemahan dan Tafsir Bahasa Indonesia'
+title = 'Alcorão e Tafsir compilado por Ehgo'
 
 [params]
     description = 'Baca Al-Quran Digital Online dengan terjemahan dan tafsir dalam Bahasa Indonesia Lengkap 30 Juz' 
