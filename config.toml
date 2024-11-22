@@ -3,7 +3,7 @@ languageCode = 'en-us'
 title = 'Alcorão e Tafsir compilado por Ehgo'
 
 [params]
-    description = 'Baca Al-Quran Digital Online dengan terjemahan dan tafsir dalam Bahasa Indonesia Lengkap 30 Juz' 
+    description = 'Alcorão e Tafsir em português'
     publishdate = '2006-01-02T15:04:05-07:00'
 
 disableKinds = ['taxonomy', 'term'] 
