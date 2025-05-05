@@ -1,6 +1,6 @@
 baseURL = 'https://alcorao.netlify.app/'
 languageCode = 'en-us'
-title = 'Alcorão e Tafsir compilado por Ehgo'
+title = 'Alcorão e Tafsir'
 
 [params]
     description = 'Alcorão e Tafsir em português'
